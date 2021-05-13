@@ -40,5 +40,25 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    babel: {
+      babelrc: false,
+      cacheDirectory: undefined,
+      // presets: ['@nuxt/babel-preset-app'],
+      // "presets":["es2015"],
+      plugins: ['@babel/plugin-syntax-dynamic-import', [
+        '@babel/plugin-transform-runtime',
+        {
+          'corejs': false,
+          'helpers': true,
+          'regenerator': true,
+          'useESModules': false
+        }
+      ]],
+      'configFile': false,
+    },
+
+  },
+  alias: {
+
   }
 }
