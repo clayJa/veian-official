@@ -1,34 +1,70 @@
 <template>
 <div>
-  <b-navbar toggleable="lg" class="container">
-    <b-navbar-brand href="#" class="logo">
+  <div class="container header-wrapper">
+    <div class="logo">
       <img src="@/assets/images/logo.png" alt="logo">
-    </b-navbar-brand>
-
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav class="ml-auto mr-auto">
-        <b-nav-item href="#" class="nav_item">首页</b-nav-item>
-        <b-nav-item href="#" class="nav_item">简单</b-nav-item>
-        <b-nav-item href="#" class="nav_item">信任</b-nav-item>
-        <b-nav-item href="#" class="nav_item">快乐</b-nav-item>
-        <b-nav-item href="#" class="nav_item">我们</b-nav-item>
-        <b-nav-item href="#" class="nav_item">联系</b-nav-item>
-      </b-navbar-nav>
-
-      <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
+    </div>
+    <div class="nav-wrapper ml-auto mr-auto">
+      <div class="nav-item" v-for="item in menu" :key="item.name">
+        <a href="#">
+          {{ item.name }}
+           <InlineSvg
+              v-if="item.subMenu && item.subMenu.length > 0"
+              :src="require('@/assets/images/icon_triangle.svg')" class="nav-icon" />
+        </a>
+        <div class="sub-nav-wrapper" v-if="item.subMenu && item.subMenu.length > 0" >
+          <div class="sub-nav-item">
+            <a href="#">创意</a>
+          </div>
+          <div class="sub-nav-item">
+            <a href="#">开发</a>
+          </div>
+          <div class="sub-nav-item">
+            <a href="#">营销</a>
+          </div>
+          <div class="sub-nav-item">
+            <a href="#">运营</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="search-wrapper ml-auto">
         <InlineSvg :src="require('@/assets/images/icon_search.svg')" class="icon" />
         <InlineSvg :src="require('@/assets/images/icon_phone.svg')" class="icon" />
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
+    </div>
+  </div>
 </div>
 </template>
 <script lang="ts">
 import InlineSvg from 'vue-inline-svg';
 export default {
+  data () {
+    return {
+      menu: [
+        { name: '首页', path: '#' },
+        { name: '简单', path: '#' },
+        { name: '信任', path: '#',
+          subMenu: [
+            { name: '创意', path: '#' },
+            { name: '开发', path: '#' },
+            { name: '营销', path: '#' },
+            { name: '运营', path: '#' },
+          ]
+        },
+        { name: '快乐', path: '#',
+          subMenu: [
+            { name: '创意交互设计', path: '#' },
+            { name: '视频数字化应用', path: '#' },
+            { name: '视觉识别系统 (VI)', path: '#' },
+            { name: '全景虚拟现实 (VR)', path: '#' },
+            { name: '年度设计服务', path: '#' },
+          ]
+        },
+        { name: '我们', path: '#' },
+        { name: '联系', path: '#' },
+      ]
+    }
+  },
   components: {
     InlineSvg,
   }
@@ -42,17 +78,77 @@ export default {
     width: 100%;
   }
 }
-.nav_item {
-  font-size: 16px;
-  font-family: PingFangSC-Regular, PingFang SC;
-  font-weight: 400;
+a {
   color: #474747;
-  &:not(:last-child) {
-    margin-right: 2em;
+  &:hover {
+    text-decoration: none;
+    color:#1A82FF;
   }
 }
-.icon {
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+.nav-wrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  .nav-item {
+    position: relative;
+    .sub-nav-wrapper {
+      position: absolute;
+      display: none;
+      z-index: 100;
+      border: 1px solid #E5E5E5;
+      font-size: 12px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 500;
+      background: #fff;
+      .sub-nav-item {
+        width: 158px;
+        height: 43px;
+        line-height: 43px;
+        text-indent: 32px;
+        font-weight: 500;
+        a {
+          color: #474747;
+        }
+        &:hover {
+          background: #F7F7F7;
+          a {
+            color: #1A82FF;
+          }
+        }
+      }
+    }
+  }
+}
+.nav-item {
+  display: inline-block;
+  font-size: 16px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 500;
+  padding: 0 24px;
+  height: 100px;
+  line-height: 100px;
+  color: #474747;
+  &:hover {
+    .nav-icon {
+      transform: rotate(-180deg);
+      color: #1A82FF;
+    }
+    a {
+      color: #1A82FF;
+    }
+    .sub-nav-wrapper {
+      display: block;
+    }
+  }
+}
+.search-wrapper .icon {
   color: #A6AAB1;
+  cursor: pointer;
   &:not(:last-child) {
     margin-right: 24px;
   }
