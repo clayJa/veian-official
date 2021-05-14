@@ -39,7 +39,6 @@
       </b-carousel-slide>
 
     </b-carousel>
-    <Footer />
   </div>
 </template>
 
