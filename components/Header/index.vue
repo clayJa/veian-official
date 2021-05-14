@@ -115,6 +115,8 @@ a {
   align-items: center;
   .nav-item {
     position: relative;
+    white-space: nowrap;
+
     .sub-nav-wrapper {
       position: absolute;
       display: none;

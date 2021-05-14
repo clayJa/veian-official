@@ -17,6 +17,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    //配置全局 css
+    '~/assets/style/global.less',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -36,8 +38,11 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    '@nuxtjs/style-resources',
   ],
-
+  styleResources:{
+    less:'./assets/style/variable.less'
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     babel: {
@@ -45,6 +50,7 @@ export default {
       cacheDirectory: undefined,
       // presets: ['@nuxt/babel-preset-app'],
       // "presets":["es2015"],
+      // transpile:[/^sunshine-layout/,/^sunshine-ui/,/^tree-table-vue/,/^view-design/],  //转换解析第三方包
       plugins: ['@babel/plugin-syntax-dynamic-import', [
         '@babel/plugin-transform-runtime',
         {

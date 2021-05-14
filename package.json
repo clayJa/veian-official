@@ -9,7 +9,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "bootstrap": "^4.6.0",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "bootstrap": "3",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3",
@@ -23,6 +24,6 @@
     "less-loader": "5.0.0"
   },
   "browserslist": [
-    "ie >= 9"
+    "Explorer >= 9"
   ]
 }
