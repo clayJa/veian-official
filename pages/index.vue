@@ -4,6 +4,7 @@
     <Banner />
     <PictureGrid />
     <ServiceContent />
+    <About />
     <Footer />
   </div>
 </template>
@@ -14,6 +15,7 @@ import Footer from '@/components/Footer/index.vue'
 import PictureGrid from '@/components/PictureGrid/index.vue'
 import Banner from '@/components/index/Banner/index.vue'
 import ServiceContent from '@/components/index/ServiceContent/index.vue'
+import About from '@/components/index/About/index.vue'
 export default {
   data() {
     return {
@@ -27,6 +29,7 @@ export default {
     Banner,
     PictureGrid,
     ServiceContent,
+    About,
   }
 }
 </script>
