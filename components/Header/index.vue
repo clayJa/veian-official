@@ -29,7 +29,15 @@
       </div>
     </div>
     <div class="search-wrapper ml-auto">
-        <InlineSvg :src="require('@/assets/images/icon_search.svg')" class="icon" />
+        <div class="search-item">
+          <b-form-input
+            id="input-search"
+            v-model="text"
+            placeholder="客户案例"
+            :style="{ visibility: visible ? 'visible' : 'hidden'}"
+          ></b-form-input>
+          <InlineSvg :src="require('@/assets/images/icon_search.svg')" class="icon" @click="showSearch"/>
+        </div>
         <InlineSvg :src="require('@/assets/images/icon_phone.svg')" class="icon" />
     </div>
   </div>
@@ -40,6 +48,8 @@ import InlineSvg from 'vue-inline-svg';
 export default {
   data () {
     return {
+      text: '',
+      visible: false,
       menu: [
         { name: '首页', path: '#' },
         { name: '简单', path: '#' },
@@ -63,6 +73,15 @@ export default {
         { name: '我们', path: '#' },
         { name: '联系', path: '#' },
       ]
+    }
+  },
+  methods: {
+    showSearch() {
+      if(!this.visible) {
+        this.visible = true
+      } else {
+        console.log('search',this.text)
+      }
     }
   },
   components: {
@@ -149,8 +168,21 @@ a {
 .search-wrapper .icon {
   color: #A6AAB1;
   cursor: pointer;
-  &:not(:last-child) {
-    margin-right: 24px;
+  &:last-child {
+    margin-left: 24px;
+  }
+}
+.search-item {
+  display: inline-flex;
+  align-items: center;
+  input {
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #E5E5E5;
+    visibility: hidden;
+    &:focus {
+      box-shadow: none;
+    }
   }
 }
 </style>
