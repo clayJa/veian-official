@@ -14,7 +14,8 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { src: '/js/innersvg.js' }
+      { src: '/js/innersvg.js' },
+      { src: '/js/flexibility.js' },
     ]
   },
 
@@ -22,10 +23,12 @@ export default {
   css: [
     //配置全局 css
     '~/assets/style/global.less',
+    'swiper/dist/idangerous.swiper.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '@/plugins/swiper.js', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -65,9 +68,23 @@ export default {
       ]],
       'configFile': false,
     },
-
+    postcss: {
+      // Add plugin names as key and arguments as value
+      // Install them before as dependencies with npm or yarn
+      plugins: {
+        "postcss-flexibility": {}
+      },
+      preset: {
+        // Change the postcss-preset-env settings
+        autoprefixer: {
+          flexbox: true,
+          grid: true,
+          overrideBrowserslist: ['last 3 versions', '> 1%','ie 9', 'ie 8', 'ie 7'],
+        }
+      }
+    }
   },
   alias: {
 
-  }
+  },
 }

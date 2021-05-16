@@ -1,7 +1,7 @@
 <template>
   <div class="service-content">
     <div class="container">
-      <b-row>
+      <b-row class="flex">
         <b-col md="4">
           <div class="left">
             <div class="title-en">Service Content</div>
@@ -82,6 +82,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.flex {
+  display: flex;
+}
 .service-content {
   padding-top: 120px;
   padding-bottom: 160px;

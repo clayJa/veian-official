@@ -167,6 +167,10 @@ a {
     }
   }
 }
+.search-wrapper {
+  display: flex;
+  align-items: center;
+}
 .search-wrapper .icon {
   color: #A6AAB1;
   cursor: pointer;

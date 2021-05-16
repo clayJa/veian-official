@@ -1,67 +1,69 @@
 <template>
   <div>
-    <b-carousel
-      id="carousel"
-      v-model="slide"
-      :interval="10000"
-      indicators
-      background="#ababab"
-      img-width="1024"
-      img-height="480"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
-    >
-      <b-carousel-slide img-src="@/static/home_banner_1.png">
-        <div class="home_banner_title1 mt241">Welcome to weiran technology</div>
-        <div class="home_banner_title2">我们的价值是成就客户需求！</div>
-        <div class="home_banner_title3">即：客户需求为先的价值取向</div>
-        <PillButton @click="toPath">联系我们</PillButton>
-      </b-carousel-slide>
-
-      <b-carousel-slide img-src="@/static/home_banner_2.png">
-        <div class="container">
-          <div class="banner_title_wrapper2">
-            <div class="home_banner_title1 mt229">Welcome to weiran technology</div>
-            <div class="home_banner_title2">简单、信任、 快乐</div>
-            <PillButton @click="toPath" :style="{ background: '#fff', color: '#1A82FF', marginTop: '48px' }">联系我们</PillButton>
+    <div class="my-swiper" v-swiper:mySwiper="swiperOption">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="content">
+            <img src="@/static/home_banner_1.png" alt="">
+            <div class="text">
+                <div class="home_banner_title1 mt241">Welcome to weiran technology</div>
+                <div class="home_banner_title2">我们的价值是成就客户需求！</div>
+                <div class="home_banner_title3">即：客户需求为先的价值取向</div>
+                <PillButton @click="toPath">联系我们</PillButton>
+            </div>
           </div>
         </div>
-      </b-carousel-slide>
-
-      <b-carousel-slide img-src="@/static/home_banner_3.png">
-        <div class="container">
-          <div class="banner_title_wrapper2 vertical-center" style="max-width: 70%;">
-            <div class="home_banner_title1 mt229">Welcome to weiran technology</div>
-            <div class="home_banner_title2">帮助客户在时代中完成数字化、品牌化升级</div>
-            <PillButton @click="toPath" :style="{ background: '#fff', color: '#1A82FF', marginTop: '48px' }">联系我们</PillButton>
+        <div class="swiper-slide">
+          <div class="content">
+            <img src="@/static/home_banner_2.png" alt="">
+            <div class="text container">
+              <div class="banner_title_wrapper2">
+                <div class="home_banner_title1 mt229">Welcome to weiran technology</div>
+                <div class="home_banner_title2">简单、信任、 快乐</div>
+                <PillButton @click="toPath" :style="{ background: '#fff', color: '#1A82FF', marginTop: '48px' }">联系我们</PillButton>
+              </div>
+            </div>
           </div>
         </div>
-      </b-carousel-slide>
-
-    </b-carousel>
+        <div class="swiper-slide">
+          <div class="content">
+            <img src="@/static/home_banner_3.png" alt="">
+            <div class="text container">
+              <div class="banner_title_wrapper2 vertical-center" style="max-width: 70%;">
+                <div class="home_banner_title1 mt229">Welcome to weiran technology</div>
+                <div class="home_banner_title2">帮助客户在时代中完成数字化、品牌化升级</div>
+                <PillButton @click="toPath" :style="{ background: '#fff', color: '#1A82FF', marginTop: '48px' }">联系我们</PillButton>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="swiper-pagination"></div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import PillButton from '@/components/PillButton/index.vue'
 type DataProps = {
-  slide: number,
-  sliding: null | boolean
+  swiperOption: any
 }
 export default {
   data() {
     return {
-      slide: 0,
-      sliding: null
+      swiperOption: {
+        loop: true,
+        autoplay: 10000,
+        spaceBetween: 0,
+        pagination: '.swiper-pagination',
+        paginationClickable :true,
+        onSlideChangeStart() {
+          console.log('on slide change start')
+        }
+      }
     } as DataProps
   },
   methods: {
-    onSlideStart(slide: any) {
-      this.sliding = true
-    },
-    onSlideEnd(slide: any) {
-      this.sliding = false
-    },
     toPath() {
       console.log(1111)
     }
@@ -73,10 +75,50 @@ export default {
 </script>
 
 <style lang="less" >
-#carousel .carousel-caption {
-    top: 0;
+.my-swiper {
+  position: relative;
+  height: 770px;
+  width: 100%;
+}
+.content {
+  position: relative;
+  img {
+    width: 100%;
+  }
+  .text {
+    position: absolute;
     left: 0;
     right: 0;
+    bottom: 0;
+    top: 0;
+    text-align: center;
+  }
+}
+.swiper-pagination {
+  display: inline-block;
+  position: absolute;
+  bottom: 48px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  &-switch  {
+    cursor: pointer;
+    display: inline-block;
+    height: 2px;
+    width: 64px;
+    background-color: fade(#fff,60);
+    margin-right: 24px;
+    &.swiper-active-switch {
+      background-color: transparent;
+      background-image:
+					linear-gradient(
+						to right,
+						#1A82FF 0,
+            #1A82FF 50%,
+						fade(#fff,60) 50%,
+						fade(#fff,60) 100%,
+					);
+    }
+  }
 }
 .mt241 {
   padding-top: 241px;
