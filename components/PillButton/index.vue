@@ -21,6 +21,8 @@ export default {
   line-height: 25px;
   cursor: pointer;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   vertical-align: middle;
 }
 </style>

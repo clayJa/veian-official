@@ -74,7 +74,7 @@ export default {
 }
 </script>
 
-<style lang="less" >
+<style lang="less" scoped>
 .my-swiper {
   position: relative;
   height: 770px;

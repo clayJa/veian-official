@@ -6,6 +6,9 @@
         {{ item.name }}
       </div>
     </div>
+    <div class="more-wrapper" v-if="hasMore">
+      <div class="more-buttom">查看更多案例 <icon name="icon_Link_Last" type="class" /></div>
+    </div>
   </div>
 </template>
 
@@ -32,6 +35,10 @@ export default {
           { name: '李宁官网', url: '#', img: require('@/static/image-test/李宁官网.png')},
         ]
       }
+    },
+    hasMore: {
+      type: Boolean,
+      default: true,
     }
   },
   data() {
@@ -83,6 +90,24 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+  }
+  .more-wrapper {
+    background: #1A82FF;
+    width: 100%;
+    text-align: center;
+    padding: 48px 0;
+    .more-buttom {
+      display: inline-block;
+      font-size: 20px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #FFFFFF;
+      width: 230px;
+      height: 70px;
+      line-height: 70px;
+      border-radius: 35px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
   }
 }

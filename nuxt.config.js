@@ -24,11 +24,13 @@ export default {
     //配置全局 css
     '~/assets/style/global.less',
     'swiper/dist/idangerous.swiper.css',
+    '@/assets/style/iconfont/iconfont.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '@/plugins/swiper.js', ssr: false }
+    { src: '@/plugins/swiper.js', ssr: false },
+    { src: '@/plugins/icon.js', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

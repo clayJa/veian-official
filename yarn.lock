@@ -8125,6 +8125,13 @@ vue-hot-reload-api@^2.3.0:
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
 
+vue-icon-font@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/vue-icon-font/-/vue-icon-font-1.0.4.tgz#96fcd972338edb46b5863e2c45839985bdd8e5ae"
+  integrity sha512-8z8Ra/XvbNfsVU6qQH2JbkjZSQeALFr6fIPtqtJJ9CDT7595KI6HqPTW8C2974KW6RZv+gwo7U2iDWuFTSgK5g==
+  dependencies:
+    vue "^2.5.21"
+
 vue-inline-svg@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/vue-inline-svg/-/vue-inline-svg-2.0.0.tgz#479908ef6f739fed5bfb4cf9f7f9a231706b080a"
@@ -8201,7 +8208,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^2.6.12:
+vue@^2.5.21, vue@^2.6.12:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==
