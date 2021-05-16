@@ -39,6 +39,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+// @keyframes scale_dot  {
+//   from { transform: scale(1); opacity: 1; }
+//   to { transform: scale(1.5); opacity: 1; }
+// }
 .about-wrapper {
   position: relative;
   overflow: hidden;
@@ -51,6 +55,7 @@ export default {
     left: 70px;
     right: 32px;
     bottom: 60px;
+    // animation: 1s linear 0s infinite alternate scale_dot;
   }
   .content {
     position: absolute;

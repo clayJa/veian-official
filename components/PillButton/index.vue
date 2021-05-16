@@ -10,7 +10,7 @@ export default {
 </script>
 <style lang="less">
 .pill-button {
-  display: inline-block;
+  display: inline-flex;
   background: #1A82FF;
   border-radius: 24px;
   padding: 12px 48px;
@@ -20,5 +20,7 @@ export default {
   color: #FFFFFF;
   line-height: 25px;
   cursor: pointer;
+  align-items: center;
+  vertical-align: middle;
 }
 </style>

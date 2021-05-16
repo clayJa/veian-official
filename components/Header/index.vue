@@ -1,10 +1,8 @@
 <template>
-<div>
+<div class="header">
   <div class="container header-wrapper">
-    <div class="logo">
-      <img src="@/assets/images/logo.png" alt="logo">
-    </div>
-    <div class="nav-wrapper ml-auto mr-auto">
+    <div class="logo"></div>
+    <div class="nav-wrapper ml-auto">
       <div class="nav-item" v-for="item in menu" :key="item.name">
         <a href="#">
           {{ item.name }}
@@ -28,17 +26,20 @@
         </div>
       </div>
     </div>
-    <div class="search-wrapper ml-auto">
+    <div class="search-wrapper">
         <div class="search-item">
-          <b-form-input
-            id="input-search"
-            v-model="text"
-            placeholder="客户案例"
-            :style="{ visibility: visible ? 'visible' : 'hidden'}"
-          ></b-form-input>
           <InlineSvg :src="require('@/assets/images/icon_search.svg')" class="icon" @click="showSearch"/>
         </div>
         <InlineSvg :src="require('@/assets/images/icon_phone.svg')" class="icon" />
+    </div>
+  </div>
+  <div class="search-alert" v-if="modalShow">
+    <span class="close" @click="modalShow = false"></span>
+    <div class="center-form">
+      <b-form-input
+        id="input-search"
+        v-model="text"
+      ></b-form-input>
     </div>
   </div>
 </div>
@@ -50,6 +51,7 @@ export default {
     return {
       text: '',
       visible: false,
+      modalShow: false,
       menu: [
         { name: '首页', path: '#' },
         { name: '简单', path: '#' },
@@ -77,11 +79,8 @@ export default {
   },
   methods: {
     showSearch() {
-      if(!this.visible) {
-        this.visible = true
-      } else {
-        console.log('search',this.text)
-      }
+      this.modalShow = true
+      this.text = ''
     }
   },
   components: {
@@ -93,16 +92,27 @@ export default {
 .logo {
   width: 175px;
   height: 54px;
+  background-image: url('@/assets/images/logo.png');
+  background-size: 100% 100%;
   img {
     width: 100%;
   }
 }
 a {
   color: #474747;
+  text-decoration: none !important;
   &:hover {
     text-decoration: none;
     color:#1A82FF;
   }
+}
+.header {
+  position: fixed;
+  background: #fff;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 }
 .header-wrapper {
   display: flex;
@@ -188,6 +198,50 @@ a {
     visibility: hidden;
     box-shadow: none;
     &:focus {
+      box-shadow: none;
+    }
+  }
+}
+.search-alert {
+  position: fixed;
+  z-index: 100;
+  background-color: #1A82FF;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  .close {
+    position: absolute;
+    top: 38px;
+    right: 2.6%;
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: url('@/assets/images/icon_x_white.png') no-repeat center;
+    cursor: pointer;
+  }
+  .center-form {
+    position: absolute;
+    width: 94.8%;
+    left: 2.6%;
+    top: 50%;
+    height: 124px;
+    margin-top: -63px;
+    border-bottom: 1px solid #fff;
+    input {
+      border: none;
+      font-size: 66px;
+      height: 124px;
+      line-height: 124px;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+      color: #fff;
+      background: none;
+      font-family: "Base-font";
+      padding-left: 88px;
+      padding-right: 80px;
+      background: url('@/assets/images/icon_search_white.png') no-repeat 44px 44px;
       box-shadow: none;
     }
   }
