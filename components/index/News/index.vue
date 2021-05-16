@@ -31,10 +31,12 @@
             <div class="address-info">浙江省 杭州市 西湖区 紫荆花北路 宝港广场A座4F</div>
           </div>
           <div class="right">
-            <PillButton class="navigation">
-               <InlineSvg class="icon" :src="require('@/assets/images/index/icon_map.svg')" />
-              <span>一键导航</span>
-            </PillButton>
+            <a target="_blank" rel="nofollow" href="https://www.amap.com/search?id=B0FFLHNFHD&city=330106&geoobj=120.089339%7C30.305415%7C120.09625%7C30.308939&query_type=IDQ&zoom=17.5">
+              <PillButton class="navigation">
+                <InlineSvg class="icon" :src="require('@/assets/images/index/icon_map.svg')" />
+                <span>一键导航</span>
+              </PillButton>
+            </a>
             <PillButton>
               <InlineSvg class="icon" :src="require('@/assets/images/index/icon_ advisory.svg')" />
               <span>业务咨询</span>
