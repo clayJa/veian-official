@@ -186,6 +186,7 @@ a {
     border: none;
     border-bottom: 1px solid #E5E5E5;
     visibility: hidden;
+    box-shadow: none;
     &:focus {
       box-shadow: none;
     }
