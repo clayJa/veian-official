@@ -30,7 +30,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '@/plugins/swiper.js', ssr: false },
-    { src: '@/plugins/icon.js', ssr: false }
+    { src: '@/plugins/icon.js', ssr: false },
+    { src: '@/plugins/babel-polyfill.ts', ssr: true }, // 将es6转换为es5 兼容ie9
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -51,6 +52,11 @@ export default {
   styleResources:{
     less:'./assets/style/variable.less'
   },
+  // router: {
+  //   mode: 'history',
+  //   middleware: 'global',
+  //   fallback: true
+  // },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     babel: {

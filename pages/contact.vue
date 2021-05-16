@@ -10,8 +10,9 @@
             <div class="subtitle">即：客户需求为先的价值取向</div>
           </div>
           <div class="show-img">
+            <InlineSvg :src="require('@/assets/images/combined_shape.svg')" class="icon-bg" @error="log($event)" />
+
             <div class="img-wrapper">
-              <InlineSvg :src="require('@/assets/images/combined_shape.svg')" class="icon" />
 
               <img src="@/assets/images/contact/business.png" alt="">
 
@@ -84,12 +85,12 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control" rows="3" id="suggestion" placeholder="您有什么想对我们说？"></textarea>
+                  <textarea class="form-control" rows="4" id="suggestion" placeholder="您有什么想对我们说？"></textarea>
                 </div>
                 <div class="form-group">
                   <input type="input" class="form-control" id="code" placeholder="验证码">
                 </div>
-                <button type="submit" class="btn action-button primary">Submit</button>
+                <button type="submit" class="btn action-button primary">提交</button>
               </form>
             </div>
           </div>
@@ -98,12 +99,12 @@
       </div>
       <div class="third-block">
         <div class="row row-no-gutters">
-          <div class="col-md-6 col-xs-12 action-bar-wrapper">
+          <div class="col-md-6 col-xs-12">
             <div class="text-wrapper">
               <div class="title">联系方式</div>
               <div class="subtitle">
                 <InlineSvg :src="require('@/assets/images/contact/phone_circle.svg')" class="icon" />
-                <spn class="text"><span>周经理</span><span>  156 6900 6932</span></spn>
+                <span class="text"><span>周经理</span><span>  156 6900 6932</span></span>
               </div>
               <div class="subtitle">
                 <InlineSvg :src="require('@/assets/images/contact/email_circle.svg')" class="icon" />
@@ -115,8 +116,8 @@
             <div class="contact-wrapper row">
               <div class="wrapper">
               <InlineSvg :src="require('@/assets/images/combined_shape.svg')" class="back-icon" />
-              <div class="contact-item col-md-6"><InlineSvg :src="require('@/assets/images/contact/icon_wechat.svg')" class="icon" /></div>
-              <div class="contact-item col-md-6"><img src="@/assets/images/contact/qrcode.png" alt="" class="img"></div>
+              <div class="contact-item col-md-6 col-xs-6"><InlineSvg :src="require('@/assets/images/contact/icon_wechat.svg')" class="icon" /></div>
+              <div class="contact-item col-md-6 col-xs-6"><img src="@/assets/images/contact/qrcode.png" alt="" class="img"></div>
               </div>
             </div>
           </div>
@@ -172,6 +173,7 @@ export default {
     }
     .text-wrapper {
       position: relative;
+      margin-bottom: 68px;
       .title-desc {
         font-size: 18px;
         font-weight: 400;
@@ -189,20 +191,23 @@ export default {
       }
     }
     .show-img {
+      position: relative;
+      .icon-bg {
+        position: absolute;
+        width: 176px;
+        height: 176px;
+        opacity: 0.3;
+        right: -44px;
+        top: -44px;
+      }
       .img-wrapper {
-        position: relative;
         height: 332px;
         background: @white2;
         border-radius: 16px;
         padding: 16px;
-        .icon {
-          position: absolute;
-          width: 176px;
-          height: 176px;
-          opacity: 0.3;
-          right: -44px;
-          top: -44px;
-        }
+        position: relative;
+        z-index: 1;
+
         img {
           border-radius: 16px;
           width: 100%;
@@ -213,10 +218,9 @@ export default {
     }
     .footer-desc {
       margin-top: 50px;
-      height: 108px;
       .action-bar-wrapper {
         position: relative;
-        height: 100%;
+        height: 108px;
       }
       .action-bar {
         right: 0;
@@ -243,10 +247,10 @@ export default {
     }
   }
   .secondary-block {
-    height: 880px;
+    //height: 880px;
     background: @white2;
 
-    padding: 108px 135px;
+    padding: 108px 135px 0 135px;
 
     .text-wrapper {
       .icon {
@@ -296,7 +300,7 @@ export default {
 
       .form-wrapper {
         //width: 566px;
-        height: 665px;
+        //height: 665px;
         padding: 48px;
         background: #FFFFFF;
         box-shadow: 20px 20px 40px 0px rgba(0, 0, 0, 0.1);
@@ -317,7 +321,12 @@ export default {
           }
           input.form-control {
             height: 48px;
-
+          }
+          select.form-control {
+            height: 48px;
+          }
+          .form-group {
+            margin-bottom: 16px;
           }
         }
       }
@@ -379,6 +388,7 @@ export default {
           height: 52px;
           margin-left: -32px;
           margin-top: -26px;
+
           //transform: translateY(-50%) translateX(-50%);
 
         }
@@ -391,6 +401,7 @@ export default {
         position: absolute;
         left: -28%;
         top: -19%;
+        opacity: 0.3;
       }
 
     }
@@ -416,15 +427,7 @@ export default {
       margin-right: 12px;
     }
   }
-  .desc-wrapper {
-    position: relative;
-    height: 100%;
-    .desc-item {
-      display: inline-block;
-      width: 50%;
 
-    }
-  }
   img {
     width: 100%;
     height: 100%;

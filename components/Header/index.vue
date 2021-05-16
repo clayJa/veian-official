@@ -4,7 +4,7 @@
     <div class="logo"></div>
     <div class="nav-wrapper ml-auto">
       <div class="nav-item" v-for="item in menu" :key="item.name">
-        <a href="#">
+        <a :href="item.path">
           {{ item.name }}
            <InlineSvg
               v-if="item.subMenu && item.subMenu.length > 0"
@@ -46,6 +46,11 @@
 </template>
 <script lang="ts">
 import InlineSvg from 'vue-inline-svg';
+interface Data {
+  text: string,
+  visible: boolean,
+  menu: any[],
+}
 export default {
   data () {
     return {
@@ -53,7 +58,7 @@ export default {
       visible: false,
       modalShow: false,
       menu: [
-        { name: '首页', path: '#' },
+        { name: '首页', path: '/' },
         { name: '简单', path: '#' },
         { name: '信任', path: '#',
           subMenu: [
@@ -72,8 +77,8 @@ export default {
             { name: '年度设计服务', path: '#' },
           ]
         },
-        { name: '我们', path: '#' },
-        { name: '联系', path: '#' },
+        { name: '我们', path: '/about/introduce' },
+        { name: '联系', path: '/contact' },
       ]
     }
   },
