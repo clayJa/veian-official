@@ -12,21 +12,21 @@
             </div>
             <div class="data-intro row row-no-gutters">
               <div class="data-item col-md-4">
-                <div class="number">26.4<span class="unit">%</span></div>
+                <div class="number-wrapper">26.4<span class="unit">%</span></div>
                 <div class="desc">
                   <span>数字增长</span>
                 </div>
 
               </div>
               <div class="data-item col-md-4">
-                <div class="number">59.1<span class="unit">%</span></div>
+                <div class="number-wrapper">59.1<span class="unit">%</span></div>
                 <div class="desc">
                   <span>互动增长</span>
                 </div>
 
               </div>
               <div class="data-item col-md-4">
-                <div class="number">31.9<span class="unit">%</span></div>
+                <div class="number-wrapper">31.9<span class="unit">%</span></div>
                 <div class="desc">
                   <span>数据沉淀</span>
                 </div>
@@ -44,24 +44,14 @@
         </div>
       </div>
       <div class="secondary-block ">
-        <div class="tab-bar">
-          <a class="tab-text active" >我们是谁</a>
-          <Divider class="divider" type="vertical" />
-          <a class="tab-text" >未苒文化</a>
-          <Divider class="divider" type="vertical" />
-          <a class="tab-text" >发展历程</a>
-          <Divider class="divider" type="vertical" />
-          <a class="tab-text" >资质荣誉</a>
-          <Divider class="divider" type="vertical" />
-          <a class="tab-text" >未苒模样</a>
-          <Divider class="divider" type="vertical" />
-          <a class="tab-text" >加入未苒</a>
+        <div class="tab-wrapper">
+          <TabBar active="/about/introduce" />
 
         </div>
-        <div class="media-nav row">
+        <div class="media-nav row row-no-gutters">
           <div class="media-wrapper col-md-6 col-xs-12 " >
 
-            <img class="img-back" src="@/assets/images/about/combined_shape.png" alt="">
+            <img class="img-back" src="@/assets/images/about/dots_group.png" alt="">
             <div class="media-back" :style="{background: `url('${videoCover}')  no-repeat center center`}"  />
             <img class="play-btn" @click="playVideo()" src="@/assets/images/about/play.png" alt="">
             <template v-if="isPlay">
@@ -93,14 +83,14 @@
             </div>
             <div class="data-intro row row-no-gutters">
               <div class="data-item col-md-4">
-                <div class="number">80<span class="unit">%</span></div>
+                <div class="number-wrapper">80<span class="unit">%</span></div>
                 <div class="desc">
                   <span>执行团队比例</span>
                 </div>
 
               </div>
               <div class="data-item col-md-4">
-                <div class="number">1000+</div>
+                <div class="number-wrapper">1000+</div>
                 <div class="desc">
                   <span>经典客户案例</span>
                 </div>
@@ -149,7 +139,7 @@
 
 <script>
 import InlineSvg from 'vue-inline-svg';
-import Divider from '@/components/Divider'
+import TabBar from '@/components/about/TabBar'
 import Button from '@/components/Button'
 import MoreBanner from '@/components/about/MoreBanner'
 
@@ -162,7 +152,7 @@ import sceneryImg2 from '@/assets/images/about/bg_scenery2.jpg'
 export default {
   components: {
     InlineSvg,
-    Divider,
+    TabBar,
     Button,
     MoreBanner,
   },
@@ -196,6 +186,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@DINCondensedFont: DINCondensed-Bold, DINCondensed;
+@MontserratFont: Montserrat-ExtraBold, Montserrat;
   .banner {
     height: 600px;
     color: @white;
@@ -222,19 +214,21 @@ export default {
         margin-bottom: 12px;
       }
       .number {
+        font-family: @MontserratFont;
         height: 97px;
         font-size: 80px;
         font-weight: 800;
-        line-height: 97px;
+        //line-height: 97px;
         margin-bottom: 12px;
+
       }
       .unit {
         font-size: 22px;
         font-weight: 400;
         line-height: 30px;
         text-transform: uppercase;
-
       }
+
     }
 
     .text-wrapper {
@@ -266,58 +260,48 @@ export default {
       }
     }
     .data-intro {
+      font-weight: 400;
 
       .data-item {
         //&+.data-item {
         //  margin-left: 36px;
         //}
-        margin-right: 36px;
+        padding-right: 36px;
 
-        .number {
-          //font-size: 80px;
-          font-size: 55px;
-
+        .number-wrapper {
+          font-family: @DINCondensedFont;
+          font-size: 80px;
           height: 80px;
           line-height: 80px;
           letter-spacing: 2px;
-          font-family: Helvetica-UltraCompressed;
-
           margin-bottom: 13px;
-          //white-space: nowrap;
-        }
-        .unit {
-          font-size: 48px;
-          font-family: Helvetica;
 
-          letter-spacing: 2px;
+          .unit {
+            font-size: 48px;
+            letter-spacing: 2px;
+          }
         }
+
+        .desc {
+          height: 20px;
+          font-size: 14px;
+          line-height: 20px;
+        }
+
       }
     }
-
   }
   .secondary-block {
     background: @white;
 
     padding: 108px 135px 0 135px;
     position: relative;
-
-    .tab-bar {
+    .tab-wrapper {
       position: absolute;
       top: -40px;
       left: 135px;
       right: 135px;
-      height: 80px;
-      line-height: 80px;
-      text-align: center;
-      padding: 0 16px;
-      background: #FFFFFF;
-      box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
-      border-radius: 12px;
-      .divider {
-        margin: 0 24px;
-      }
     }
-
     .media-nav {
       .media-wrapper {
         //width: 618px;
@@ -468,26 +452,33 @@ export default {
           //&+.data-item {
           //  margin-left: 36px;
           //}
-          margin-right: 36px;
+          padding-right: 36px;
 
-          .number {
+          .number-wrapper {
+            font-family: @DINCondensedFont;
             //font-size: 80px;
             font-size: 55px;
 
             height: 80px;
             line-height: 80px;
             letter-spacing: 2px;
-            font-family: Helvetica-UltraCompressed;
 
             margin-bottom: 13px;
             //white-space: nowrap;
-          }
-          .unit {
-            font-size: 48px;
-            font-family: Helvetica;
+            .unit {
+              font-size: 48px;
 
-            letter-spacing: 2px;
+              letter-spacing: 2px;
+            }
           }
+          .desc {
+            height: 20px;
+            font-size: 14px;
+            font-weight: 400;
+            color: @fontColor2;
+            line-height: 20px;
+          }
+
         }
       }
 
@@ -610,23 +601,5 @@ export default {
   }
   .pd-l-36 {
     padding-left: 36px;
-  }
-  a {
-    background-color: transparent;
-
-    cursor: pointer;
-    outline: none;
-    text-decoration: none;
-    -webkit-text-decoration-skip: objects;
-    transition: color .3s;
-    color: @fontColor2;
-
-    &:hover {
-      color: @mainColor;
-    }
-    &.active {
-      color: @mainColor;
-    }
-
   }
 </style>

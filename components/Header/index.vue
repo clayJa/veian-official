@@ -1,48 +1,50 @@
 <template>
-<div class="header">
-  <div class="container header-wrapper">
-    <div class="logo"></div>
-    <div class="nav-wrapper ml-auto">
-      <div class="nav-item" v-for="item in menu" :key="item.name">
-        <a :href="item.path">
-          {{ item.name }}
-           <InlineSvg
-              v-if="item.subMenu && item.subMenu.length > 0"
-              :src="require('@/assets/images/icon_triangle.svg')" class="nav-icon" />
-        </a>
-        <div class="sub-nav-wrapper" v-if="item.subMenu && item.subMenu.length > 0" >
-          <div class="sub-nav-item">
-            <a href="#">创意</a>
+  <div class="header-nav">
+    <div class="header">
+      <div class="container header-wrapper">
+        <div class="logo"></div>
+        <div class="nav-wrapper ml-auto">
+          <div class="nav-item" v-for="item in menu" :key="item.name">
+            <a :href="item.path">
+              {{ item.name }}
+               <InlineSvg
+                  v-if="item.subMenu && item.subMenu.length > 0"
+                  :src="require('@/assets/images/icon_triangle.svg')" class="nav-icon" />
+            </a>
+            <div class="sub-nav-wrapper" v-if="item.subMenu && item.subMenu.length > 0" >
+              <div class="sub-nav-item">
+                <a href="#">创意</a>
+              </div>
+              <div class="sub-nav-item">
+                <a href="#">开发</a>
+              </div>
+              <div class="sub-nav-item">
+                <a href="#">营销</a>
+              </div>
+              <div class="sub-nav-item">
+                <a href="#">运营</a>
+              </div>
+            </div>
           </div>
-          <div class="sub-nav-item">
-            <a href="#">开发</a>
-          </div>
-          <div class="sub-nav-item">
-            <a href="#">营销</a>
-          </div>
-          <div class="sub-nav-item">
-            <a href="#">运营</a>
-          </div>
+        </div>
+        <div class="search-wrapper">
+            <div class="search-item">
+              <InlineSvg :src="require('@/assets/images/icon_search.svg')" class="icon" @click="showSearch"/>
+            </div>
+            <InlineSvg :src="require('@/assets/images/icon_phone.svg')" class="icon" />
+        </div>
+      </div>
+      <div class="search-alert" v-if="modalShow">
+        <span class="close" @click="modalShow = false"></span>
+        <div class="center-form">
+          <b-form-input
+            id="input-search"
+            v-model="text"
+          ></b-form-input>
         </div>
       </div>
     </div>
-    <div class="search-wrapper">
-        <div class="search-item">
-          <InlineSvg :src="require('@/assets/images/icon_search.svg')" class="icon" @click="showSearch"/>
-        </div>
-        <InlineSvg :src="require('@/assets/images/icon_phone.svg')" class="icon" />
-    </div>
   </div>
-  <div class="search-alert" v-if="modalShow">
-    <span class="close" @click="modalShow = false"></span>
-    <div class="center-form">
-      <b-form-input
-        id="input-search"
-        v-model="text"
-      ></b-form-input>
-    </div>
-  </div>
-</div>
 </template>
 <script lang="ts">
 import InlineSvg from 'vue-inline-svg';
@@ -111,18 +113,24 @@ a {
     color:#1A82FF;
   }
 }
+@headerHeight: 100px;
+.header-nav {
+  position: relative;
+  height: @headerHeight;
+
+}
 .header {
   position: fixed;
-  background: #fff;
   top: 0;
   left: 0;
   right: 0;
+  background: #fff;
   z-index: 100;
 }
 .header-wrapper {
   display: flex;
   align-items: center;
-  height: 100px;
+  height: @headerHeight;
 }
 .nav-wrapper {
   display: flex;
@@ -166,8 +174,8 @@ a {
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 500;
   padding: 0 24px;
-  height: 100px;
-  line-height: 100px;
+  height: @headerHeight;
+  line-height: @headerHeight;
   color: #474747;
   &:hover {
     .nav-icon {

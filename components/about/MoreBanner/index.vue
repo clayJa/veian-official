@@ -1,5 +1,5 @@
 <template>
-  <div class="more-banner" :style="{background: `url('${bannerImg}')  no-repeat center center`}">
+  <div class="more-banner" >
     <div class="text-wrapper">
         <div class="title">发现不同</div>
         <div class="title">让每一个梦想脱颖而出</div>
@@ -39,6 +39,7 @@ export default {
 .more-banner {
   height: 448px;
   padding: 98px 0 0 135px;
+  background: url("~/assets/images/about/bg_girl.jpg") no-repeat center center;
   .text-wrapper {
     color: @white;
     font-weight: 400;

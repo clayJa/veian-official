@@ -14,7 +14,7 @@
 
             <div class="img-wrapper">
 
-              <img src="@/assets/images/contact/business.png" alt="">
+              <img src="@/assets/images/contact/business.jpg" alt="">
 
             </div>
           </div>
@@ -150,13 +150,25 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  // header
   /deep/ .blue-theme{
-    background: @mainColor;
+    .header {
+      background: @mainColor !important;
+      .logo {
+        background-image: url('~/assets/images/logo.png');
+      }
+    }
     .nav-item {
       a {
         color: @white;
 
-        &:hover {
+      }
+      &:hover {
+        .nav-icon {
+          color: @white2;
+
+        }
+        a {
           //background: #F7F7F7;
           color: @white2;
         }
@@ -165,6 +177,7 @@ export default {
     }
 
   }
+
   .first-block {
     background: @mainColor;
     color: @white;

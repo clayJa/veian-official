@@ -22,7 +22,8 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     //配置全局 css
-    '~/assets/style/global.less',
+    '@/assets/style/font.css',
+    '@/assets/style/global.less',
     'swiper/dist/idangerous.swiper.css',
     '@/assets/style/iconfont/iconfont.css',
   ],
@@ -86,7 +87,7 @@ export default {
           // viewportHeight: 1600, // (Number) 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置
           unitPrecision: 3, // (Number) 指定`px`转换为视窗单位值的小数位数（很多时候无法整除）
           viewportUnit: 'vw', // (String) 指定需要转换成的视窗单位，建议使用vw
-          selectorBlackList: ['ant', '.ignore', '.hairlines'], // (Array) 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名
+          selectorBlackList: ['ant', '.ignore', '.hairlines', '.ignore-vw'], // (Array) 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名
           minPixelValue: 1, // (Number) 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值
           mediaQuery: false // (Boolean) 允许在媒体查询中转换`px`
           //   exclude: /(\/|\\)(node_modules)(\/|\\)/

@@ -14,8 +14,9 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@borderColor: #e5e5e5;
   .nav-divider{
-    border-top: 1px solid rgba(0,0,0,.06);
+    border-top: 1px solid @borderColor;
     box-sizing: border-box;
     color: rgba(0,0,0,.85);
     font-feature-settings: "tnum";
@@ -33,7 +34,7 @@ export default {
       width: 100%;
     }
     &.nav-divider-vertical {
-      border-left: 1px solid rgba(0,0,0,.06);
+      border-left: 1px solid @borderColor;
       border-top: 0;
       display: inline-block;
       height: .9em;
