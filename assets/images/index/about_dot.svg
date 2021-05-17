@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="1440px" height="553px" viewBox="0 0 1440 553" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Image_Portfolio@1x</title>
+    <title>Image_Portfolio</title>
     <defs>
         <rect id="path-1" x="0" y="0" width="1440" height="553"></rect>
     </defs>
@@ -19,15 +19,19 @@
             <circle id="Dot4" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="174" cy="207" r="3.5">
               <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
             </circle>
-            <path d="M1086,367.5 C1086.9665,367.5 1087.8415,367.891751 1088.47487,368.525126 C1089.10825,369.158502 1089.5,370.033502 1089.5,371 C1089.5,371.966498 1089.10825,372.841498 1088.47487,373.474874 C1087.8415,374.108249 1086.9665,374.5 1086,374.5 C1085.0335,374.5 1084.1585,374.108249 1083.52513,373.474874 C1082.89175,372.841498 1082.5,371.966498 1082.5,371 C1082.5,370.033502 1082.89175,369.158502 1083.52513,368.525126 C1084.1585,367.891751 1085.0335,367.5 1086,367.5 Z" id="Dot6" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)"></path>
-            <path d="M1246,137.5 C1246.9665,137.5 1247.8415,137.891751 1248.47487,138.525126 C1249.10825,139.158502 1249.5,140.033502 1249.5,141 C1249.5,141.966498 1249.10825,142.841498 1248.47487,143.474874 C1247.8415,144.108249 1246.9665,144.5 1246,144.5 C1245.0335,144.5 1244.1585,144.108249 1243.52513,143.474874 C1242.89175,142.841498 1242.5,141.966498 1242.5,141 C1242.5,140.033502 1242.89175,139.158502 1243.52513,138.525126 C1244.1585,137.891751 1245.0335,137.5 1246,137.5 Z" id="Dot7" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)"></path>
             <circle id="Dot8" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="1231" cy="489" r="3.5">
+              <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
+            </circle>
+            <circle id="Dot8-Copy" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="1086" cy="371" r="3.5">
               <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
             </circle>
             <circle id="Dot9-Copy" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="74" cy="96" r="3.5">
               <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
             </circle>
             <circle id="Dot11" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="1405" cy="337" r="3.5">
+              <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
+            </circle>
+            <circle id="Dot11-copy" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="1246" cy="141" r="3.5">
               <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
             </circle>
         </g>
