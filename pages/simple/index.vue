@@ -23,8 +23,8 @@ import Header from '@/components/Header/index.vue'
 import Footer from '@/components/Footer/index.vue'
 import Join from '@/components/Join/index.vue'
 import PictureGrid from '@/components/PictureGrid/index.vue'
-import Banner from '@/components/index/Banner/index.vue'
 export default {
+   name: 'simple',
   data() {
     return {
     }
@@ -38,7 +38,6 @@ export default {
     Header,
     Footer,
     Join,
-    Banner,
     PictureGrid,
   }
 }
