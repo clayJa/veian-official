@@ -1,6 +1,6 @@
 <template>
   <div class="about-wrapper">
-    <InlineSvg :src="require('@/assets/images/index/home_about_background.svg')" class="background" />
+    <img :src="require('@/assets/images/index/home_about_background.png')" class="background" />
     <InlineSvg :src="require('@/assets/images/index/about_dot.svg')" class="dot" />
     <div class="content">
       <div class="title">关于 未苒科技</div>
@@ -52,10 +52,9 @@ export default {
   }
   .dot {
     position: absolute;
-    left: 70px;
-    right: 32px;
-    bottom: 60px;
-    // animation: 1s linear 0s infinite alternate scale_dot;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
   .content {
     position: absolute;

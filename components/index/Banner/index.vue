@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="banner-container">
     <div class="my-swiper" v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
@@ -79,6 +79,9 @@ export default {
   position: relative;
   height: 770px;
   width: 100%;
+}
+.banner-container {
+  margin-top: 100px;
 }
 .content {
   position: relative;
