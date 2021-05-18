@@ -18,7 +18,6 @@ export default {
     ],
     script: [
       { src: '/js/innersvg.js' },
-      { src: '/js/flexibility.js' },
       { src: '/js/smil.check.js' },
     ]
   },
@@ -56,6 +55,9 @@ export default {
   ],
   styleResources:{
     less:'./assets/style/variable.less'
+  },
+  router:{
+    middleware:['browserVersion']
   },
   // router: {
   //   mode: 'history',
