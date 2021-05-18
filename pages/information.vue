@@ -1,0 +1,344 @@
+<template>
+  <div>
+    <Header />
+    <div>
+      <div class="banner" :style="{background: `url('${bannerImg}')  no-repeat center center`}">
+        <div class="wrapper">
+          <div class="text-wrapper">
+            <div class="title-desc">Welcome to weiran technology</div>
+            <div class="title">Our Voice down-to-earth and creative</div>
+            <div class="subtitle">我们的声音，务实求新</div>
+          </div>
+
+        </div>
+      </div>
+      <div class="third-block">
+        <div class="wrapper">
+          <div class="list-nav">
+            <div class="list-item" v-for="item in infoList">
+              <div class="show-box" >
+                <div class="box-item clearfix">
+                  <div class="img-wrapper">
+                    <img class="img" :src="item.img" alt="">
+
+                  </div>
+                  <div class="text-wrapper right">
+                    <div class="title-desc">{{item.updateAt}}</div>
+                    <div class="title">{{item.title}}</div>
+                    <div class="content">{{item.content}}</div>
+                    <a href="#" class="action">查看更多<InlineSvg :src="require('@/assets/images/icon_arrow_right.svg')" class="icon" />
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pagination-nav">
+            <Pagination
+                :pageSize="pageSize"
+                :total="total"
+                @onchange="changePage"
+            />
+          </div>
+        </div>
+      </div>
+
+      <MoreBanner />
+    </div>
+    <Footer />
+  </div>
+</template>
+
+<script>
+import InlineSvg from 'vue-inline-svg';
+
+import TabBar from '@/components/about/TabBar'
+import MoreBanner from '@/components/about/MoreBanner'
+import Pagination from '@/components/Pagination'
+
+const bannerImg = require('@/assets/images/information/banner_back.jpg')
+
+const img = require('@/assets/images/information/photo.jpg')
+
+export default {
+  components: {
+    TabBar,
+    MoreBanner,
+    InlineSvg,
+    Pagination,
+  },
+  data() {
+    return {
+      curPath: '/about/join',
+      bannerImg: bannerImg,
+      infoList: [],
+
+      pageSize: 3,
+      currentPage: 1,
+      total: 20,
+    }
+  },
+  created() {
+    this.requestData({limit: this.pageSize})
+  },
+  methods: {
+    requestData(params) {
+      const {limit = 15, page = 1} = params
+      const arr = []
+      for (let i = 0; i < limit; i++) {
+        arr.push({})
+      }
+
+      this.infoList = [
+        {
+          img: img,
+          title: '浙江广播电台 FM 104.5《浙商读书会》司…',
+          updateAt: '2020.09.17',
+          content: '近日，我们鼎易科技的创始人刘总受邀参加了浙江广播电台FM104.5的《浙商读书会》访谈节目。《浙商读书会》是浙江广播电台推出的一档读书推荐交流类节目，邀请浙江',
+
+        },
+        {
+          img: img,
+          title: '浙江广播电台 FM 104.5《浙商读书会》司…',
+          updateAt: '2021.04.14',
+          content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
+
+        },
+        {
+          img: img,
+          title: '大数据环境下，网站建设更需创新学习能力',
+          updateAt: '2021.03.25',
+          content: '在创新时代，网站建设的到底有什么实际的意义呢？我们能够切实的体会到网站在日常生活中起着不可替代的作用，更切实际的来讲，整个社会也已经离不开网络了。网站其实',
+
+        },
+      ]
+    },
+    changePage(page, pageSize) {
+      console.log('page, pageSize', page, pageSize)
+      this.requestData({
+        limit: pageSize,
+        page: page,
+      })
+    }
+  },
+
+}
+</script>
+
+<style lang="less" scoped>
+@DINCondensedFont: DINCondensed-Bold, DINCondensed;
+@MontserratFont: Montserrat-ExtraBold, Montserrat;
+  .banner {
+    height: 600px;
+    color: @white;
+
+    .wrapper {
+      padding: 182px 135px 0 135px;
+      .text-wrapper {
+        margin-bottom: 32px;
+        .title-desc {
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 32px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+        .title {
+          font-size: 72px;
+          font-weight: 600;
+          margin: 24px 0;
+          line-height: 72px;
+        }
+        .subtitle {
+          font-size: 32px;
+          line-height: 42px;
+          height: 42px;
+          position: relative;
+          .icon {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+
+          }
+          .text {
+            margin-left: 48px;
+          }
+          &+.subtitle {
+            //margin-top: 8px;
+          }
+        }
+      }
+
+    }
+  }
+
+  .secondary-block {
+    background: @white;
+    position: relative;
+    .wrapper {
+      padding: 135px 0;
+    }
+
+
+  }
+  .third-block {
+    background: @white2;
+    position: relative;
+    .wrapper {
+      padding: 96px 135px;
+    }
+
+    .list-nav {
+      .list-item {
+        //padding: 40px 48px;
+        border-radius: 16px;
+        border: 1px solid #E5E5E5;
+        background: #FFFFFF;
+
+        &+.list-item {
+          margin-top: 24px;
+        }
+
+        .item-title {
+          margin-bottom: 20px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow:ellipsis;
+          .title-text {
+            float: left;
+
+            height: 24px;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 24px;
+
+          }
+          .extra {
+            float: right;
+
+            font-size: 16px;
+            font-weight: 400;
+            color: #474747;
+          }
+        }
+        .item-content {
+
+          font-size: 14px;
+          font-weight: 400;
+          color: #A6AAB1;
+          line-height: 24px;
+          //white-space: nowrap;
+
+          //overflow: hidden;
+          text-overflow:ellipsis;
+        }
+      }
+
+    }
+  }
+  .tab-wrapper {
+    position: absolute;
+    top: -40px;
+    left: 135px;
+    right: 135px;
+  }
+  .show-box {
+    position: relative;
+    .box-item{
+      //height: 590px;
+      height: 228px;
+      display: table;
+    }
+    .text-wrapper {
+      position: relative;
+      display: table-cell;
+      vertical-align: top;
+      padding: 24px 32px 20px 32px;
+      //&.right {
+      //  float: right;
+      //}
+      .title-desc {
+        color: #474747;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        height: 24px;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
+      }
+      .title {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        height: 24px;
+
+        margin: 12px 0;
+
+      }
+      .subtitle {
+        color: #A6AAB1;
+        font-size: 16px;
+        line-height: 32px;
+        font-weight: 400;
+        position: relative;
+      }
+      .content {
+        color: #A6AAB1;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 400;
+        position: relative;
+        //white-space: pre-line;
+        margin-bottom: 20px;
+      }
+      .action {
+        position: absolute;
+        bottom: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #E5E5E5;
+        line-height: 20px;
+        .icon {
+          margin-left: 20px;
+          width: 16px;
+        }
+        &:hover {
+          color: @mainColor;
+        }
+
+      }
+    }
+    .img-wrapper {
+      display: table-cell;
+
+      width: 300px;
+      height: 100%;
+      position: relative;
+      img {
+        object-fit: cover;
+        border-radius: 16px;
+
+      }
+
+    }
+    .img-back {
+      position: absolute;
+      width: 176px;
+      height: 176px;
+      bottom: -50px;
+      left: -50px;
+    }
+
+  }
+  .pagination-nav {
+    text-align: center;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+</style>

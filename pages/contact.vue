@@ -77,7 +77,7 @@
                 </div>
                 <div class="form-group">
                   <select class="form-control" id="needs" placeholder="我的需求">
-                    <option>1</option>
+                    <option>我的需求</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>

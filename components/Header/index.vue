@@ -12,18 +12,10 @@
                   :src="require('@/assets/images/icon_triangle.svg')" class="nav-icon" />
             </a>
             <div class="sub-nav-wrapper" v-if="item.subMenu && item.subMenu.length > 0" >
-              <div class="sub-nav-item">
-                <a href="#">创意</a>
+              <div class="sub-nav-item" v-for="subItem in item.subMenu">
+                <a :href="subItem.path">{{subItem.name}}</a>
               </div>
-              <div class="sub-nav-item">
-                <a href="#">开发</a>
-              </div>
-              <div class="sub-nav-item">
-                <a href="#">营销</a>
-              </div>
-              <div class="sub-nav-item">
-                <a href="#">运营</a>
-              </div>
+
             </div>
           </div>
         </div>
@@ -72,11 +64,14 @@ export default {
         },
         { name: '快乐', path: '#',
           subMenu: [
-            { name: '创意交互设计', path: '#' },
-            { name: '视频数字化应用', path: '#' },
-            { name: '视觉识别系统 (VI)', path: '#' },
-            { name: '全景虚拟现实 (VR)', path: '#' },
-            { name: '年度设计服务', path: '#' },
+            { name: '未苒资讯', path: '/information' },
+            { name: '帮助中心', path: '/help' },
+
+            // { name: '创意交互设计', path: '#' },
+            // { name: '视频数字化应用', path: '#' },
+            // { name: '视觉识别系统 (VI)', path: '#' },
+            // { name: '全景虚拟现实 (VR)', path: '#' },
+            // { name: '年度设计服务', path: '#' },
           ]
         },
         { name: '我们', path: '/about/introduce' },
@@ -99,7 +94,7 @@ export default {
 .logo {
   width: 175px;
   height: 54px;
-  background-image: url('@/assets/images/logo.png');
+  background-image: url('~/assets/images/logo.png');
   background-size: 100% 100%;
   img {
     width: 100%;
@@ -230,7 +225,7 @@ a {
     display: block;
     width: 24px;
     height: 24px;
-    background: url('@/assets/images/icon_x_white.png') no-repeat center;
+    background: url('~/assets/images/icon_x_white.png') no-repeat center;
     cursor: pointer;
   }
   .center-form {
@@ -250,11 +245,10 @@ a {
       width: 100%;
       box-sizing: border-box;
       color: #fff;
-      background: none;
       font-family: "Base-font";
       padding-left: 88px;
       padding-right: 80px;
-      background: url('@/assets/images/icon_search_white.png') no-repeat 44px 44px;
+      background: url('~/assets/images/icon_search_white.png') no-repeat 44px 44px;
       box-shadow: none;
     }
   }

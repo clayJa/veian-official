@@ -6,7 +6,7 @@
     <ul class="pagination pagination-sm">
 
       <li :class="`${currentPage === 1 ? 'disabled' : ''}`">
-        <span aria-label="Previous">
+        <span aria-label="Previous ignore-vw">
 <!--          <span aria-hidden="true">&laquo;</span>-->
           <span class="icon glyphicon glyphicon-menu-left" aria-hidden="true"></span>
 
@@ -23,7 +23,7 @@
       <li :class="`${currentPage === pageNumber ? 'disabled' : ''}`">
         <span aria-label="Next">
 <!--          <span aria-hidden="true">&raquo;</span>-->
-          <span class="icon glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+          <span class="icon glyphicon glyphicon-menu-right ignore-vw" aria-hidden="true"></span>
 
         </span>
       </li>
@@ -78,7 +78,7 @@ export default {
       cursor: pointer;
       .icon {
         color: #A6AAB1;
-
+        //font-size: 12px;
       }
     }
     .disabled {

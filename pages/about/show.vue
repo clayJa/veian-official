@@ -168,9 +168,16 @@ export default {
     position: relative;
     .wrapper {
       padding: 135px 135px 72px 135px;
-
+      position: relative;
     }
-
+    .img-back {
+      position: absolute;
+      width: 176px;
+      height: 176px;
+      left: 63px;
+      top: 376px;
+      z-index: 0;
+    }
   }
   .tab-wrapper {
     position: absolute;
@@ -180,6 +187,7 @@ export default {
   }
   .show-box-nav {
     margin-bottom: 12px;
+    position: relative;
   }
   .pagination-nav {
     text-align: center;
@@ -194,6 +202,7 @@ export default {
       height: 370px;
       box-shadow: 10px 10px 40px 0px rgba(54, 33, 0, 0.1);
       border-radius: 12px;
+      background-color: #fff;
     }
     .text-wrapper {
       font-weight: 300;
@@ -244,13 +253,7 @@ export default {
         border-top-left-radius: 12px;
       }
     }
-    .img-back {
-      position: absolute;
-      width: 176px;
-      height: 176px;
-      bottom: -50px;
-      left: -50px;
-    }
+
 
   }
 
