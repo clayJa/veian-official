@@ -99,6 +99,9 @@ export default {
           if(top <= 100 + height && top >= 100) {
             el.querySelector('.before').style.width =  (top - 100) / (100 + height) * 20 + '%';
             el.querySelector('.after').style.width =  (top - 100) / (100 + height) * 20 + '%';
+          } else {
+            el.querySelector('.before').style.width =  0;
+            el.querySelector('.after').style.width =  0;
           }
         }
       });

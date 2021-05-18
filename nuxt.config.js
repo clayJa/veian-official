@@ -15,6 +15,7 @@ export default {
     ],
     script: [
       { src: '/js/innersvg.js' },
+      { src: '/js/flexibility.js' },
       { src: '/js/smil.check.js' },
     ]
   },

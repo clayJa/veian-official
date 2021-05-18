@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!--[if IE]><script type="text/javascript">flexibility(document.body);</script><![endif]-->
     <Nuxt />
   </div>
 </template>
