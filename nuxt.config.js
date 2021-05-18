@@ -8,7 +8,10 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
+      { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1'},
+      { name: 'renderer', content: 'webkit' },
+
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -83,16 +86,16 @@ export default {
       // Install them before as dependencies with npm or yarn
       plugins: {
         "postcss-flexibility": {},
-        "postcss-px-to-viewport": {
-          viewportWidth: 1440, // (Number) 视窗的宽度，对应的是我们设计稿的宽度，一般是750
-          // viewportHeight: 1600, // (Number) 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置
-          unitPrecision: 3, // (Number) 指定`px`转换为视窗单位值的小数位数（很多时候无法整除）
-          viewportUnit: 'vw', // (String) 指定需要转换成的视窗单位，建议使用vw
-          selectorBlackList: ['ant', '.ignore', '.hairlines', '.ignore-vw'], // (Array) 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名
-          minPixelValue: 1, // (Number) 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值
-          mediaQuery: false // (Boolean) 允许在媒体查询中转换`px`
-          //   exclude: /(\/|\\)(node_modules)(\/|\\)/
-        },
+        // "postcss-px-to-viewport": {
+        //   viewportWidth: 1440, // (Number) 视窗的宽度，对应的是我们设计稿的宽度，一般是750
+        //   // viewportHeight: 1600, // (Number) 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置
+        //   unitPrecision: 3, // (Number) 指定`px`转换为视窗单位值的小数位数（很多时候无法整除）
+        //   viewportUnit: 'vw', // (String) 指定需要转换成的视窗单位，建议使用vw
+        //   selectorBlackList: ['ant', '.ignore', '.hairlines', '.ignore-vw'], // (Array) 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名
+        //   minPixelValue: 1, // (Number) 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值
+        //   mediaQuery: false // (Boolean) 允许在媒体查询中转换`px`
+        //   //   exclude: /(\/|\\)(node_modules)(\/|\\)/
+        // },
       },
       preset: {
         // Change the postcss-preset-env settings

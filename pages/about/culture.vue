@@ -14,7 +14,7 @@
       </div>
       <div class="secondary-block ">
         <div class="tab-wrapper">
-          <TabBar active="/about/culture" />
+          <TabBar :active="curPath" />
 
         </div>
         <div class="wrapper row row-no-gutters">
@@ -100,15 +100,13 @@ export default {
   },
   data() {
     return {
+      curPath: '/about/culture',
       bannerImg: bannerImg,
 
     }
   },
   methods: {
-    playVideo() {
-      console.log('play')
-      this.isPlay = true
-    },
+
   },
 
 }

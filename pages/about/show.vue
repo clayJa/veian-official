@@ -6,7 +6,7 @@
         <div class="wrapper">
           <div class="text-wrapper">
             <div class="title-desc">Welcome to weiran technology</div>
-            <div class="title">资质荣誉</div>
+            <div class="title">未苒模样</div>
             <div class="subtitle">我们的声音，务实求新</div>
           </div>
 
@@ -19,6 +19,7 @@
         </div>
 
         <div class="wrapper">
+          <img class="img-back" src="@/assets/images/about/dots_group.png" alt="">
 
           <div class="show-box-nav clearfix">
             <div class="show-box" v-for="item in dataArray">
@@ -60,7 +61,7 @@ import TabBar from '@/components/about/TabBar'
 import MoreBanner from '@/components/about/MoreBanner'
 import Pagination from '@/components/Pagination'
 
-const bannerImg = require('@/assets/images/about/honour/banner_back.jpg')
+const bannerImg = require('@/assets/images/about/show/banner_back.jpg')
 
 export default {
   components: {
@@ -71,13 +72,13 @@ export default {
   data() {
     console.log('data')
     return {
-      curPath: '/about/honour',
+      curPath: '/about/show',
       bannerImg: bannerImg,
       dataArray: [],
 
-      pageSize: 8,
+      pageSize: 9,
       currentPage: 1,
-      total: 20,
+      total: 50,
     }
   },
   created() {
@@ -89,9 +90,9 @@ export default {
       const arr = []
       for (let i = 0; i < limit; i++) {
         arr.push({
-          title: '国家高新技术企业证书' + (i + 1 + ((page - 1) * limit)),
+          title: '年中总结' + (i + 1 + ((page - 1) * limit)),
           desc: '2008-3-23',
-          img: require('@/assets/images/about/honour/certificate.jpg'),
+          img: require('@/assets/images/about/show/photo.jpg'),
         })
       }
 
@@ -169,23 +170,6 @@ export default {
       padding: 135px 135px 72px 135px;
 
     }
-    .page-title-nav {
-      text-align: center;
-      margin-bottom: 48px;
-      .title {
-        height: 64px;
-        font-size: 56px;
-        font-weight: 600;
-        line-height: 64px;
-        white-space: nowrap;
-      }
-      .subtitle {
-        height: 32px;
-        font-size: 24px;
-        font-weight: 300;
-        line-height: 32px;
-      }
-    }
 
   }
   .tab-wrapper {
@@ -203,15 +187,18 @@ export default {
   .show-box {
     position: relative;
     float: left;
-    padding: 0 17.5px 32px 17.5px;
+    padding: 0 15px 48px 15px;
     //width: 560px;
     .box-item{
-      width: 260px;
-      height: 230px;
+      width: 370px;
+      height: 370px;
+      box-shadow: 10px 10px 40px 0px rgba(54, 33, 0, 0.1);
+      border-radius: 12px;
     }
     .text-wrapper {
       font-weight: 300;
       text-align: center;
+      padding: 24px 32px 20px 32px;
       .title-desc {
         color: @mainColor;
         font-size: 18px;
@@ -222,37 +209,39 @@ export default {
         margin-bottom: 12px;
       }
       .title {
-        color: #171717;
-        font-size: 16px;
+        color: #474747;
+        font-size: 24px;
         font-weight: 400;
-        line-height: 22px;
-        height: 22px;
+        line-height: 32px;
+        height: 32px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow:ellipsis;
 
-        margin-bottom: 4px;
+        margin-bottom: 5px;
 
       }
 
       .subtitle {
-        color: #8F92A1;
-        font-size: 14px;
-        line-height: 20px;
-        height: 20px;
+        color: #A6AAB1;
+        font-size: 16px;
+        line-height: 32px;
+        height: 32px;
         position: relative;
         white-space: nowrap;
         overflow: hidden;
+
       }
     }
     .img-wrapper {
       //width: 260px;
-      height: 160px;
+      height: 256px;
       position: relative;
 
-      margin-bottom: 24px;
       img {
         object-fit: cover;
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
       }
     }
     .img-back {
