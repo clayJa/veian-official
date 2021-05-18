@@ -9,9 +9,48 @@
 
 </template>
 
-<script lang="ts">
-import Divider from '@/components/Divider'
+<script>
+const Divider = () => import('@/components/Divider/index.vue');
 
+// import {Vue, Component, Prop} from 'vue-property-decorator';
+//
+// @Component({
+//   Divider
+// } as any)
+// export default class App extends Vue{
+//   @Prop({
+//     type: String,
+//     default: ''
+//   }) active!: string;
+//   activePath: string = this.active;
+//   menus: any[] = [
+//     {
+//       name: '我们是谁',
+//       path: '/about/introduce',
+//     },
+//     {
+//       name: '未苒文化',
+//       path: '/about/culture',
+//     },
+//     {
+//       name: '发展历程',
+//       path: '/about/development',
+//     },
+//     {
+//       name: '资质荣誉',
+//       path: '/about/honour',
+//     },
+//     {
+//       name: '未苒模样',
+//       path: '/about/show',
+//     },
+//     {
+//       name: '加入未苒',
+//       path: '/about/join',
+//     },
+//   ];
+//
+// }
 export default {
   name: 'TabBar',
   components: {

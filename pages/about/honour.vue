@@ -27,7 +27,7 @@
                 </div>
                 <div class="text-wrapper">
                   <div class="title">{{item.title}}</div>
-                  <div :class="`text-content ${i % 2 === 0 ? 'left': 'right'}`">{{item.desc}}</div>
+                  <div class="text-content">{{item.desc}}</div>
                 </div>
 
               </div>
@@ -52,7 +52,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import TabBar from '@/components/about/TabBar'
 import MoreBanner from '@/components/about/MoreBanner'
 const bannerImg = require('@/assets/images/about/honour/banner_back.jpg')
@@ -78,7 +78,7 @@ export default {
     this.requestData({limit: 20})
   },
   methods: {
-    requestData(params: any) {
+    requestData(params) {
       const {limit = 15, page = 1} = params
       const arr = []
       for (let i = 0; i < limit; i++) {

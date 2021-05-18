@@ -2,7 +2,7 @@
 <div :class="`nav-divider ${type=== 'horizontal' ? 'nav-divider-horizontal' : 'nav-divider-vertical'}` " >
 </div>
 </template>
-<script lang="ts">
+<script>
 export default {
   name: 'Divider',
   props: {
