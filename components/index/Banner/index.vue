@@ -80,9 +80,9 @@ export default {
   height: 770px;
   width: 100%;
 }
-.banner-container {
-  margin-top: 100px;
-}
+// .banner-container {
+//   margin-top: 100px;
+// }
 .content {
   position: relative;
   img {

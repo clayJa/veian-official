@@ -81,7 +81,11 @@ export default {
 <style lang="less" scoped>
 .simple-example1 {
   .static {
-    &.header {
+    &.header-nav {
+      position: fixed;
+      z-index: 999;
+    }
+    /deep/ .header {
       background-color: transparent;
       border-bottom: 1px solid fade(#D0E5FF, 10);
     }

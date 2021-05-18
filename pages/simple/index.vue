@@ -45,7 +45,6 @@ export default {
 
 <style lang="less" scoped>
 .banner {
-  margin-top: 100px;
   .content {
     position: relative;
     img {
