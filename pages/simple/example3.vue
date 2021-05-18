@@ -1,53 +1,64 @@
 <template>
-  <div class="simple-example2">
+  <div class="simple-example3">
     <Header :class="scroll ? '' : 'static'"></Header>
     <div class="banner">
       <div class="content">
-        <img src="@/static/simple/example2_banner.jpg" alt="">
+        <img src="@/static/simple/example3_banner.jpg" alt="">
         <div class="text">
           <div class="container">
             <div class="info1">Project Introduction</div>
-            <div class="info2">喜临门</div>
+            <div class="info2">瑰珀翠</div>
             <div class="info3">用户体验 / 交互设计</div>
           </div>
         </div>
       </div>
     </div>
     <div class="introduction">
-      <div class="container">
-        <div class="description">
-          <div class="project-info">
-            <div class="title">项目简介</div>
-            <div class="project">喜临门</div>
-            <div class="detail">喜临门诞生于1984年，三十余载奋斗精进，始终以“致力于人类的健康睡眠”为使命，专注于设计、研发、生产以床垫为核心的高品质家具，产品体系覆盖软床、床垫、沙发和全屋定制。</div>
-          </div>
-          <div class="logo">
-            <img src="@/static/simple/example2_logo.png" alt="">
-          </div>
+      <div class="description container">
+        <div class="project-info">
+          <div class="project">瑰珀翠</div>
+          <div class="detail">瑰珀翠（英文名字Crabtree & Evelyn），灵感来自十七世纪极负盛名的作家与园艺学家“John Evelyn”（约翰•爱芙蓉）。由制造香皂的家庭企业起家，至今已有30年的历史。作为象征英国优雅贵族气息的品牌，许多好莱坞影片里都可以看见Crabtree & Evelyn的影子。</div>
         </div>
-        <div class="image-list">
-          <div class="image-wrapper">
-            <img src="@/static/simple/example2_image01.png" alt="">
-          </div>
-          <div class="image-wrapper">
-            <img src="@/static/simple/example2_image02.png" alt="">
-          </div>
-          <div class="image-wrapper">
-            <img src="@/static/simple/example2_image03.png" alt="">
-          </div>
-          <div class="image-wrapper fixed-image"
-            :style="{backgroundImage: `url(${require('@/static/simple/example2_image05.png')})`}"
-            ref="list_3"
-          >
-            <div class="before"></div>
-            <div class="after"></div>
-          </div>
-          <div class="image-wrapper">
-            <img src="@/static/simple/example2_image04.png" alt="">
-          </div>
-          <div class="image-wrapper">
-            <img src="@/static/simple/example2_image06.png" alt="">
-          </div>
+        <div class="logo">
+          <img src="@/static/simple/example3_logo.png" alt="">
+        </div>
+      </div>
+      <div class="image-list">
+        <div class="image-wrapper container">
+          <img src="@/static/simple/example3_image1.jpg" alt="">
+        </div>
+        <div class="image-wrapper container">
+          <img src="@/static/simple/example3_image2.jpg" alt="">
+        </div>
+        <div class="image-wrapper fixed-image"
+          :style="{backgroundImage: `url(${require('@/static/simple/example3_image3.jpg')})`}"
+          ref="list_2"
+        >
+          <div class="before"></div>
+          <div class="after"></div>
+        </div>
+        <div class="info container">
+          <div class="info-title">微交互设计，卡片式布局结合</div>
+          <div class="info-detail">运用微交互设计理念搭建Shop、Inspire、Discover、Connect等多个服务平台，结合卡片式布局提升网站美观性、实用性，搭配精美图片合理布局，有效吸引消费者注意力，全方位满足用户浏览体验。</div>
+        </div>
+        <div class="image-wrapper container">
+          <img src="@/static/simple/example3_image4.jpg" alt="">
+        </div>
+        <div class="image-wrapper container">
+          <img src="@/static/simple/example3_image5.jpg" alt="">
+        </div>
+        <div class="image-wrapper container">
+          <img src="@/static/simple/example3_image6.jpg" alt="">
+        </div>
+        <div class="image-wrapper container">
+          <img src="@/static/simple/example3_image7.jpg" alt="">
+        </div>
+        <div class="image-wrapper fixed-image"
+          :style="{backgroundImage: `url(${require('@/static/simple/example3_image8.jpg')})`}"
+          ref="list_7"
+        >
+          <div class="before"></div>
+          <div class="after"></div>
         </div>
       </div>
     </div>
@@ -61,11 +72,11 @@ import Header from '@/components/Header/index.vue'
 import Footer from '@/components/Footer/index.vue'
 import Join from '@/components/Join/index.vue'
 export default {
-   name: 'simple-example2',
+   name: 'simple-example3',
   data() {
     return {
       scroll: false,
-      list: [0,0,0,1,0,0]
+      list: [0,0,1,0,0,0,0,1]
     }
   },
   methods: {
@@ -110,7 +121,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.simple-example2 {
+.simple-example3 {
   .static {
     &.header-nav {
       position: fixed;
@@ -146,6 +157,7 @@ export default {
       right: 0;
       bottom: 0;
       top: 239px;
+      text-align: center;
       .info1 {
         font-size: 18px;
         font-family: PingFangSC-Regular, PingFang SC;
@@ -174,47 +186,24 @@ export default {
   }
 }
 .introduction {
-  background: #E5E5E5;
-  padding: 32px 0;
+  background: #F7F7F7;
   img {
     width: 100%;
   }
   .description {
-    background: #fff;
-    padding: 64px 48px;
+    padding-top: 80px;
     display: flex;
     justify-content: space-between;
     .project-info {
-      width: 1170px;
+      width: 850px;
       flex-grow: 0;
-      .title {
-        font-size: 32px;
-        font-family: PingFangSC-Regular, PingFang SC;
-        font-weight: 400;
-        color: #03101F;
-        line-height: 45px;
-        padding-bottom: 18px;
-        position: relative;
-        margin-bottom: 26px;
-        &::after {
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          content: '';
-          display: block;
-          width: 45px;
-          height: 2px;
-          background: #1A82FF;
-          border-radius: 4px;
-        }
-      }
       .project {
-        font-size: 20px;
-        font-family: PingFangSC-Regular, PingFang SC;
-        font-weight: 400;
+        font-size: 56px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
         color: #03101F;
-        line-height: 28px;
-        margin-bottom: 20px;
+        line-height: 78px;
+        margin-bottom: 24px;
       }
       .detail {
         font-size: 16px;
@@ -228,19 +217,37 @@ export default {
       width: 240px;
       height: 240px;
       background: #FFFFFF;
+      box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.2);
       border-radius: 16px;
-      border: 2px solid #E5E5E5;
-      padding: 0 26px;
+      padding: 0 20px;
       flex-shrink: 0;
-      margin-left: 100px;
+      margin-left: 80px;
       display: flex;
       align-items: center;
     }
   }
   .image-list {
-    padding: 64px 48px;
-    margin-top: 32px;
-    background: #fff;
+    .image-wrapper {
+      margin-top: 96px;
+    }
+    .info {
+      padding-top: 96px;
+      .info-title {
+        font-size: 56px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #474747;
+        line-height: 64px;
+        margin-bottom: 36px;
+      }
+      .info-detail {
+        font-size: 16px;
+        font-family: PingFangSC-Light, PingFang SC;
+        font-weight: 300;
+        color: #474747;
+        line-height: 32px
+      }
+    }
     .fixed-image {
       position: relative;
       width: 100%;
@@ -258,7 +265,7 @@ export default {
         top: 0;
         height: 100%;
         width: 0%;
-        background: #f1f1f1;
+        background: #F7F7F7;
       }
       .after {
         position: absolute;
@@ -266,7 +273,7 @@ export default {
         top: 0;
         height: 100%;
         width: 0%;
-        background: #f1f1f1;
+        background: #F7F7F7;
       }
     }
   }
