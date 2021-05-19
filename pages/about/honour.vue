@@ -203,7 +203,7 @@ export default {
   .show-box {
     position: relative;
     float: left;
-    padding: 0 17.5px 32px 17.5px;
+    padding: 0 16px 32px 16px;
     //width: 560px;
     .box-item{
       width: 260px;

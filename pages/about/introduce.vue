@@ -14,21 +14,28 @@
               <div class="data-item col-md-4">
                 <div class="number-wrapper">26.4<span class="unit">%</span></div>
                 <div class="desc">
-                  <span>数字增长</span>
+                  <span>
+                    <img class="icon" src="@/assets/images/about/refresh-ccw.png" alt="">
+                    数字增长
+                  </span>
                 </div>
 
               </div>
               <div class="data-item col-md-4">
                 <div class="number-wrapper">59.1<span class="unit">%</span></div>
                 <div class="desc">
-                  <span>互动增长</span>
+                  <span>
+                    <img class="icon" src="@/assets/images/about/trending-up.png" alt="">
+                    互动增长</span>
                 </div>
 
               </div>
               <div class="data-item col-md-4">
                 <div class="number-wrapper">31.9<span class="unit">%</span></div>
                 <div class="desc">
-                  <span>数据沉淀</span>
+                  <span>
+                    <img class="icon" src="@/assets/images/about/bar-chart.png" alt="">
+                    数据沉淀</span>
                 </div>
 
               </div>
@@ -283,9 +290,14 @@ export default {
         }
 
         .desc {
-          height: 20px;
+          height: 22px;
           font-size: 14px;
-          line-height: 20px;
+          line-height: 22px;
+          .icon {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+          }
         }
 
       }

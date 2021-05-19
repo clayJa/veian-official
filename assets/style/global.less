@@ -5,6 +5,33 @@
 .mr-auto {
   margin-right: auto !important;
 }
+
 a {
-  text-decoration: none !important;
+  background-color: transparent;
+
+  cursor: pointer;
+  outline: none;
+  text-decoration: none !important;;
+  -webkit-text-decoration-skip: objects;
+  transition: color .3s;
+
+  color: @mainColor;
+  &.black {
+    color: @fontColor2;
+  }
+
+  &:hover {
+    color: @mainColor !important;
+  }
+  &.active {
+    color: @mainColor !important;
+  }
+
+}
+
+.text-single-ellipsis{
+  display: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

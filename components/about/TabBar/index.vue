@@ -69,7 +69,10 @@ export default {
   box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   .divider {
-    margin: 0 24px;
+    margin: 0 12px;
+  }
+  .tab-text {
+    padding: 10px 12px;
   }
 }
 a {

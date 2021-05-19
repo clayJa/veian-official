@@ -29,7 +29,7 @@ export default {
     &.nav-divider-horizontal {
       clear: both;
       display: flex;
-      margin: 24px 0;
+      margin: 12px 0;
       min-width: 100%;
       width: 100%;
     }
@@ -37,10 +37,10 @@ export default {
       border-left: 1px solid @borderColor;
       border-top: 0;
       display: inline-block;
-      height: .9em;
-      margin: 0 8px;
+      height: 16px;
+      margin: 0 12px;
       position: relative;
-      top: -.06em;
+      top: -2px;
       vertical-align: middle;
     }
   }

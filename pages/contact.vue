@@ -168,9 +168,9 @@ export default {
           color: @white2;
 
         }
-        a {
+        &>a {
           //background: #F7F7F7;
-          color: @white2;
+          color: @white2 !important;
         }
       }
 
