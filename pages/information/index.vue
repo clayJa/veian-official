@@ -14,25 +14,31 @@
       </div>
       <div class="third-block">
         <div class="wrapper">
+          <div class="page-content-wrapper">
+
+
           <div class="list-nav">
             <div class="list-item" v-for="item in infoList">
               <div class="show-box" >
                 <div class="box-item clearfix">
                   <div class="img-wrapper">
                     <img class="img" :src="item.img" alt="">
-
                   </div>
                   <div class="text-wrapper right">
                     <div class="title-desc">{{item.updateAt}}</div>
                     <div class="title">{{item.title}}</div>
                     <div class="content">{{item.content}}</div>
-                    <a href="#" class="action">查看更多<InlineSvg :src="require('@/assets/images/icon_arrow_right.svg')" class="icon" />
+                    <a :href="`/information/detail${item.id ? '?id='+ item.id : ''}`" class="action">查看更多<InlineSvg :src="require('assets/images/icon_arrow_right.svg')" class="icon" />
                     </a>
                   </div>
 
                 </div>
               </div>
             </div>
+          </div>
+          <div class="card-wrapper">
+            <InfoCard title="热门资讯"  :data="hotInfoList" path="/information/detail" />
+          </div>
           </div>
           <div class="pagination-nav">
             <Pagination
@@ -53,26 +59,99 @@
 <script>
 import InlineSvg from 'vue-inline-svg';
 
-import TabBar from '@/components/about/TabBar'
-import MoreBanner from '@/components/about/MoreBanner'
-import Pagination from '@/components/Pagination'
+import TabBar from '~/components/about/TabBar/index'
+import MoreBanner from '~/components/about/MoreBanner/index'
+import Pagination from '~/components/Pagination/index'
+import InfoCard from '~/components/information/InfoCard/index'
 
-const bannerImg = require('@/assets/images/information/banner_back.jpg')
 
-const img = require('@/assets/images/information/photo.jpg')
+const bannerImg = require('assets/images/information/banner_back.jpg')
 
+const img = require('assets/images/information/photo.jpg')
+
+const generateId = () => {
+  return String(new Date().getTime()) + Math.floor(Math.random() * 899 + 100);
+};
+const dataList = [
+  {
+    id: generateId(),
+    title: '=大数据环境下，网站建设更需创新学习能力 浙江广播电台 FM 104.5《浙商读书会》司马对话… 小程序商城能给企业带来哪些优势？ 哪些行业比较适合做裂变类小程序？ 传统电商怎样利用小程序获客？ 做一个高端的网站是小微企业品牌营销的第一步 这些网络营销推广渠道你知道吗？ 开发APP的关键名词解释 微信小程序如何实现知识付费？ 便利店如何利用小程序营业？',
+    updateAt: '2020.09.17',
+  },
+  {
+    id: generateId(),
+    title: '浙江广播电台FM104.5的《浙商读书会》访谈节目',
+    updateAt: '2021.04.14',
+    content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
+
+  },
+  {
+    id: generateId(),
+    title: '小程序商城能给企业带来哪些优势？',
+    updateAt: '2021.04.14',
+    content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
+
+  },
+  {
+    id: generateId(),
+    title: '哪些行业比较适合做裂变类小程序？',
+    updateAt: '2021.04.14',
+    content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
+
+  },
+  {
+    id: generateId(),
+    title: '传统电商怎样利用小程序获客？',
+    updateAt: '2021.04.14',
+    content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
+
+  },
+  {
+    id: generateId(),
+    title: '做一个高端的网站是小微企业品牌营销的第一步 ',
+    updateAt: '2021.04.14',
+    content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
+
+  },
+  {
+    title: '这些网络营销推广渠道你知道吗？',
+    updateAt: '2021.04.14',
+    content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
+
+  },
+  {
+    title: '开发APP的关键名词解释',
+    updateAt: '2021.04.14',
+    content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
+
+  },
+  {
+    title: '微信小程序如何实现知识付费？',
+    updateAt: '2021.04.14',
+    content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
+
+  },
+  {
+    title: '便利店如何利用小程序营业？',
+    updateAt: '2021.04.14',
+    content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
+
+  },
+]
 export default {
   components: {
     TabBar,
     MoreBanner,
     InlineSvg,
     Pagination,
+    InfoCard,
   },
   data() {
     return {
       curPath: '/about/join',
       bannerImg: bannerImg,
       infoList: [],
+      hotInfoList: [],
 
       pageSize: 3,
       currentPage: 1,
@@ -80,7 +159,10 @@ export default {
     }
   },
   created() {
+    const query = this.$route.query
+    console.log('query', query)
     this.requestData({limit: this.pageSize})
+    this.requestHotInfo()
   },
   methods: {
     requestData(params) {
@@ -114,6 +196,15 @@ export default {
         },
       ]
     },
+    requestHotInfo() {
+      const arr = []
+      for (let i = 0; i < 10; i++) {
+        arr.push({})
+      }
+
+      this.hotInfoList = dataList
+    },
+
     changePage(page, pageSize) {
       console.log('page, pageSize', page, pageSize)
       this.requestData({
@@ -127,8 +218,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@DINCondensedFont: DINCondensed-Bold, DINCondensed;
-@MontserratFont: Montserrat-ExtraBold, Montserrat;
+
   .banner {
     height: 600px;
     color: @white;
@@ -187,9 +277,17 @@ export default {
     position: relative;
     .wrapper {
       padding: 96px 135px;
+
+      .page-content-wrapper {
+        display: table;
+
+      }
     }
 
     .list-nav {
+      display: table-cell;
+      vertical-align: top;
+      padding-right: 48px;
       .list-item {
         //padding: 40px 48px;
         border-radius: 16px;
@@ -236,6 +334,10 @@ export default {
       }
 
     }
+    .card-wrapper {
+      display: table-cell;
+      vertical-align: top;
+    }
   }
   .tab-wrapper {
     position: absolute;
@@ -246,7 +348,6 @@ export default {
   .show-box {
     position: relative;
     .box-item{
-      //height: 590px;
       height: 228px;
       display: table;
     }
@@ -274,6 +375,10 @@ export default {
         font-weight: 500;
         line-height: 24px;
         height: 24px;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
 
         margin: 12px 0;
 
@@ -335,6 +440,7 @@ export default {
   }
   .pagination-nav {
     text-align: center;
+    margin-top: 28px;
   }
   img {
     width: 100%;
