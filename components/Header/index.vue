@@ -171,17 +171,15 @@ a {
   height: @headerHeight;
   line-height: @headerHeight;
   color: #474747;
-  &.active {
-    a {
-      color: #1A82FF;
-    }
+  &.active > a {
+    color: #1A82FF;
   }
   &:hover {
     .nav-icon {
       transform: rotate(-180deg);
       color: #1A82FF;
     }
-    a {
+    > a {
       color: #1A82FF;
     }
     .sub-nav-wrapper {

@@ -140,7 +140,7 @@ export default {
     /deep/ .header-wrapper .nav-wrapper .nav-item > a {
       color: fade(#fff,60) ;
     }
-    /deep/ .header-wrapper .nav-wrapper .nav-item:hover a {
+    /deep/ .header-wrapper .nav-wrapper .nav-item:hover > a {
       color: #1A82FF;
     }
     /deep/ .header-wrapper .search-wrapper .icon {
