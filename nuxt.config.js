@@ -58,7 +58,7 @@ export default {
     less:'./assets/style/variable.less'
   },
   router:{
-    middleware:['browserVersion']
+    // middleware:['browserVersion']
   },
   // router: {
   //   mode: 'history',
