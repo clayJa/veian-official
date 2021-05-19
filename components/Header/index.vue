@@ -4,7 +4,7 @@
       <div class="container header-wrapper">
         <div class="logo"></div>
         <div class="nav-wrapper ml-auto">
-          <div class="nav-item" v-for="item in menu" :key="item.name">
+          <div :class="['nav-item', {active: $nuxt.$route.path === item.path }]" v-for="item in menu" :key="item.name">
             <a :href="item.path">
               {{ item.name }}
                <InlineSvg
@@ -12,7 +12,8 @@
                   :src="require('@/assets/images/icon_triangle.svg')" class="nav-icon" />
             </a>
             <div class="sub-nav-wrapper" v-if="item.subMenu && item.subMenu.length > 0" >
-              <div class="sub-nav-item" v-for="subItem in item.subMenu">
+              <div :class="['sub-nav-item', {active: $nuxt.$route.path === subItem.path }]"
+                v-for="subItem in item.subMenu" :key="subItem.name">
                 <a :href="subItem.path">{{subItem.name}}</a>
               </div>
 
@@ -53,25 +54,20 @@ export default {
       modalShow: false,
       menu: [
         { name: '首页', path: '/' },
-        { name: '简单', path: '#' },
+        { name: '简单', path: '/simple/' },
         { name: '信任', path: '#',
           subMenu: [
-            { name: '创意', path: '#' },
-            { name: '开发', path: '#' },
-            { name: '营销', path: '#' },
-            { name: '运营', path: '#' },
+            { name: '创意交互设计', path: '#' },
+            { name: '视频数字化应用', path: '#' },
+            { name: '视觉识别系统 (VI)', path: '#' },
+            { name: '全景虚拟现实 (VR)', path: '#' },
+            { name: '年度设计服务', path: '#' },
           ]
         },
         { name: '快乐', path: '#',
           subMenu: [
             { name: '未苒资讯', path: '/information' },
             { name: '帮助中心', path: '/help' },
-
-            // { name: '创意交互设计', path: '#' },
-            // { name: '视频数字化应用', path: '#' },
-            // { name: '视觉识别系统 (VI)', path: '#' },
-            // { name: '全景虚拟现实 (VR)', path: '#' },
-            // { name: '年度设计服务', path: '#' },
           ]
         },
         { name: '我们', path: '/about/introduce' },
@@ -84,6 +80,9 @@ export default {
       this.modalShow = true
       this.text = ''
     }
+  },
+  mounted() {
+    console.log(this.$nuxt.$route.path)
   },
   components: {
     InlineSvg,
@@ -153,7 +152,7 @@ a {
         a {
           color: #474747;
         }
-        &:hover {
+        &:hover,&.active {
           background: #F7F7F7;
           a {
             color: #1A82FF;
@@ -172,6 +171,11 @@ a {
   height: @headerHeight;
   line-height: @headerHeight;
   color: #474747;
+  &.active {
+    a {
+      color: #1A82FF;
+    }
+  }
   &:hover {
     .nav-icon {
       transform: rotate(-180deg);
@@ -212,7 +216,7 @@ a {
 }
 .search-alert {
   position: fixed;
-  z-index: 100;
+  z-index: 1000;
   background-color: #1A82FF;
   left: 0;
   top: 0;

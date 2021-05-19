@@ -1,8 +1,44 @@
 <template>
   <div>
+    <FixedBar />
     <Nuxt />
+    <Modal :visible="modalVisible" @visibleChange="handleVisibleChange" />
   </div>
 </template>
+<script>
+import FixedBar from '@/components/FixedBar/index.vue'
+import Modal from '@/components/Modal/index.vue'
+export default {
+  data() {
+    return {
+      timer: null,
+      modalVisible: false
+    }
+  },
+  mounted() {
+    if(localStorage.getItem('visited') !== 'true') {
+      this.timer = setTimeout(() => {
+        this.modalVisible = true
+        console.log(this.modalVisible)
+      },30000)
+    }
+  },
+  beforeDestroy (){
+    this.timer && clearTimeout(this.timer)
+  },
+  methods: {
+    handleVisibleChange(value) {
+      localStorage.setItem('visited','true')
+      this.value =value
+    }
+  },
+  components: {
+    FixedBar,
+    Modal,
+  }
+}
+</script>
+
 <style>
 html {
   font-family:
