@@ -1,7 +1,7 @@
 <template>
   <div class="tab-bar-nav">
     <template class="tab-item" v-for="(item, i) in menus" >
-      <a :class="`tab-text ${activePath === item.path ? 'active' : ''}`" :href="item.path" :key="item.name"  >{{item.name}}</a>
+      <a :class="`tab-text ${activeItem === item.value ? 'active' : ''}`" :key="item.name" @click="handleClick(item.value)">{{item.name}}</a>
       <Divider v-if="i !== menus.length - 1" class="divider" type="vertical" :key="i" />
     </template>
 
@@ -19,47 +19,27 @@ export default {
   },
   props: {
     active: {
-      type: String,
+      type: String | Number,
       default: ''
     },
     menus: {
       type: Array,
       default() {
-        return [
-          {
-            name: '我们是谁',
-            path: '/about/introduce',
-          },
-          {
-            name: '未苒文化',
-            path: '/about/culture',
-          },
-          {
-            name: '发展历程',
-            path: '/about/development',
-          },
-          {
-            name: '资质荣誉',
-            path: '/about/honour',
-          },
-          {
-            name: '未苒模样',
-            path: '/about/show',
-          },
-          {
-            name: '加入未苒',
-            path: '/about/join',
-          },
-        ]
+        return []
       }
     }
   },
   data() {
     return {
-      activePath: this.active,
+      activeItem: this.active,
     }
   },
-
+  methods: {
+    handleClick(value) {
+      this.activeItem = value
+      this.$emit('onChange',value)
+    }
+  }
 }
 </script>
 
@@ -82,7 +62,6 @@ export default {
 }
 a {
   background-color: transparent;
-
   cursor: pointer;
   outline: none;
   text-decoration: none;

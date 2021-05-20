@@ -2,54 +2,70 @@
   <div>
     <Header />
     <div>
-      <div class="banner" :style="{background: `url('${bannerImg}')  no-repeat center center`}">
+      <div class="banner" :style="{background: `url('${bannerImg}') no-repeat center/100%`}">
         <div class="wrapper">
           <div class="text-wrapper">
             <div class="title-desc">Welcome to weiran technology</div>
             <div class="title">Our Voice down-to-earth and creative</div>
             <div class="subtitle">我们的声音，务实求新</div>
           </div>
-
+        </div>
+      </div>
+      <div class="secondary-block">
+        <div class="tab-wrapper">
+          <TabBar :active="active" :menus="menus" @onChange="handleTabBarChange" />
         </div>
       </div>
       <div class="third-block">
         <div class="wrapper">
-          <div class="page-content-wrapper">
-
-
-          <div class="list-nav">
-            <div class="list-item" v-for="item in infoList">
-              <div class="show-box" >
-                <div class="box-item clearfix">
-                  <div class="img-wrapper">
-                    <img class="img" :src="item.img" alt="">
+          <div class="page-content-wrapper ">
+            <div class="title">帮助中心</div>
+            <div class="clearfix">
+              <div class="list-nav">
+                <div class="search-wrapper">
+                  <b-form-input
+                    id="help-search"
+                    placeholder="查找相关咨询内容…"
+                    v-model="searchText"
+                  ></b-form-input>
+                  <div class="total-wrapper clearfix">
+                    <div class="total">{{ total }}条咨询</div>
+                    <div class="select">
+                      <SelfSelect :value="select" @onChange="handleSelectChange" :options="options" />
+                    </div>
                   </div>
-                  <div class="text-wrapper right">
-                    <div class="title-desc">{{item.updateAt}}</div>
-                    <div class="title">{{item.title}}</div>
-                    <div class="content">{{item.content}}</div>
-                    <a :href="`/information/detail${item.id ? '?id='+ item.id : ''}`" class="action">查看更多<InlineSvg :src="require('assets/images/icon_arrow_right.svg')" class="icon" />
-                    </a>
+                </div>
+                <div class="list-item" v-for="item in infoList" :key="item.id">
+                  <div class="item-title-wrapper clearfix">
+                    <div class="item-title">{{item.title}}</div>
+                    <PillButton class="action-button">查看</PillButton>
                   </div>
-
+                  <div class="item-content">{{item.content}}</div>
+                </div>
+                <div class="pagination-nav">
+                  <Pagination
+                      :pageSize="pageSize"
+                      :total="total"
+                      @onchange="changePage"
+                  />
+                </div>
+              </div>
+              <div class="card-wrapper">
+                <RankList title="热门资讯"  :data="hotInfoList" path="/information/detail" />
+                <RankList class="mt60" title="人气排行"  :data="hotInfoList.slice(0,5)" path="/information/detail" />
+                <div class="tag-wrapper mt60">
+                  <div class="tag-title">关键词</div>
+                  <div class="tag-list clearfix">
+                    <div class="tag" v-for="tag in tags" :key="tag.vlaue">
+                      {{ tag.name }}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="card-wrapper">
-            <InfoCard title="热门资讯"  :data="hotInfoList" path="/information/detail" />
-          </div>
-          </div>
-          <div class="pagination-nav">
-            <Pagination
-                :pageSize="pageSize"
-                :total="total"
-                @onchange="changePage"
-            />
-          </div>
         </div>
       </div>
-
       <Join />
     </div>
     <Footer />
@@ -59,16 +75,39 @@
 <script>
 import InlineSvg from 'vue-inline-svg';
 
-import TabBar from '~/components/about/TabBar/index'
+import TabBar from '~/components/information/TabBar/index'
 import Join from '~/components/Join/index'
+import SelfSelect from '~/components/SelfSelect/index'
 import Pagination from '~/components/Pagination/index'
-import InfoCard from '~/components/information/InfoCard/index'
+import RankList from '~/components/information/RankList/index'
 
 
-const bannerImg = require('assets/images/information/banner_back.jpg')
+const bannerImg = require('assets/images/information/information_help_banner.jpg')
 
-const img = require('assets/images/information/photo.jpg')
-
+const tags = [
+  { name: '新能源', value: 1},
+  { name: '移动互联网大数据', value: 1},
+  { name: '微信小程序如何实现...', value: 1},
+  { name: '健康医疗', value: 1},
+]
+const menus = [
+  {
+    name: '服务文档',
+    value: 1,
+  },
+  {
+    name: '网站建设',
+    value: 2,
+  },
+  {
+    name: '网站优化',
+    value: 3,
+  },
+  {
+    name: 'IT基本知识',
+    value: 4,
+  },
+]
 const generateId = () => {
   return String(new Date().getTime()) + Math.floor(Math.random() * 899 + 100);
 };
@@ -144,18 +183,28 @@ export default {
     Join,
     InlineSvg,
     Pagination,
-    InfoCard,
+    RankList,
+    SelfSelect,
   },
   data() {
     return {
-      curPath: '/about/join',
+      active: 1,
       bannerImg: bannerImg,
       infoList: [],
       hotInfoList: [],
-
+      menus,
       pageSize: 3,
       currentPage: 1,
       total: 20,
+      tags,
+      searchText: '',
+      select: 1,
+      options: [
+        { label: '网址建设', value: 1},
+        { label: '移动互联', value: 2},
+        { label: '网址运维', value: 3},
+        { label: '影像创意与制作', value: 4},
+      ]
     }
   },
   created() {
@@ -165,6 +214,13 @@ export default {
     this.requestHotInfo()
   },
   methods: {
+    handleSelectChange(value) {
+      this.select = value
+    },
+    handleTabBarChange(value) {
+      console.log(value)
+      this.active = value
+    },
     requestData(params) {
       const {limit = 15, page = 1} = params
       const arr = []
@@ -174,25 +230,20 @@ export default {
 
       this.infoList = [
         {
-          img: img,
           title: '浙江广播电台 FM 104.5《浙商读书会》司…',
           updateAt: '2020.09.17',
           content: '近日，我们鼎易科技的创始人刘总受邀参加了浙江广播电台FM104.5的《浙商读书会》访谈节目。《浙商读书会》是浙江广播电台推出的一档读书推荐交流类节目，邀请浙江',
 
         },
         {
-          img: img,
           title: '浙江广播电台 FM 104.5《浙商读书会》司…',
           updateAt: '2021.04.14',
           content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
-
         },
         {
-          img: img,
           title: '大数据环境下，网站建设更需创新学习能力',
           updateAt: '2021.03.25',
           content: '在创新时代，网站建设的到底有什么实际的意义呢？我们能够切实的体会到网站在日常生活中起着不可替代的作用，更切实际的来讲，整个社会也已经离不开网络了。网站其实',
-
         },
       ]
     },
@@ -222,7 +273,7 @@ export default {
   .banner {
     height: 600px;
     color: @white;
-
+    background-size: 100% 100%;
     .wrapper {
       padding: 182px 135px 0 135px;
       .text-wrapper {
@@ -259,188 +310,175 @@ export default {
           }
         }
       }
-
     }
   }
 
+  .tab-wrapper {
+    z-index: 10;
+  }
   .secondary-block {
     background: @white;
     position: relative;
-    .wrapper {
-      padding: 135px 0;
+    .tab-wrapper {
+      position: absolute;
+      top: -40px;
+      left: 135px;
+      right: 135px;
     }
-
-
   }
   .third-block {
-    background: @white2;
+    background: #fff;
     position: relative;
     .wrapper {
-      padding: 96px 135px;
-
+      padding: 104px 135px;
       .page-content-wrapper {
-        display: table;
-
       }
     }
-
+    .title {
+      font-size: 32px;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #03101F;
+      line-height: 45px;
+      padding-bottom: 23px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #E5E5E5;
+    }
     .list-nav {
-      display: table-cell;
-      vertical-align: top;
-      padding-right: 48px;
-      .list-item {
-        //padding: 40px 48px;
-        border-radius: 16px;
-        border: 1px solid #E5E5E5;
-        background: #FFFFFF;
-
-        &+.list-item {
-          margin-top: 24px;
+      float: left;
+      .search-wrapper {
+        #help-search {
+          height: 60px;
+          background: #FFFFFF;
+          border-radius: 4px;
+          border: 1px solid #E5E5E5;
         }
-
+        .total-wrapper {
+          padding: 30px 0;
+          border-bottom: 1px solid #E5E5E5;
+          .total {
+            float: left;
+            font-size: 24px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #03101F;
+            line-height: 33px;
+          }
+          .select {
+            position: relative;
+            float: right;
+            width: 300px;
+            &::after {
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translate(-100%,-50%);
+              content: '筛选：';
+              font-size: 12px;
+              font-family: PingFangSC-Regular, PingFang SC;
+              font-weight: 400;
+              color: #03101F;
+              line-height: 17px;
+            }
+          }
+          .label {
+            display: inline-block;
+            font-size: 12px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #03101F;
+            line-height: 17px;
+            vertical-align: middle;
+          }
+        }
+      }
+      .list-item {
+        padding-top: 28px;
+        padding-bottom: 20px;
+        width: 755px;
+        border-bottom: 1px solid #E5E5E5;
         .item-title {
-          margin-bottom: 20px;
+          float: left;
+          max-width: 654px;
           white-space: nowrap;
           overflow: hidden;
           text-overflow:ellipsis;
-          .title-text {
-            float: left;
-
-            height: 24px;
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 24px;
-
-          }
-          .extra {
-            float: right;
-
-            font-size: 16px;
-            font-weight: 400;
-            color: #474747;
-          }
+          font-size: 20px;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color: #474747;
+          line-height: 28px;
+          margin-bottom: 20px;
+        }
+        .action-button {
+          padding: 4px 20px;
+          font-size: 14px;
+          line-height: 20px;
+          float: right;
         }
         .item-content {
-
-          font-size: 14px;
+          font-size: 16px;
+          font-family: PingFangSC-Regular, PingFang SC;
           font-weight: 400;
-          color: #A6AAB1;
-          line-height: 24px;
-          //white-space: nowrap;
-
-          //overflow: hidden;
-          text-overflow:ellipsis;
+          color: #989CA2;
+          line-height: 30px;
+          max-height: 60px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
         }
       }
 
     }
     .card-wrapper {
-      display: table-cell;
-      vertical-align: top;
-    }
-  }
-  .tab-wrapper {
-    position: absolute;
-    top: -40px;
-    left: 135px;
-    right: 135px;
-  }
-  .show-box {
-    position: relative;
-    .box-item{
-      height: 228px;
-      display: table;
-    }
-    .text-wrapper {
-      position: relative;
-      display: table-cell;
-      vertical-align: top;
-      padding: 24px 32px 20px 32px;
-      //&.right {
-      //  float: right;
-      //}
-      .title-desc {
-        color: #474747;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-        height: 24px;
-
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow:ellipsis;
-      }
-      .title {
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 24px;
-        height: 24px;
-
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow:ellipsis;
-
-        margin: 12px 0;
-
-      }
-      .subtitle {
-        color: #A6AAB1;
-        font-size: 16px;
-        line-height: 32px;
-        font-weight: 400;
-        position: relative;
-      }
-      .content {
-        color: #A6AAB1;
-        font-size: 14px;
-        line-height: 24px;
-        font-weight: 400;
-        position: relative;
-        //white-space: pre-line;
-        margin-bottom: 20px;
-      }
-      .action {
-        position: absolute;
-        bottom: 20px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #E5E5E5;
-        line-height: 20px;
-        .icon {
-          margin-left: 20px;
-          width: 16px;
-        }
-        &:hover {
-          color: @mainColor;
-        }
-
+      float: right;
+      .mt60 {
+        margin-top: 60px;
       }
     }
-    .img-wrapper {
-      display: table-cell;
-
-      width: 300px;
-      height: 100%;
-      position: relative;
-      img {
-        object-fit: cover;
-        border-radius: 16px;
-
-      }
-
-    }
-    .img-back {
-      position: absolute;
-      width: 176px;
-      height: 176px;
-      bottom: -50px;
-      left: -50px;
-    }
-
   }
   .pagination-nav {
-    text-align: center;
-    margin-top: 28px;
+    text-align: right;
+    margin-top: 40px;
+  }
+  .tag-wrapper {
+    .tag-title {
+      font-size: 24px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #03101F;
+      line-height: 33px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #E5E5E5;
+    }
+    .tag-list {
+      padding-top: 30px;
+      max-width: 350px;
+      .tag {
+        cursor: pointer;
+        float: left;
+        padding: 8px 24px;
+        font-size: 14px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #A6AAB1;
+        line-height: 20px;
+        margin-right: 12px;
+        margin-bottom: 16px;
+        border-radius: 4px;
+        border: 1px solid #E5E5E5;
+        max-width: 186px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        &:hover {
+          background: #FF424C;
+          border-color: #FF424C;
+          color: #fff;
+        }
+      }
+    }
   }
   img {
     width: 100%;

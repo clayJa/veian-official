@@ -93,6 +93,9 @@ export default {
         color: #fff;
         background: @mainColor;
       }
+      &:hover a {
+        color: #fff !important;
+      }
     }
   }
 }

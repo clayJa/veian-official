@@ -61,7 +61,7 @@ import Header from '@/components/Header/index.vue'
 import Footer from '@/components/Footer/index.vue'
 import Join from '@/components/Join/index.vue'
 export default {
-   name: 'simple-example2',
+  //  name: 'simple-example2',
   data() {
     return {
       scroll: false,

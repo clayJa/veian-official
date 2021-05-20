@@ -3,17 +3,14 @@
     <Header></Header>
     <div class="banner">
       <div class="content">
-        <img src="@/static/simple_background.jpg" alt="">
+        <img src="@/static/trust/trust_background.jpg" alt="">
         <div class="text">
             <div class="home_banner_title1 mt160">Welcome to weiran technology</div>
-            <div class="home_banner_title2">我们的价值是成就客户需求！</div>
-            <div class="home_banner_title3">即：客户需求为先的价值取向</div>
-            <PillButton @click="toPath">联系我们</PillButton>
+            <div class="home_banner_title2">全行业 全渠道</div>
+            <div class="home_banner_title2">数字化企业服务</div>
         </div>
       </div>
     </div>
-    <PictureGrid />
-    <Join />
     <Footer />
   </div>
 </template>
@@ -21,24 +18,16 @@
 <script lang="ts">
 import Header from '@/components/Header/index.vue'
 import Footer from '@/components/Footer/index.vue'
-import Join from '@/components/Join/index.vue'
-import PictureGrid from '@/components/PictureGrid/index.vue'
 export default {
-   name: 'simple',
   data() {
     return {
     }
   },
   methods: {
-    toPath() {
-
-    }
   },
   components: {
     Header,
     Footer,
-    Join,
-    PictureGrid,
   }
 }
 </script>
@@ -67,21 +56,14 @@ export default {
       color: #FFFFFF;
       line-height: 32px;
       text-transform: uppercase;
+      margin-bottom: 10px;
     }
     .home_banner_title2 {
-      padding: 24px 0;
-      font-family: PingFangSC-Semibold;
       font-size: 72px;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
       color: #FFFFFF;
-      letter-spacing: 0.51px;
-    }
-    .home_banner_title3 {
-      font-family: PingFangSC-Light;
-      font-size: 32px;
-      color: #FFFFFF;
-      letter-spacing: 0.4px;
-      line-height: 42px;
-      padding-bottom: 48px;
+      line-height: 100px;
     }
   }
 }

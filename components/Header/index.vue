@@ -54,7 +54,7 @@ export default {
       modalShow: false,
       menu: [
         { name: '首页', path: '/' },
-        { name: '简单', path: '/simple/' },
+        { name: '简单', path: '/uncomplicated' },
         { name: '信任', path: '#',
           subMenu: [
             { name: '创意交互设计', path: '#' },
@@ -64,10 +64,10 @@ export default {
             { name: '年度设计服务', path: '#' },
           ]
         },
-        { name: '快乐', path: '#',
+        { name: '快乐', path: '/information',
           subMenu: [
             { name: '未苒资讯', path: '/information' },
-            { name: '帮助中心', path: '/help' },
+            { name: '帮助中心', path: '/information/help' },
           ]
         },
         { name: '我们', path: '/about/introduce' },

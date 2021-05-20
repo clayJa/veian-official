@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="more-wrapper" v-if="hasMore">
-      <div class="more-buttom">查看更多案例 <icon name="icon_Link_Last" type="class" /></div>
+      <div class="more-buttom">查看更多案例 <i class="iconfont">&#xe61e;</i></div>
     </div>
   </div>
 </template>

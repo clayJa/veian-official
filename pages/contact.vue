@@ -155,27 +155,29 @@ export default {
     .header {
       background: @mainColor !important;
       .logo {
-        background-image: url('~/assets/images/logo.png');
+        background-image: url('~/assets/images/logo_white.png');
       }
     }
     .nav-item {
+      &.active a {
+        color: @white;
+      }
       a {
         color: @white;
-
       }
       &:hover {
         .nav-icon {
           color: @white2;
-
         }
         &>a {
           //background: #F7F7F7;
           color: @white2 !important;
         }
       }
-
     }
-
+    .search-wrapper .icon{
+      color: #fff;
+    }
   }
 
   .first-block {
