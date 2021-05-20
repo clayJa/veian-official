@@ -3,7 +3,7 @@
     <Header />
     <div>
       <div class="banner" :style="{background: `url('${bannerImg}')  no-repeat center center`}">
-        <div class="wrapper">
+        <div class="wrapper clearfix">
           <div class="main-data">
             <div class="text-wrapper">
               <div class="title">公司概况</div>
@@ -12,7 +12,7 @@
             </div>
             <div class="data-intro row row-no-gutters">
               <div class="data-item col-md-4">
-                <div class="number-wrapper">26.4<span class="unit">%</span></div>
+                <div class="number-wrapper"><RollNum :number="26.4"/> <span class="unit">%</span></div>
                 <div class="desc">
                   <span>
                     <img class="icon" src="@/assets/images/about/refresh-ccw.png" alt="">
@@ -22,7 +22,7 @@
 
               </div>
               <div class="data-item col-md-4">
-                <div class="number-wrapper">59.1<span class="unit">%</span></div>
+                <div class="number-wrapper"><RollNum :number="59.1"/><span class="unit">%</span></div>
                 <div class="desc">
                   <span>
                     <img class="icon" src="@/assets/images/about/trending-up.png" alt="">
@@ -31,7 +31,7 @@
 
               </div>
               <div class="data-item col-md-4">
-                <div class="number-wrapper">31.9<span class="unit">%</span></div>
+                <div class="number-wrapper"><RollNum :number="31.9"/><span class="unit">%</span></div>
                 <div class="desc">
                   <span>
                     <img class="icon" src="@/assets/images/about/bar-chart.png" alt="">
@@ -43,7 +43,7 @@
           </div>
           <div class="clients-serve">
             <div class="title">服务客户</div>
-            <div class="number">5000+</div>
+            <div class="number"><RollNum :number="5000"/>+</div>
             <div class="unit">clint</div>
 
           </div>
@@ -148,6 +148,7 @@
 import InlineSvg from 'vue-inline-svg';
 import TabBar from '@/components/about/TabBar'
 import Button from '@/components/Button'
+import RollNum from '@/components/RollNum'
 import MoreBanner from '@/components/about/MoreBanner'
 
 
@@ -162,6 +163,7 @@ export default {
     TabBar,
     Button,
     MoreBanner,
+    RollNum,
   },
   data() {
     return {
@@ -268,7 +270,7 @@ export default {
     }
     .data-intro {
       font-weight: 400;
-
+      width: 600px;
       .data-item {
         //&+.data-item {
         //  margin-left: 36px;
