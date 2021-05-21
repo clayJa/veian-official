@@ -33,6 +33,7 @@
           <b-form-input
             id="input-search"
             v-model="text"
+            @keyup.enter="handleEnter"
           ></b-form-input>
         </div>
       </div>
@@ -79,6 +80,9 @@ export default {
     showSearch() {
       this.modalShow = true
       this.text = ''
+    },
+    handleEnter() {
+      this.$router.push('/search')
     }
   },
   mounted() {
