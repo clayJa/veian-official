@@ -107,7 +107,7 @@ export default {
   bottom: 48px;
   margin-left: 50%;
   transform: translateX(-50%);
-  &-switch  {
+  /deep/ .swiper-pagination-switch {
     cursor: pointer;
     display: inline-block;
     height: 2px;
