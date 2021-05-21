@@ -55,7 +55,7 @@ export default {
       menu: [
         { name: '首页', path: '/' },
         { name: '简单', path: '/uncomplicated' },
-        { name: '信任', path: '#',
+        { name: '信任', path: '/confidence',
           subMenu: [
             { name: '创意交互设计', path: '#' },
             { name: '视频数字化应用', path: '#' },
