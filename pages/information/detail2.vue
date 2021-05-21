@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <MoreBanner />
+      <Join />
     </div>
     <Footer />
   </div>
@@ -28,7 +28,7 @@
 import InlineSvg from 'vue-inline-svg';
 
 import TabBar from '~/components/about/TabBar/index'
-import MoreBanner from '~/components/about/MoreBanner/index'
+import Join from '~/components/Join/index'
 import Pagination from '~/components/Pagination/index'
 import InfoCard from '~/components/information/InfoCard/index'
 import Divider from '@/components/Divider'
@@ -103,7 +103,7 @@ const dataList = [
 export default {
   components: {
     TabBar,
-    MoreBanner,
+    Join,
     InlineSvg,
     Pagination,
     InfoCard,

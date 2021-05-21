@@ -49,7 +49,7 @@
 
       </div>
 
-      <MoreBanner />
+      <Join />
     </div>
     <Footer />
   </div>
@@ -57,7 +57,7 @@
 
 <script>
 import TabBar from '@/components/about/TabBar'
-import MoreBanner from '@/components/about/MoreBanner'
+import Join from '@/components/Join'
 import Pagination from '@/components/Pagination'
 
 const bannerImg = require('@/assets/images/about/honour/banner_back.jpg')
@@ -65,7 +65,7 @@ const bannerImg = require('@/assets/images/about/honour/banner_back.jpg')
 export default {
   components: {
     TabBar,
-    MoreBanner,
+    Join,
     Pagination,
   },
   data() {

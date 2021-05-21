@@ -90,14 +90,14 @@
             </div>
             <div class="data-intro row row-no-gutters">
               <div class="data-item col-md-4">
-                <div class="number-wrapper">80<span class="unit">%</span></div>
+                <div class="number-wrapper"><RollNum :number="80"/><span class="unit">%</span></div>
                 <div class="desc">
                   <span>执行团队比例</span>
                 </div>
 
               </div>
               <div class="data-item col-md-4">
-                <div class="number-wrapper">1000+</div>
+                <div class="number-wrapper"><RollNum :number="1000"/>+</div>
                 <div class="desc">
                   <span>经典客户案例</span>
                 </div>
@@ -138,7 +138,7 @@
 
         </div>
       </div>
-      <MoreBanner />
+      <Join />
     </div>
     <Footer />
   </div>
@@ -149,7 +149,7 @@ import InlineSvg from 'vue-inline-svg';
 import TabBar from '@/components/about/TabBar'
 import Button from '@/components/Button'
 import RollNum from '@/components/RollNum'
-import MoreBanner from '@/components/about/MoreBanner'
+import Join from '@/components/Join'
 
 
 const bannerImg = require('@/assets/images/about/banner_back.jpg')
@@ -162,7 +162,7 @@ export default {
     InlineSvg,
     TabBar,
     Button,
-    MoreBanner,
+    Join,
     RollNum,
   },
   data() {

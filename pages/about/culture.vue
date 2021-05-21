@@ -81,7 +81,7 @@
 
       </div>
 
-      <MoreBanner />
+      <Join />
     </div>
     <Footer />
   </div>
@@ -89,14 +89,14 @@
 
 <script>
 import TabBar from '@/components/about/TabBar'
-import MoreBanner from '@/components/about/MoreBanner'
+import Join from '@/components/Join/index'
 const bannerImg = require('@/assets/images/about/culture/banner_back.jpg')
 
 
 export default {
   components: {
     TabBar,
-    MoreBanner,
+    Join,
   },
   data() {
     return {

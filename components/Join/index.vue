@@ -3,7 +3,7 @@
   <div class="content">
     <div>发现不同</div>
     <div>让每一个梦想脱颖而出</div>
-    <PillButton class="button">更多发现，由你开启</PillButton>
+    <PillButton class="button" @click="$router.push('/contact')">更多发现，由你开启</PillButton>
   </div>
 </div>
 </template>

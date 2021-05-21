@@ -42,7 +42,7 @@
             <div class="subtitle">如有兴趣加入我们欢迎把您的简历和作品投递到以下邮箱，简历投递邮箱：service@veianweb.com</div>
           </div>
           <div class="list-nav">
-            <div class="list-item" v-for="item in jobDescriptionList">
+            <div class="list-item" v-for="item in jobDescriptionList" :key="item.title">
               <div class="item-title clearfix">
                 <div class="title-text">{{item.title}}</div>
                 <div class="extra">{{item.updateAt}}</div>
@@ -53,7 +53,7 @@
         </div>
       </div>
 
-      <MoreBanner />
+      <Join />
     </div>
     <Footer />
   </div>
@@ -61,7 +61,7 @@
 
 <script>
 import TabBar from '@/components/about/TabBar'
-import MoreBanner from '@/components/about/MoreBanner'
+import Join from '@/components/Join'
 const bannerImg = require('@/assets/images/about/join/banner_back.jpg')
 
 const img = require('@/assets/images/about/join/photo.jpg')
@@ -69,7 +69,7 @@ const img = require('@/assets/images/about/join/photo.jpg')
 export default {
   components: {
     TabBar,
-    MoreBanner,
+    Join,
   },
   data() {
     return {

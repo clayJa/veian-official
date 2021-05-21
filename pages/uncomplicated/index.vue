@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <PictureGrid />
+    <PictureGrid hasMore />
     <Join />
     <Footer />
   </div>

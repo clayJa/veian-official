@@ -17,14 +17,14 @@ export default {
   padding: 10px 30px;
   color: @fontColor;
   background: #fff;
-  border: 1px solid #e5e5e5;
+  // border: 1px solid #e5e5e5;
   &:not([disabled]):active {
     box-shadow: none;
   }
   &:active, &:focus, &:hover {
     outline: 0;
     border-color: @mainColor1 !important;
-    color: @mainColor1 !important;
+    color: #fff !important;
   }
 
   &.primary {

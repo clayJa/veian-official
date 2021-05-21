@@ -9,7 +9,9 @@
                 <div class="home_banner_title1 mt241">Welcome to weiran technology</div>
                 <div class="home_banner_title2">我们的价值是成就客户需求！</div>
                 <div class="home_banner_title3">即：客户需求为先的价值取向</div>
-                <PillButton @click="toPath">联系我们</PillButton>
+                <a href="/contact">
+                  <PillButton>联系我们</PillButton>
+                </a>
             </div>
           </div>
         </div>
@@ -20,7 +22,9 @@
               <div class="banner_title_wrapper2">
                 <div class="home_banner_title1 mt229">Welcome to weiran technology</div>
                 <div class="home_banner_title2">简单、信任、 快乐</div>
-                <PillButton @click="toPath" :style="{ background: '#fff', color: '#1A82FF', marginTop: '48px' }">联系我们</PillButton>
+                <a href="/contact">
+                  <PillButton :style="{ background: '#fff', color: '#1A82FF', marginTop: '48px' }">联系我们</PillButton>
+                </a>
               </div>
             </div>
           </div>
@@ -32,7 +36,9 @@
               <div class="banner_title_wrapper2 vertical-center" style="max-width: 70%;">
                 <div class="home_banner_title1 mt229">Welcome to weiran technology</div>
                 <div class="home_banner_title2">帮助客户在时代中完成数字化、品牌化升级</div>
-                <PillButton @click="toPath" :style="{ background: '#fff', color: '#1A82FF', marginTop: '48px' }">联系我们</PillButton>
+                <a href="/contact">
+                  <PillButton :style="{ background: '#fff', color: '#1A82FF', marginTop: '48px' }">联系我们</PillButton>
+                </a>
               </div>
             </div>
           </div>
@@ -57,6 +63,7 @@ export default {
         spaceBetween: 0,
         pagination: '.swiper-pagination',
         paginationClickable :true,
+        preventClicks: false,
         onSlideChangeStart() {
           console.log('on slide change start')
         }
@@ -64,9 +71,6 @@ export default {
     } as DataProps
   },
   methods: {
-    toPath() {
-      console.log(1111)
-    }
   },
   components: {
     PillButton,

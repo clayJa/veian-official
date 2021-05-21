@@ -2,7 +2,7 @@
   <div class="header-nav">
     <div class="header">
       <div class="container header-wrapper">
-        <div class="logo"></div>
+        <div class="logo" @click="$router.push('/')"></div>
         <div class="nav-wrapper ml-auto">
           <div :class="['nav-item', {active: $nuxt.$route.path === item.path }]" v-for="item in menu" :key="item.name">
             <a :href="item.path">
@@ -91,6 +91,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .logo {
+  cursor: pointer;
   width: 175px;
   height: 54px;
   background-image: url('~/assets/images/logo.png');

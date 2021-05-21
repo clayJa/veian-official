@@ -10,10 +10,12 @@
         <div>未苒网络科技已经成功为众多世界五百强、中国五百强企业提供网站建设服务，</div>
         <div>并在微信公众号运营、云架构咨询服务得到客户和行业的一致认可。</div>
       </div>
-      <PillButton class="button">
-        <span>了解未苒科技</span>
-         <InlineSvg :src="require('@/assets/images/icon_Link_Last.svg')" style="margin-left: 12px;" />
-      </PillButton>
+      <a href="/about/introduce">
+        <PillButton class="button">
+          <span>了解未苒科技</span>
+          <InlineSvg :src="require('@/assets/images/icon_Link_Last.svg')" style="margin-left: 12px;" />
+        </PillButton>
+      </a>
     </div>
   </div>
 </template>
