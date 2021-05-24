@@ -2,27 +2,27 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/creativity/qjxnxs_banner.jpg')"
-      title="全景虚拟现实"
-      info="运用极致思维，塑造沉浸式的场景，向虚拟现实世界沉浸，开启全新的体验方式"
+      :imgae="require('@/static/trust/creativity/ndsjfw_banner.jpg')"
+      title="年度设计服务"
+      info="一个出色的周期，都由每一个出色的细节，组成了恒久远的品质"
      />
      <div class="list-image clearfix">
        <div class="sharp"></div>
        <div class="image-item" v-for="item in imageList" :key="item.infoZh">
          <img :src="item.image" alt="">
          <div class="image-info">
-           <span class="zh-title">{{item.infoZh}}</span>
-           <span class="en-title">{{item.infoEn}}</span>
+           <div class="zh-title">{{item.infoZh}}</div>
+           <div class="en-title">{{item.infoEn}}</div>
          </div>
        </div>
      </div>
      <div class="part2 clearfix">
-       <div class="image-video">
-         <img src="@/static/trust/creativity/qjxnxs_glasses.png" alt="">
-       </div>
        <div class="title-wrapper">
-        <div class="part2-title">全景虚拟现实</div>
-        <div class="part2-info">全景虚拟场景化的影像，是根据现实基制作生成真实度更强，利用全景信息优秀的交互性，增加品牌、业务为目的控制表达更多的图像信息。经过对图像的透视处理模拟真实三维实景。</div>
+        <div class="part2-title">保障日常运营留有高质量的运营素材供给</div>
+        <div class="part2-info">在每一个运营特定结点为您提供充分的素材物料，使您的业务平台、品牌运营始终有优秀的高品质的内容输出并抵达给目标客群。</div>
+       </div>
+       <div class="image-wrapper">
+         <img src="@/static/trust/creativity/ndsjfw_image.png" alt="">
        </div>
      </div>
     <Discover />
@@ -39,9 +39,9 @@ export default {
   data() {
     return {
       imageList: [
-        { image: require('@/static/trust/creativity/qjxnxs_image1.png'), infoZh: '塑造', infoEn: 'Shape' },
-        { image: require('@/static/trust/creativity/qjxnxs_image2.png'), infoZh: '传达', infoEn: 'Convey' },
-        { image: require('@/static/trust/creativity/qjxnxs_image3.png'), infoZh: '沉浸', infoEn: 'Immersed' },
+        { image: require('@/static/trust/creativity/ndsjfw_image1.png'), infoZh: '运用', infoEn: 'Use' },
+        { image: require('@/static/trust/creativity/ndsjfw_image2.png'), infoZh: '推广', infoEn: 'Promote' },
+        { image: require('@/static/trust/creativity/ndsjfw_image3.png'), infoZh: '宣传', infoEn: 'Propaganda' },
       ]
     }
   },
@@ -58,14 +58,14 @@ export default {
 
 <style lang="less" scoped>
 .list-image {
-  padding: 144px 135px;
+  padding: 144px 159px;
   position: relative;
   .sharp {
     position: absolute;
     width: 176px;
     height: 176px;
-    right: 91px;
-    top: 76px;
+    right: 189px;
+    top: 56px;
     z-index: 0;
     background-image: url('@/static/Combined_Shape_333.png');
     background-size: 100% 100%;
@@ -74,74 +74,78 @@ export default {
   img {
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 24px;
   }
   .image-item {
     float: left;
-    width: 370px;
-    margin-right: 30px;
+    width: 322px;
+    margin-right: 78px;
     position: relative;
-    background: #FFFFFF;
     box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    border-radius: 24px;
     &:last-child {
       margin-right: 0;
     }
     .image-info {
       position: absolute;
-      left: 32px;
-      bottom: 32px;
-      width: 146px;
-      height: 48px;
+      left: -24px;
+      right: -24px;
+      bottom: 48px;
+      height: 124px;
       background: #FFFFFF;
-      border-radius: 24px;
-      font-size: 14px;
-      color: #474747;
-      line-height: 48px;
-      text-align: center;
+      border-radius: 15px;
+      padding-top: 30px;
+      padding-left: 64px;
       .zh-title {
-        font-family: PingFangSC-Semibold, PingFang SC;
-        font-weight: 600;
+        font-size: 32px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #474747;
+        line-height: 32px;
       }
       .en-title {
-        font-family: PingFang SC;
-        font-weight: 300;
+        font-size: 16px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #474747;
+        line-height: 22px;
+        margin-top: 12px;
       }
     }
   }
 }
 .part2 {
-  padding: 150px 135px 85px 56px;
+  padding: 96px 199px 96px 135px;
   background: #F7F7F7;
   img {
     width: 100%;
     height: 100%;
   }
   .title-wrapper {
-    float: right;
+    float: left;
     margin-top: 44px;
   }
-  .image-video {
-    float: left;
-    width: 640px;
+  .image-wrapper {
+    float: right;
+    width: 360px;
+    border-radius: 50%;
   }
   .part2-title {
-    max-width: 492px;
+    max-width: 521px;
     font-size: 56px;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: #474747;
-    line-height: 64px;
     line-height: 80px;
   }
   .part2-info {
-    max-width: 492px;
+    max-width: 521px;
     font-size: 20px;
     font-family: PingFangSC-Light, PingFang SC;
     font-weight: 300;
     color: #474747;
     line-height: 32px;
-    margin-top: 48px;
+    margin-top: 24px;
   }
 }
 </style>
