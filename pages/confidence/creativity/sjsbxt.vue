@@ -2,27 +2,27 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/creativity/spszhyy_banner.jpg')"
-      title="视频数字化应用"
-      info="用更全面、更生动、更贴切的方式，塑造更饱满、立体、鲜活的品牌形象。给您的客户讲故事"
+      :imgae="require('@/static/trust/creativity/sjsbxt_banner.jpg')"
+      title="视觉识别系统"
+      info="让您的识别系统符号具象化、视觉化、标识化的传达"
      />
      <div class="list-image clearfix">
        <div class="sharp"></div>
        <div class="image-item" v-for="item in imageList" :key="item.infoZh">
          <img :src="item.image" alt="">
          <div class="image-info">
-           <span class="zh-title">{{item.infoZh}}</span>
-           <span class="en-title">{{item.infoEn}}</span>
+           <div class="zh-title">{{item.infoZh}}</div>
+           <div class="en-title">{{item.infoEn}}</div>
          </div>
        </div>
      </div>
-     <div class="part2 clearfix">
-       <div class="image-video">
-         <img src="@/static/trust/creativity/spszhyy_image_video.png" alt="">
-       </div>
+     <div class="part2">
        <div class="title-wrapper">
-        <div class="part2-title">满足您在不同场景下的视频应用需要</div>
-        <div class="part2-info">专业视频导演、拍摄、剪辑团队为您提供多种形式并极具创意的视频作品。</div>
+        <div class="part2-title">视觉识别系统</div>
+        <div class="part2-info">是企业品牌最外在、最直接、最具象化并且有传播力和感染力的外在视觉部分。将企业标识的基本要素，以规范化方针及形成系统有效地展开，形成企业固有的视觉规划，进而透视出经营者的理念、精神，有效地推广企业及其产品的知名度和形象。</div>
+       </div>
+       <div class="image-wrapper">
+         <img src="@/static/trust/creativity/sjsbxt_image.jpg" alt="">
        </div>
      </div>
     <Discover />
@@ -39,9 +39,9 @@ export default {
   data() {
     return {
       imageList: [
-        { image: require('@/static/trust/creativity/spszhyy_image1.png'), infoZh: '表现', infoEn: 'Expression' },
-        { image: require('@/static/trust/creativity/spszhyy_image2.png'), infoZh: '应用', infoEn: 'Application' },
-        { image: require('@/static/trust/creativity/spszhyy_image3.png'), infoZh: '传达', infoEn: 'Convey' },
+        { image: require('@/static/trust/creativity/sjsbxt_image1.png'), infoZh: '标识', infoEn: 'Logo' },
+        { image: require('@/static/trust/creativity/sjsbxt_image2.png'), infoZh: '识别', infoEn: 'Identify' },
+        { image: require('@/static/trust/creativity/sjsbxt_image3.png'), infoZh: '记忆', infoEn: 'Memory' },
       ]
     }
   },
@@ -60,6 +60,7 @@ export default {
 .list-image {
   padding: 97px 135px 144px 135px;
   position: relative;
+  background: #F7F7F7;
   .sharp {
     position: absolute;
     width: 176px;
@@ -82,33 +83,41 @@ export default {
     margin-right: 30px;
     position: relative;
     background: #FFFFFF;
-    box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
     border-radius: 24px;
-    padding: 24px;
     &:last-child {
       margin-right: 0;
     }
     .image-info {
       position: absolute;
-      left: 56px;
-      bottom: 54px;
+      left: 0;
+      bottom: 0;
       font-size: 24px;
-      color: #FFFFFF;
-      line-height: 32px;
+      width: 100%;
+      height: 160px;
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 48px;
       .zh-title {
-        font-family: PingFangSC-Medium;
+        font-size: 32px;
+        font-family: PingFangSC-Medium, PingFang SC;
         font-weight: 500;
+        color: #474747;
+        line-height: 32px;
       }
       .en-title {
-        font-family: PingFang SC;
-        font-weight: 300;
+        font-size: 16px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #A6AAB1;
+        line-height: 32px;
+        margin-top: 12px;
       }
     }
   }
 }
 .part2 {
-  padding: 140px 135px 110px 100px;
-  background: #1A82FF;
+  padding: 96px 135px;
+  background: #fff;
   img {
     width: 100%;
     height: 100%;
@@ -122,21 +131,20 @@ export default {
     width: 683px;
   }
   .part2-title {
-    max-width: 492px;
     font-size: 56px;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
-    color: #FFFFFF;
-    line-height: 80px;
+    color: #474747;
+    line-height: 64px;
   }
   .part2-info {
-    max-width: 492px;
     font-size: 20px;
     font-family: PingFangSC-Light, PingFang SC;
     font-weight: 300;
-    color: #FFFFFF;
+    color: #474747;
     line-height: 32px;
-    margin-top: 48px;
+    margin-top: 24px;
+    margin-bottom: 96px;
   }
 }
 </style>
