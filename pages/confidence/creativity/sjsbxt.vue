@@ -5,6 +5,7 @@
       :imgae="require('@/static/trust/creativity/sjsbxt_banner.jpg')"
       title="视觉识别系统"
       info="让您的识别系统符号具象化、视觉化、标识化的传达"
+      class="banner"
      />
      <div class="list-image clearfix">
        <div class="sharp"></div>
@@ -57,6 +58,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.banner {
+  /deep/ .content .text .info {
+    max-width: 13em;
+  }
+}
 .list-image {
   padding: 97px 135px 144px 135px;
   position: relative;

@@ -5,6 +5,7 @@
       :imgae="require('@/static/trust/creativity/ndsjfw_banner.jpg')"
       title="年度设计服务"
       info="一个出色的周期，都由每一个出色的细节，组成了恒久远的品质"
+      class="banner"
      />
      <div class="list-image clearfix">
        <div class="sharp"></div>
@@ -57,6 +58,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.banner {
+  /deep/ .content .text .info {
+    max-width: 19em;
+  }
+}
 .list-image {
   padding: 144px 159px;
   position: relative;
