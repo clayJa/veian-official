@@ -199,18 +199,17 @@ export default {
   .service-list {
     margin-top: 96px;
     position: relative;
-    border: 1px solid red;
-      .sharp {
-        position: absolute;
-        width: 176px;
-        height: 176px;
-        right: 32px;
-        top: 16px;
-        z-index: 0;
-        background-image: url('@/static/Combined_Shape_333.png');
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-      }
+    .sharp {
+      position: absolute;
+      width: 176px;
+      height: 176px;
+      right: 32px;
+      top: 16px;
+      z-index: 0;
+      background-image: url('@/static/Combined_Shape_333.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
     .service-item {
       margin-bottom: 96px;
       &:nth-child(2n + 1) {

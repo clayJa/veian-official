@@ -6,14 +6,17 @@
       title="创意交互设计"
       info="从点滴开始，用更富魅力的、更有张力的方法，探索极致的品牌需求与产品交互方式，敲响客户的心门。"
      />
-     <div class="list-image clearfix">
-       <div class="image-item" v-for="item in imageList" :key="item.infoZh">
-         <img :src="item.image" alt="">
-         <div class="image-info">
-           <div class="zh-title">{{item.infoZh}}</div>
-           <div class="en-title">{{item.infoEn}}</div>
-         </div>
-       </div>
+     <div class="list-wrapper">
+      <div class="sharp"></div>
+      <div class="list-image clearfix">
+        <div class="image-item" v-for="item in imageList" :key="item.infoZh">
+          <img :src="item.image" alt="">
+          <div class="image-info">
+            <div class="zh-title">{{item.infoZh}}</div>
+            <div class="en-title">{{item.infoEn}}</div>
+          </div>
+        </div>
+      </div>
      </div>
      <div class="part2 container">
         <div class="part2-title">场景、情感化设计原理</div>
@@ -90,6 +93,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.list-wrapper {
+  position: relative;
+  .sharp {
+    position: absolute;
+    width: 176px;
+    height: 176px;
+    right: 189px;
+    top: 64px;
+    z-index: 0;
+    background-image: url('@/static/Combined_Shape_333.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+}
 .list-image {
   padding: 152px 135px 135px 114px;
   img {
