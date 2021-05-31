@@ -4,7 +4,7 @@
       <div class="container header-wrapper">
         <div class="logo" @click="$router.push('/')"></div>
         <div class="nav-wrapper ml-auto">
-          <div :class="['nav-item', {active: $nuxt.$route.path === item.path }]" v-for="item in menu" :key="item.name">
+          <div :class="['nav-item', {active: $nuxt.$route.path === item.path || ($nuxt.$route.path.includes(item.path) && item.path !== '/')}]" v-for="item in menu" :key="item.name">
             <a :href="item.path">
               {{ item.name }}
                <InlineSvg
@@ -12,11 +12,16 @@
                   :src="require('@/assets/images/icon_triangle.svg')" class="nav-icon" />
             </a>
             <div class="sub-nav-wrapper" v-if="item.subMenu && item.subMenu.length > 0" >
-              <div :class="['sub-nav-item', {active: $nuxt.$route.path === subItem.path }]"
+              <div :class="['sub-nav-item', {active: $nuxt.$route.path === subItem.path || $nuxt.$route.path.includes(subItem.path) }]"
                 v-for="subItem in item.subMenu" :key="subItem.name">
-                <a :href="subItem.path">{{subItem.name}}</a>
+                <a :href="computePath(subItem)">{{subItem.name}}</a>
+                <div class="third-nav-wrapper" v-if="subItem.subMenu && subItem.subMenu.length > 0" >
+                  <div :class="['sub-nav-item', {active: $nuxt.$route.path === thirdItem.path }]"
+                    v-for="thirdItem in subItem.subMenu" :key="thirdItem.name">
+                    <a :href="thirdItem.path">{{thirdItem.name}}</a>
+                  </div>
+                </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -41,6 +46,7 @@
   </div>
 </template>
 <script lang="ts">
+import { computeLayout } from '@/static/js/flexibility';
 import InlineSvg from 'vue-inline-svg';
 interface Data {
   text: string,
@@ -58,11 +64,39 @@ export default {
         { name: '简单', path: '/uncomplicated' },
         { name: '信任', path: '/confidence',
           subMenu: [
-            { name: '创意交互设计', path: '#' },
-            { name: '视频数字化应用', path: '#' },
-            { name: '视觉识别系统 (VI)', path: '#' },
-            { name: '全景虚拟现实 (VR)', path: '#' },
-            { name: '年度设计服务', path: '#' },
+            { name: '创意', path: '/confidence/creativity',
+              subMenu: [
+                { name: '创意交互设计', path: '/confidence/creativity/cyjhsj' },
+                { name: '视频数字化应用', path: '/confidence/creativity/spszhyy' },
+                { name: '视觉识别系统 (VI)', path: '/confidence/creativity/sjsbxt' },
+                { name: '全景虚拟现实 (VR)', path: '/confidence/creativity/qjxnxs' },
+                { name: '年度设计服务', path: '/confidence/creativity/ndsjfw' },
+              ]
+            },
+            { name: '开发', path: '/confidence/develop',
+              subMenu: [
+                { name: '高端网站定制', path: '/confidence/develop/gdwzdz' },
+                { name: '小程序定制开发', path: '/confidence/develop/xcxdzkf' },
+                { name: 'APP定制开发', path: '/confidence/develop/appdzkf' },
+                { name: 'H5定制开发', path: '/confidence/develop/h5dzkf' },
+                { name: '电商定制开发', path: '/confidence/develop/dsdzkf' },
+                { name: '业务系统定制开发', path: '/confidence/develop/ywxtdz' },
+              ]
+            },
+            { name: '营销', path: '/confidence/marketing',
+              subMenu: [
+                { name: 'SEO&SEM', path: '/confidence/marketing/seo' },
+                { name: '新媒体营销', path: '/confidence/marketing/xmtyx' },
+                { name: '海外营销', path: '/confidence/marketing/hwyx' },
+              ]
+            },
+            { name: '运营', path: '/confidence/operation',
+              subMenu: [
+                { name: '电商代运营', path: '/confidence/operation/dsdyy' },
+                { name: '网站代运营', path: '/confidence/operation/wzdyy' },
+                { name: '新媒体代运营', path: '/confidence/operation/xmtdyy' },
+              ]
+            },
           ]
         },
         { name: '快乐', path: '/information',
@@ -83,6 +117,13 @@ export default {
     },
     handleEnter() {
       this.$router.push('/search')
+    },
+    computePath(item) {
+      if(item.subMenu && item.subMenu.length > 0) {
+        return item.subMenu[0].path
+      } else {
+        return item.path
+      }
     }
   },
   mounted() {
@@ -159,9 +200,30 @@ a {
         }
         &:hover,&.active {
           background: #F7F7F7;
-          a {
+          > a {
             color: #1A82FF;
           }
+          .third-nav-wrapper {
+            display: block;
+          }
+        }
+      }
+    }
+    .third-nav-wrapper {
+      position: absolute;
+      display: none;
+      left: 158px;
+      top: 0;
+      border: 1px solid #E5E5E5;
+      font-size: 12px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 500;
+      background: #fff;
+      z-index: 200;
+      &:hover,&.active {
+        background: #F7F7F7;
+        > a {
+          color: #1A82FF;
         }
       }
     }
