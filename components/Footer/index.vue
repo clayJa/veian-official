@@ -8,11 +8,11 @@
       <div class="text">service@veianweb.com</div>
       <div class="social">
         <span class="icon-wrapper">
-          <InlineSvg :src="require('@/assets/images/icon_wechat.svg')" class="icon" />
+          <i class="iconfont icon">&#xe620;</i>
           <img src="@/assets/images/qrcode.png" alt="">
         </span>
         <span class="icon-wrapper">
-          <InlineSvg :src="require('@/assets/images/icon_sina_weibo.svg')" class="icon" />
+           <i class="iconfont icon">&#xe61f;</i>
         </span>
       </div>
     </div>
@@ -67,10 +67,8 @@
 </div>
 </template>
 <script lang="ts">
-import InlineSvg from 'vue-inline-svg';
 export default {
   components: {
-    InlineSvg
   }
 }
 </script>
@@ -108,6 +106,9 @@ export default {
       cursor: pointer;
       position: relative;
       opacity: 0.2;
+      .icon {
+        font-size: 30px;
+      }
       &:not(:last-child) {
         margin-right: 24px;
       }

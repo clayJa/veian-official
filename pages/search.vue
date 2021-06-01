@@ -58,8 +58,6 @@
 </template>
 
 <script>
-import InlineSvg from 'vue-inline-svg';
-
 import TabBar from '~/components/information/TabBar/index'
 import SelfSelect from '~/components/SelfSelect/index'
 import Pagination from '~/components/Pagination/index'
@@ -140,7 +138,6 @@ const dataList = [
 export default {
   components: {
     TabBar,
-    InlineSvg,
     Pagination,
     InfoCard,
     SelfSelect,

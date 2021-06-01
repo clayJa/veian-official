@@ -5,11 +5,9 @@
         <div class="logo" @click="$router.push('/')"></div>
         <div class="nav-wrapper ml-auto">
           <div :class="['nav-item', {active: $nuxt.$route.path === item.path || ($nuxt.$route.path.includes(item.path) && item.path !== '/')}]" v-for="item in menu" :key="item.name">
-            <a :href="item.path">
+            <a :href="computePath(item)">
               {{ item.name }}
-               <InlineSvg
-                  v-if="item.subMenu && item.subMenu.length > 0"
-                  :src="require('@/assets/images/icon_triangle.svg')" class="nav-icon" />
+              <i class="iconfont nav-icon" v-if="item.subMenu && item.subMenu.length > 0" >&#xe629;</i>
             </a>
             <div class="sub-nav-wrapper" v-if="item.subMenu && item.subMenu.length > 0" >
               <div :class="['sub-nav-item', {active: $nuxt.$route.path === subItem.path || $nuxt.$route.path.includes(subItem.path) }]"
@@ -27,9 +25,9 @@
         </div>
         <div class="search-wrapper">
             <div class="search-item">
-              <InlineSvg :src="require('@/assets/images/icon_search.svg')" class="icon" @click="showSearch"/>
+              <i class="iconfont icon" @click="showSearch">&#xe63a;</i>
             </div>
-            <InlineSvg :src="require('@/assets/images/icon_phone.svg')" class="icon" />
+            <i class="iconfont icon">&#xe63b;</i>
         </div>
       </div>
       <div class="search-alert" v-if="modalShow">
@@ -47,7 +45,6 @@
 </template>
 <script lang="ts">
 import { computeLayout } from '@/static/js/flexibility';
-import InlineSvg from 'vue-inline-svg';
 interface Data {
   text: string,
   visible: boolean,
@@ -101,7 +98,7 @@ export default {
         },
         { name: '快乐', path: '/information',
           subMenu: [
-            { name: '未苒资讯', path: '/information' },
+            { name: '未苒资讯', path: '/information/news' },
             { name: '帮助中心', path: '/information/help' },
           ]
         },
@@ -119,10 +116,10 @@ export default {
       this.$router.push('/search')
     },
     computePath(item) {
-      if(item.subMenu && item.subMenu.length > 0) {
-        return item.subMenu[0].path
-      } else {
+      if(!item.subMenu) {
         return item.path
+      } else if(item.subMenu && item.subMenu.length > 0) {
+        return item.subMenu[0].path
       }
     }
   },
@@ -130,7 +127,6 @@ export default {
     console.log(this.$nuxt.$route.path)
   },
   components: {
-    InlineSvg,
   }
 }
 </script>
@@ -241,9 +237,14 @@ a {
   &.active > a {
     color: #1A82FF;
   }
+  .nav-icon {
+    display: inline-block;
+    transform: rotate(-180deg) scale(0.5);
+    color: fade(#474747,80);
+  }
   &:hover {
     .nav-icon {
-      transform: rotate(-180deg);
+      transform: rotate(-0deg) scale(0.5);
       color: #1A82FF;
     }
     > a {

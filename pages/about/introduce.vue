@@ -145,7 +145,6 @@
 </template>
 
 <script>
-import InlineSvg from 'vue-inline-svg';
 import TabBar from '@/components/about/TabBar'
 import Button from '@/components/Button'
 import RollNum from '@/components/RollNum'
@@ -159,7 +158,6 @@ import sceneryImg2 from '@/assets/images/about/bg_scenery2.jpg'
 
 export default {
   components: {
-    InlineSvg,
     TabBar,
     Button,
     Join,

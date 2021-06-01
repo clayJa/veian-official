@@ -11,11 +11,11 @@
           </div>
         </div>
       </div>
-      <div class="secondary-block">
+      <!-- <div class="secondary-block">
         <div class="tab-wrapper">
           <TabBar :active="active" :menus="menus" @onChange="handleTabBarChange" />
         </div>
-      </div>
+      </div> -->
       <div class="third-block">
         <div class="wrapper">
           <div class="page-content-wrapper ">
@@ -35,7 +35,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="list-item" v-for="item in infoList" :key="item.id">
+                <div class="list-item" v-for="item in infoList" :key="item.id" @click="toDetail(item.id)">
                   <div class="item-title-wrapper clearfix">
                     <div class="item-title">{{item.title}}</div>
                     <PillButton class="action-button">查看</PillButton>
@@ -73,8 +73,6 @@
 </template>
 
 <script>
-import InlineSvg from 'vue-inline-svg';
-
 import TabBar from '~/components/information/TabBar/index'
 import Join from '~/components/Join/index'
 import SelfSelect from '~/components/SelfSelect/index'
@@ -181,7 +179,6 @@ export default {
   components: {
     TabBar,
     Join,
-    InlineSvg,
     Pagination,
     RankList,
     SelfSelect,
@@ -262,6 +259,9 @@ export default {
         limit: pageSize,
         page: page,
       })
+    },
+    toDetail(id) {
+      this.$router.push(`/information/detail?id=${id}`)
     }
   },
 
@@ -397,6 +397,7 @@ export default {
         padding-bottom: 20px;
         width: 755px;
         border-bottom: 1px solid #E5E5E5;
+        cursor: pointer;
         .item-title {
           float: left;
           max-width: 654px;

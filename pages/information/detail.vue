@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import InlineSvg from 'vue-inline-svg';
 
 import TabBar from '~/components/about/TabBar/index'
 import Join from '~/components/Join/index'
@@ -111,7 +110,6 @@ export default {
   components: {
     TabBar,
     Join,
-    InlineSvg,
     Pagination,
     InfoCard,
     Divider,

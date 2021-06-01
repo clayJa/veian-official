@@ -18,7 +18,7 @@
 
 
           <div class="list-nav">
-            <div class="list-item" v-for="item in infoList">
+            <div class="list-item" v-for="item in infoList" :key="item.title">
               <div class="show-box" >
                 <div class="box-item clearfix">
                   <div class="img-wrapper">

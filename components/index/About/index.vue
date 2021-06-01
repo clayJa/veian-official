@@ -1,7 +1,45 @@
 <template>
   <div class="about-wrapper">
     <img :src="require('@/assets/images/index/home_about_background.png')" class="background" />
-    <InlineSvg :src="require('@/assets/images/index/about_dot.svg')" class="dot" />
+    <svg width="1440px" height="553px" viewBox="0 0 1440 553" version="1.1" class="dot"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <title>Image_Portfolio</title>
+        <defs>
+            <rect id="path-1" x="0" y="0" width="1440" height="553"></rect>
+        </defs>
+        <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Image_Portfolio">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Background" fill="transparent" xlink:href="#path-1"></use>
+                <circle id="Dot2" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="314" cy="483" r="3.5">
+                  <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
+                </circle>
+                <circle id="Dot3" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="540" cy="40" r="3.5">
+                  <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
+                </circle>
+                <circle id="Dot4" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="174" cy="207" r="3.5">
+                  <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
+                </circle>
+                <circle id="Dot8" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="1231" cy="489" r="3.5">
+                  <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
+                </circle>
+                <circle id="Dot8-Copy" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="1086" cy="371" r="3.5">
+                  <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
+                </circle>
+                <circle id="Dot9-Copy" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="74" cy="96" r="3.5">
+                  <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
+                </circle>
+                <circle id="Dot11" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="1405" cy="337" r="3.5">
+                  <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
+                </circle>
+                <circle id="Dot11-copy" stroke="#1A82FF" fill="#D0E5FF" mask="url(#mask-2)" cx="1246" cy="141" r="3.5">
+                  <animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite" class="magnify"/>
+                </circle>
+            </g>
+        </g>
+        <!-- <script type="text/ecmascript" :xlink:href="require('@/static/js/smil.check.js')" /> -->
+    </svg>
     <div class="content">
       <div class="title">关于 未苒科技</div>
       <div class="description">
@@ -13,7 +51,7 @@
       <a href="/about/introduce">
         <PillButton class="button">
           <span>了解未苒科技</span>
-          <InlineSvg :src="require('@/assets/images/icon_Link_Last.svg')" style="margin-left: 12px;" />
+          <i class="iconfont" style="margin-left: 12px;">&#xe61e;</i>
         </PillButton>
       </a>
     </div>
@@ -22,8 +60,8 @@
 
 <script lang="ts">
 import PillButton from '@/components/PillButton/index.vue'
-import InlineSvg from 'vue-inline-svg';
 export default {
+  name: 'About',
   data() {
     return {
     }
@@ -35,7 +73,6 @@ export default {
   },
   components: {
     PillButton,
-    InlineSvg,
   }
 }
 </script>
