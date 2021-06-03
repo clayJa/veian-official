@@ -2,12 +2,12 @@
   <div class="news-wrapper">
     <div class="container">
       <div class="en-mark">News</div>
-      <div class="title-wrapper">
-        <div class="title mr-auto">新闻资讯</div>
+      <div class="title-wrapper clearfix">
+        <div class="title">新闻资讯</div>
         <div class="title-slogan">我们的声音　务实创新</div>
       </div>
       <div class="list-wrapper">
-        <div class="list">
+        <div class="list clearfix">
           <div class="item" v-for="item in list" :key="item.name">
             <div class="image-wrapper"><img :src="item.image" alt=""></div>
             <div class="info">
@@ -23,10 +23,10 @@
       </div>
       <div class="more-title">了解更多动态</div>
     </div>
-    <div class="address-wrapper">
+    <div class="address-wrapper d-md-none">
       <div class="container">
-        <div class="address">
-          <div class="left mr-auto">
+        <div class="address clearfix">
+          <div class="left">
             <div class="address-title">杭州总部</div>
             <div class="address-info">浙江省 杭州市 西湖区 紫荆花北路 宝港广场A座4F</div>
           </div>
@@ -43,6 +43,24 @@
             </PillButton>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="mobile-address-wrapper d-none d-md-block">
+      <div class="address">
+        <div class="address-title">杭州总部</div>
+        <div class="address-info">浙江省 杭州市 西湖区 紫荆花北路 宝港广场A座4F</div>
+        <div>
+          <a target="_blank" rel="nofollow" href="https://www.amap.com/search?id=B0FFLHNFHD&city=330106&geoobj=120.089339%7C30.305415%7C120.09625%7C30.308939&query_type=IDQ&zoom=17.5">
+            <PillButton class="navigation">
+              <InlineSvg class="icon" :src="require('@/assets/images/index/icon_map.svg')" />
+              <span>一键导航</span>
+            </PillButton>
+          </a>
+        </div>
+        <PillButton style="margin-top: 24px;">
+          <InlineSvg class="icon" :src="require('@/assets/images/index/icon_ advisory.svg')" />
+          <span>业务咨询</span>
+        </PillButton>
       </div>
     </div>
   </div>
@@ -93,9 +111,9 @@ export default {
     margin-bottom: 24px;
   }
   .title-wrapper {
-    display: flex;
     margin-bottom: 48px;
     .title {
+      float: left;
       font-size: 56px;
       font-family: PingFangSC-Regular, PingFang SC;
       font-weight: 400;
@@ -103,6 +121,7 @@ export default {
       line-height: 78px;
     }
     .title-slogan {
+      float: right;
       font-size: 32px;
       font-family: PingFangSC-Regular, PingFang SC;
       font-weight: 400;
@@ -113,10 +132,10 @@ export default {
   .list-wrapper {
     position: relative;
     .list {
-      display: flex;
       z-index: 1;
       position: relative;
       .item {
+        float: left;
         background: #FFFFFF;
         border-radius: 16px;
         margin-right: 30px;
@@ -206,9 +225,8 @@ export default {
       box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
       border-radius: 16px;
       padding: 50px 64px;
-      display: flex;
-      align-items: center;
       .left {
+        float: left;
         .address-title {
           font-size: 44px;
           font-family: PingFangSC-Regular, PingFang SC;
@@ -225,6 +243,10 @@ export default {
           margin-top: 12px;
         }
       }
+      .right {
+        float: right;
+        margin-top: 30px;
+      }
       .right span {
         vertical-align: middle;
       }
@@ -234,6 +256,90 @@ export default {
       }
       .navigation {
         margin-right: 48px;
+      }
+    }
+  }
+  @media only screen and (max-width: 760px) {
+    .en-mark {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 32px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .title-wrapper {
+      margin-bottom: 48px;
+      .title {
+        float: none;
+        font-size: 40px;
+        line-height: 56px;
+        margin-bottom: 12px;
+      }
+      .title-slogan {
+        float: none;
+        font-size: 24px;
+        line-height: 32px;
+      }
+    }
+    .list-wrapper .list .item{
+      float: none;
+      width: 100%;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 30px;
+      .info {
+        margin-top: 24px;
+        padding-left: 32px;
+      }
+      .name {
+        font-size: 24px;
+        max-height: 32px;
+        line-height: 32px;
+      }
+      .content {
+        font-size: 18px;
+        line-height: 32px;
+        max-height: 64px;
+        overflow: hidden;
+        margin-top: 16px;
+      }
+      .date {
+        margin-top: 16px;
+        font-size: 18px;
+        line-height: 32px;
+      }
+    }
+    .more-title {
+      font-size: 32px;
+      text-align: center;
+      line-height: 32px;
+      margin-bottom: 64px;
+    }
+    .mobile-address-wrapper {
+      background-image: linear-gradient(to top,#1E3850 0,#1E3850 70%,#1A82FF 70%,#1A82FF 100%);
+      padding-bottom: 32px;
+      .address {
+        margin: 0 16px;
+        padding: 48px  32px;
+        background: #FFFFFF;
+        box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 16px;
+        .address-title {
+          font-size: 44px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #03101F;
+          line-height: 64px;
+        }
+        .address-info {
+          font-size: 20px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #474747;
+          line-height: 32px;
+          margin-top: 12px;
+          margin-bottom: 24px;
+        }
       }
     }
   }

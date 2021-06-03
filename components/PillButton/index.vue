@@ -24,5 +24,13 @@ export default {
   justify-content: center;
   text-align: center;
   vertical-align: middle;
+  @media only screen and (max-width: 760px) {
+    padding: 12px 48px;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 24px;
+    white-space: nowrap;
+  }
+
 }
 </style>

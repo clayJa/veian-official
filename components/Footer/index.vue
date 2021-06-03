@@ -1,5 +1,5 @@
 <template>
-<div class="footer-wrapper">
+<div class="footer-wrapper d-md-none">
   <div class="container footer-container">
     <div class="company">
       <div class="logo"><img src="@/assets/images/footer_logo.png" alt=""></div>

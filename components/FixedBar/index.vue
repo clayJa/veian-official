@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed-bar">
+  <div class="fixed-bar d-md-none">
     <div class="consult">
       <img src="@/static/icon_consult.png" alt="">
     </div>

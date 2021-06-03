@@ -1,5 +1,5 @@
 <template>
-  <div class="picture-grid">
+  <div class="picture-grid clearfix">
     <div class="picture-item" v-for="item in list" :key="item.name">
       <img :src="item.img" alt="">
       <div class="mask" @click="toPath(item.url)">
@@ -61,12 +61,15 @@ export default {
 
 <style lang="less" >
 .picture-grid {
-  display: flex;
-  flex-wrap: wrap;
   .picture-item {
+    float: left;
     position: relative;
     width: 25%;
     cursor: pointer;
+    @media only screen and (max-width: 760px) {
+      width: 100%;
+      float: none;
+    }
     img {
       width: 100%;
     }

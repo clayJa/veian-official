@@ -1,6 +1,6 @@
 <template>
   <div class="header-nav">
-    <div class="header">
+    <div class="header  d-md-none">
       <div class="container header-wrapper">
         <div class="logo" @click="$router.push('/')"></div>
         <div class="nav-wrapper ml-auto">
@@ -40,6 +40,10 @@
           ></b-form-input>
         </div>
       </div>
+    </div>
+    <div class="mobile-header d-none d-md-block clearfix">
+       <div class="logo" @click="$router.push('/')"></div>
+       <div class="menu" ></div>
     </div>
   </div>
 </template>
@@ -137,6 +141,11 @@ export default {
   height: 54px;
   background-image: url('~/assets/images/logo.png');
   background-size: 100% 100%;
+  @media only screen and (max-width: 760px) {
+    background-image: url('~/assets/images/logo_white.png') !important;
+    width: 175px;
+    height: 54px;
+  }
   img {
     width: 100%;
   }
@@ -153,7 +162,27 @@ a {
 .header-nav {
   position: relative;
   height: @headerHeight;
-
+  @media only screen and (max-width: 760px) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      .logo {
+        margin-left: 16px;
+        margin-top: 16px;
+        float: left;
+      }
+      .menu {
+        float: right;
+        width: 48px;
+        height: 48px;
+        margin-top: 16px;
+        margin-right: 16px;
+        background-image: url('~/assets/images/menu_icon.png');
+        background-size: 100% 100%;
+      }
+  }
 }
 .header {
   position: fixed;
