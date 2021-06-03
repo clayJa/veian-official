@@ -43,7 +43,44 @@
     </div>
     <div class="mobile-header d-none d-md-block clearfix">
        <div class="logo" @click="$router.push('/')"></div>
-       <div class="menu" ></div>
+       <div class="menu" @click="showMobileMenu = true"></div>
+    </div>
+    <div class="d-none d-md-block mobile-menu" v-if="showMobileMenu">
+      <div class="top">
+        <div class="search clearfix">
+          <i class="iconfont icon-search">&#xe63a;</i>
+          <b-form-input
+            id="input"
+            v-model="text"
+            @keyup.enter="handleEnter"
+          ></b-form-input>
+          <div class="button">搜索</div>
+        </div>
+      </div>
+      <div class="mobile-nav-wrapper">
+        <div
+          @click="changeActivePath(item)"
+          :class="['mobile-nav-item', {active: activePath === item.path || $nuxt.$route.path === item.path || ($nuxt.$route.path.includes(item.path) && item.path !== '/')}]"
+          v-for="item in menu" :key="item.name">
+          <a class="clearfix"  @click.stop="changeActivePath(item)">
+            {{ item.name }}
+            <i class="iconfont mobile-nav-icon" v-if="item.subMenu && item.subMenu.length > 0" >&#xe629;</i>
+          </a>
+          <div :class="['mobile-sub-nav-wrapper']"
+            v-if="item.subMenu && item.subMenu.length > 0" >
+            <div :class="['mobile-sub-nav-item',  {active: $nuxt.$route.path === subItem.path || $nuxt.$route.path.includes(subItem.path) }]"
+              v-for="subItem in item.subMenu" :key="subItem.name">
+              <a :href="computePath(subItem)">{{subItem.name}}</a>
+              <div class="mobile-third-nav-wrapper" v-if="subItem.subMenu && subItem.subMenu.length > 0" >
+                <div :class="['mobile-sub-nav-item', {active: $nuxt.$route.path === thirdItem.path }]"
+                  v-for="thirdItem in subItem.subMenu" :key="thirdItem.name">
+                  <a :href="thirdItem.path">{{thirdItem.name}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +97,8 @@ export default {
       text: '',
       visible: false,
       modalShow: false,
+      showMobileMenu: false,
+      activePath: '',
       menu: [
         { name: '首页', path: '/' },
         { name: '简单', path: '/uncomplicated' },
@@ -118,6 +157,19 @@ export default {
     },
     handleEnter() {
       this.$router.push('/search')
+    },
+    changeActivePath(item) {
+      if (!item.subMenu || item.subMenu.length === 0){
+        this.$router.push(item.path)
+        this.showMobileMenu = false
+        return
+      }
+      if(item.subMenu.length > 0 && this.activePath === item.path) {
+        console.log(this.activePath,item.path)
+        this.activePath = ''
+      } else {
+        this.activePath = item && item.path
+      }
     },
     computePath(item) {
       if(!item.subMenu) {
@@ -349,6 +401,118 @@ a {
       padding-right: 80px;
       background: url('~/assets/images/icon_search_white.png') no-repeat 44px 44px;
       box-shadow: none;
+    }
+  }
+}
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  z-index: 999;
+  .top {
+    background: #1A82FF;
+    padding: 74px 32px 20px 32px;
+    .search {
+      background: #F7F7F7;
+      border-radius: 24px;
+      padding: 10px;
+      position: relative;
+      input {
+        width: calc(100% - 86px);
+        border: none;
+        box-shadow: none;
+        border-radius: 24px;
+        display: inline-block;
+        vertical-align: middle;
+        background: transparent;
+        padding-left: 36px;
+      }
+      .icon-search {
+        position: absolute;
+        left: 18px;
+        top: 13px;
+        color: #D8D8D8;
+        font-size: 22px;
+      }
+      .button {
+        vertical-align: middle;
+        display: inline-block;
+        width: 76px;
+        height: 27px;
+        background: #1A82FF;
+        border-radius: 14px;
+        line-height: 27px;
+        font-size: 12px;
+        font-family: PingFangSC-Light, PingFang SC;
+        font-weight: 300;
+        color: #FFFFFF;
+        text-align: center;
+      }
+    }
+  }
+  .mobile-nav-wrapper {
+    .mobile-nav-item {
+      width: 100%;
+      padding-top: 30px;
+      padding-bottom: 20px;
+      padding-left: 32px;
+      background: #1E3850;
+      font-size: 24px;
+      border-bottom: 1px solid #fff;
+      &:last-child {
+        border-bottom: none;
+      }
+      > a {
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #FFFFFF;
+        line-height: 33px;
+      }
+      &.active {
+        .mobile-nav-icon {
+          transform: rotate(0deg) scale(0.5);
+        }
+        .mobile-sub-nav-wrapper {
+          display: block !important;
+        }
+      }
+    }
+    .mobile-nav-icon {
+      float: right;
+      margin-right: 32px;
+      transform: rotate(-180deg) scale(0.5);
+    }
+
+    .mobile-sub-nav-wrapper {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      display: none;
+      .mobile-sub-nav-item {
+        font-size: 18px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        line-height: 25px;
+        a > {
+          color: #FFFFFF;
+        }
+      }
+      .mobile-third-nav-wrapper {
+        padding-bottom: 20px;
+        .mobile-sub-nav-item{
+          font-size: 14px;
+          font-family: PingFangSC-Light, PingFang SC;
+          font-weight: 300;
+          line-height: 20px;
+          padding-left: 14px;
+          padding-top: 10px;
+          > a {
+            color: #FFFFFF;
+          }
+        }
+      }
     }
   }
 }
