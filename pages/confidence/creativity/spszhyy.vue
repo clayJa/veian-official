@@ -105,6 +105,44 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+      padding: 97px 16px;
+      .sharp {
+        position: absolute;
+        width: 176px;
+        height: 176px;
+        right: 16px;
+        top: 56px;
+        left: auto;
+        z-index: 0;
+        background-image: url('@/static/Combined_Shape_333.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 24px;
+      }
+      .image-item {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+        box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 24px;
+        padding: 24px;
+        margin-bottom: 30px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        .image-info {
+          left: 56px;
+          bottom: 54px;
+          font-size: 24px;
+          line-height: 32px;
+        }
+      }
+  }
 }
 .part2 {
   padding: 140px 135px 110px 100px;
@@ -137,6 +175,32 @@ export default {
     color: #FFFFFF;
     line-height: 32px;
     margin-top: 48px;
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .title-wrapper {
+      float: none;
+      margin-top: 48px;
+    }
+    .image-video {
+      float: none;
+      width: 100%;
+    }
+    .part2-title {
+      max-width: 100%;
+      font-size: 40px;
+      line-height: 56px;
+    }
+    .part2-info {
+      max-width: 100%;
+      font-size: 20px;
+      line-height: 32px;
+      margin-top: 24px;
+    }
   }
 }
 </style>
