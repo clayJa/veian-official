@@ -17,12 +17,12 @@
        </div>
      </div>
      <div class="part2 clearfix">
-       <div class="image-video">
-         <img src="@/static/trust/creativity/qjxnxs_glasses.png" alt="">
-       </div>
        <div class="title-wrapper">
         <div class="part2-title">全景虚拟现实</div>
         <div class="part2-info">全景虚拟场景化的影像，是根据现实基制作生成真实度更强，利用全景信息优秀的交互性，增加品牌、业务为目的控制表达更多的图像信息。经过对图像的透视处理模拟真实三维实景。</div>
+       </div>
+       <div class="image-video">
+         <img src="@/static/trust/creativity/qjxnxs_glasses.png" alt="">
        </div>
      </div>
     <Discover />
@@ -109,6 +109,45 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .sharp {
+      position: absolute;
+      width: 176px;
+      height: 176px;
+      right: 0;
+      top: 56px;
+      z-index: 0;
+      background-image: url('@/static/Combined_Shape_333.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+    .image-item {
+      float: none;
+      width: 100%;
+      margin-right: 0px;
+      box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      margin-bottom: 30px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .image-info {
+        left: 32px;
+        bottom: 32px;
+        width: 146px;
+        height: 48px;
+        border-radius: 24px;
+        font-size: 14px;
+        line-height: 48px;
+      }
+    }
+  }
 }
 .part2 {
   padding: 150px 135px 85px 56px;
@@ -142,6 +181,33 @@ export default {
     color: #474747;
     line-height: 32px;
     margin-top: 48px;
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .title-wrapper {
+      float: none;
+      margin-top: 0;
+    }
+    .image-video {
+      float: none;
+      width: 100%;
+      margin-top: 48px;
+    }
+    .part2-title {
+      max-width: 100%;
+      font-size: 40px;
+      line-height: 56px;
+    }
+    .part2-info {
+      max-width: 100%;
+      font-size: 20px;
+      line-height: 32px;
+      margin-top: 48px;
+    }
   }
 }
 </style>

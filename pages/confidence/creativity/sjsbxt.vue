@@ -120,6 +120,52 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .sharp {
+      position: absolute;
+      width: 176px;
+      height: 176px;
+      left: auto;
+      top: 56px;
+      right: 0;
+      z-index: 0;
+      background-image: url('@/static/Combined_Shape_333.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+    }
+    .image-item {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+      border-radius: 24px;
+      margin-bottom: 30px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .image-info {
+        font-size: 24px;
+        width: 100%;
+        height: 160px;
+        border-radius: 24px;
+        padding: 48px;
+        .zh-title {
+          font-size: 32px;
+          line-height: 32px;
+        }
+        .en-title {
+          font-size: 16px;
+          line-height: 32px;
+          margin-top: 12px;
+        }
+      }
+    }
+  }
 }
 .part2 {
   padding: 96px 135px;
@@ -131,10 +177,6 @@ export default {
   .title-wrapper {
     float: right;
     margin-top: 74px;
-  }
-  .image-video {
-    float: left;
-    width: 683px;
   }
   .part2-title {
     font-size: 56px;
@@ -151,6 +193,23 @@ export default {
     line-height: 32px;
     margin-top: 24px;
     margin-bottom: 96px;
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .title-wrapper {
+      float: none;
+      margin-top: 0;
+    }
+    .part2-title {
+      font-size: 40px;
+      line-height: 56px;
+    }
+    .part2-info {
+      font-size: 20px;
+      line-height: 32px;
+      margin-top: 24px;
+      margin-bottom: 48px;
+    }
   }
 }
 </style>
