@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="introduction">
-      <div class="description container">
+      <div class="description container clearfix">
         <div class="project-info">
           <div class="project">瑰珀翠</div>
           <div class="detail">瑰珀翠（英文名字Crabtree & Evelyn），灵感来自十七世纪极负盛名的作家与园艺学家“John Evelyn”（约翰•爱芙蓉）。由制造香皂的家庭企业起家，至今已有30年的历史。作为象征英国优雅贵族气息的品牌，许多好莱坞影片里都可以看见Crabtree & Evelyn的影子。</div>
@@ -187,6 +187,35 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+    height: 700px;
+    .content {
+      height: 100%;
+      .text {
+        top: 266px;
+        .info1 {
+          font-size: 14px;
+          line-height: 32px;
+          margin-bottom: 24px;
+        }
+        .info2 {
+          font-size: 40px;
+          line-height: 56px;
+          margin-bottom: 24px;
+        }
+        .info3 {
+          font-size: 24px;
+          line-height: 32px;
+        }
+      }
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 32% 0;
+    }
+  }
 }
 .introduction {
   background: #F7F7F7;
@@ -195,11 +224,9 @@ export default {
   }
   .description {
     padding-top: 80px;
-    display: flex;
-    justify-content: space-between;
     .project-info {
       width: 850px;
-      flex-grow: 0;
+      float: left;
       .project {
         font-size: 56px;
         font-family: PingFangSC-Medium, PingFang SC;
@@ -217,14 +244,13 @@ export default {
       }
     }
     .logo {
+      float: right;
       width: 240px;
       height: 240px;
       background: #FFFFFF;
       box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.2);
       border-radius: 16px;
       padding: 0 20px;
-      flex-shrink: 0;
-      margin-left: 80px;
       display: flex;
       align-items: center;
     }
@@ -278,6 +304,52 @@ export default {
         width: 0%;
         background: #F7F7F7;
       }
+    }
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 32px 16px;
+    .description {
+      background: #fff;
+      padding: 64px 24px;
+      .project-info {
+        width: 100%;
+        float: none;
+        .title {
+          font-size: 32px;
+          line-height: 45px;
+          padding-bottom: 16px;
+          margin-bottom: 26px;
+          &::after {
+            width: 45px;
+            height: 2px;
+            border-radius: 4px;
+          }
+        }
+        .project {
+          font-size: 20px;
+          line-height: 28px;
+          margin-bottom: 20px;
+        }
+        .detail {
+          font-size: 16px;
+          line-height: 32px;
+          margin-bottom: 24px;
+          max-width: 100%;
+        }
+      }
+      .logo {
+        float: none;
+        width: 240px;
+        height: 240px;
+        border-radius: 16px;
+        border: 2px solid #E5E5E5;
+        padding: 0 26px;
+        margin: auto;
+      }
+    }
+    .image-list {
+      padding: 64px 24px;
+      margin-top: 32px;
     }
   }
 }

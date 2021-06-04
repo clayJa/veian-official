@@ -84,5 +84,43 @@ export default {
       padding-bottom: 48px;
     }
   }
+  @media only screen and (max-width: 760px) {
+    height: 600px;
+    .content {
+      width: 100%;
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit:cover;
+      }
+      .text {
+        padding-left: 16px;
+        text-align: left;
+      }
+      .mt160 {
+        margin-top: 143px;
+      }
+      .home_banner_title1 {
+        font-size: 14px;
+        line-height: 32px;
+        text-align: left;
+      }
+      .home_banner_title2 {
+        text-align: left;
+        max-width: 8em;
+        padding: 24px 0;
+        font-size: 40px;
+        font-weight: 600;
+        line-height: 56px;
+      }
+      .home_banner_title3 {
+        text-align: left;
+        font-size: 24px;
+        line-height: 42px;
+        margin-bottom: 32px;
+      }
+    }
+  }
 }
 </style>

@@ -1,8 +1,9 @@
 <template>
 <div class="join-us">
+  <img src="@/static/join_background.jpg" alt="">
   <div class="content">
     <div>发现不同</div>
-    <div>让每一个梦想脱颖而出</div>
+    <div class="text2">让每一个梦想脱颖而出</div>
     <PillButton class="button" @click="$router.push('/contact')">更多发现，由你开启</PillButton>
   </div>
 </div>
@@ -16,9 +17,16 @@ export default {
 .join-us {
   width: 100%;
   height: 448px;
-  background: url('@/static/join_background.jpg') no-repeat;
-  background-size: 100% 100%;
+  position: relative;
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
   .content {
+    position: relative;
     font-size: 56px;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
@@ -32,6 +40,30 @@ export default {
       padding-top: 16px;
       padding-bottom: 16px;
       border-radius: 28px;
+    }
+  }
+  @media only screen and (max-width: 760px) {
+    height: 448px;
+    img {
+      object-fit: cover;
+      object-position: 70% 10%;
+    }
+    .content {
+      margin-left: 16px;
+      font-size: 40px;
+      line-height: 56px;
+      padding-top: 86px;
+      .text2 {
+        max-width: 5em;
+      }
+      .button {
+        margin: 0 16px;
+        width: calc(100% - 32px);
+        margin-top: 48px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        border-radius: 28px;
+      }
     }
   }
 }

@@ -15,7 +15,7 @@
     </div>
     <div class="introduction">
       <div class="container">
-        <div class="description">
+        <div class="description clearfix">
           <div class="project-info">
             <div class="title">项目简介</div>
             <div class="project">喜临门</div>
@@ -175,6 +175,35 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+    height: 700px;
+    .content {
+      height: 100%;
+      .text {
+        top: 266px;
+        .info1 {
+          font-size: 14px;
+          line-height: 32px;
+          margin-bottom: 24px;
+        }
+        .info2 {
+          font-size: 40px;
+          line-height: 56px;
+          margin-bottom: 24px;
+        }
+        .info3 {
+          font-size: 24px;
+          line-height: 32px;
+        }
+      }
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 32% 0;
+    }
+  }
 }
 .introduction {
   background: #E5E5E5;
@@ -185,11 +214,9 @@ export default {
   .description {
     background: #fff;
     padding: 64px 48px;
-    display: flex;
-    justify-content: space-between;
     .project-info {
-      width: 1170px;
-      flex-grow: 0;
+      max-width: 734px;
+      float: left;
       .title {
         font-size: 32px;
         font-family: PingFangSC-Regular, PingFang SC;
@@ -225,17 +252,17 @@ export default {
         font-weight: 300;
         color: #474747;
         line-height: 32px;
+        max-width: 734px;
       }
     }
     .logo {
+      float: right;
       width: 240px;
       height: 240px;
       background: #FFFFFF;
       border-radius: 16px;
       border: 2px solid #E5E5E5;
       padding: 0 26px;
-      flex-shrink: 0;
-      margin-left: 100px;
       display: flex;
       align-items: center;
     }
@@ -272,6 +299,52 @@ export default {
         background: #f1f1f1;
       }
     }
+  }
+  @media only screen and (max-width: 760px) {
+      padding: 32px 16px;
+      .description {
+        background: #fff;
+        padding: 64px 24px;
+        .project-info {
+          max-width: 100%;
+          float: none;
+          .title {
+            font-size: 32px;
+            line-height: 45px;
+            padding-bottom: 16px;
+            margin-bottom: 26px;
+            &::after {
+              width: 45px;
+              height: 2px;
+              border-radius: 4px;
+            }
+          }
+          .project {
+            font-size: 20px;
+            line-height: 28px;
+            margin-bottom: 20px;
+          }
+          .detail {
+            font-size: 16px;
+            line-height: 32px;
+            margin-bottom: 24px;
+            max-width: 100%;
+          }
+        }
+        .logo {
+          float: none;
+          width: 240px;
+          height: 240px;
+          border-radius: 16px;
+          border: 2px solid #E5E5E5;
+          padding: 0 26px;
+          margin: auto;
+        }
+      }
+      .image-list {
+        padding: 64px 24px;
+        margin-top: 32px;
+      }
   }
 }
 </style>

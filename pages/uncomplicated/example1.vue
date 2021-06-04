@@ -110,6 +110,18 @@ export default {
       width: 100%;
     }
   }
+  @media only screen and (max-width: 760px) {
+  .content {
+    position: relative;
+    height: 506px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 12% 0;
+    }
+  }
+}
 }
 .introduction {
   background-color: #fff;
@@ -209,6 +221,86 @@ export default {
       margin-bottom: 96px;
       .sharp {
         transform: translate(25%, -52%);
+      }
+    }
+  }
+  @media only screen and (max-width: 760px) {
+    .title {
+      font-size: 40px;
+      line-height: 56px;
+      padding-top: 96px;
+      padding-bottom: 158px;
+      padding-left: 16px;
+    }
+      .content-wrapper {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      padding-bottom: 144px;
+      padding-top: 162px;
+      .info {
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 32px;
+        padding-bottom: 48px;
+      }
+      .info-wrapper {
+        .logo {
+          right: 0;
+          left: 16px;
+          width: 240px;
+          height: 240px;
+          box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+          border-radius: 16px;
+          padding: 0 10px;
+          transform: translateY(-118%);
+          img {
+            margin-top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
+      .image-wrapper {
+        padding: 16px;
+        border-radius: 10px;
+      }
+      .title-wrapper {
+        margin-top: 96px;
+        margin-bottom: 96px;
+        h2 {
+          font-size: 40px;
+          line-height: 56px
+        }
+        p {
+          height: 32px;
+          font-size: 20px;
+          line-height: 32px;
+          margin-bottom: 0;
+          margin-top: 24px;
+        }
+      }
+      .sharp {
+        position: absolute;
+        width: 176px;
+        height: 176px;
+        right: 0;
+        top: 0;
+        z-index: 0;
+        background-image: url('@/static/Combined_Shape_light.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+      .image1 {
+        position: relative;
+        .sharp {
+          transform: translate(10%, -10%);
+        }
+      }
+      .image2 {
+        position: relative;
+        margin-bottom: 96px;
+        .sharp {
+          transform: translate(25%, -20%);
+        }
       }
     }
   }
