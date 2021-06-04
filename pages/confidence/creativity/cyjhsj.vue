@@ -112,6 +112,7 @@ export default {
   img {
     width: 100%;
     height: 100%;
+    border-radius: 24px;
   }
   .image-item {
     float: left;
@@ -148,6 +149,42 @@ export default {
         margin-top: 12px;
       }
     }
+  }
+  @media only screen and (max-width: 760px) {
+      padding: 96px 16px 0px 16px;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 24px;
+      }
+      .image-item {
+        float: none;
+        width: 100%;
+        height: 319px;
+        margin-right: 0;
+        margin-bottom: 0;
+        border-radius: 24px;
+        margin-bottom: 30px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        .image-info {
+          width: 276px;
+          height: 103px;
+          border-radius: 0px 24px 0px 24px;
+          padding-top: 18px;
+          padding-left: 48px;
+          .zh-title {
+            font-size: 32px;
+            line-height: 32px;
+          }
+          .en-title {
+            font-size: 16px;
+            line-height: 22px;
+            margin-top: 12px;
+          }
+        }
+      }
   }
 }
 .part2 {
@@ -222,6 +259,76 @@ export default {
         }
       }
     }
+  }
+  @media only screen and (max-width: 760px) {
+    padding-top: 96px;
+      .part2-title {
+        font-size: 40px;
+        line-height: 56px;
+      }
+      .part2-info {
+        margin-top: 24px;
+        margin-bottom: 35px;
+        font-size: 20px;
+        line-height: 32px;
+      }
+      .user-centered-design {
+        padding-bottom: 96px;
+        .left-model {
+          float: none;
+          width: 100%;
+          margin-bottom: 48px;
+          img {
+            width: 100%;
+          }
+        }
+        .feature {
+          float: right;
+          .feature-item {
+            margin-bottom: 24px;
+            .title {
+              position: relative;
+              font-size: 22px;
+              font-family: PingFangSC-Semibold, PingFang SC;
+              font-weight: 600;
+              color: #1A82FF;
+              line-height: 28px;
+              margin-bottom: 8px;
+              .line {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translate(-86px,-50%);
+                width: 60px;
+                border-bottom: 1px dashed #1A82FF;
+              }
+              .dot {
+                right: 0;
+                top: 50%;
+                transform: translate(16px,-50%);
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background: #1A82FF;
+                border-radius: 50%;
+              }
+            }
+            .info {
+              position: relative;
+              font-size: 18px;
+              font-family: PingFangSC-Regular, PingFang SC;
+              font-weight: 400;
+              color: #474747;
+              line-height: 30px;
+              &::after {
+                position: absolute;
+                content: '·';
+                left: -1em;
+              }
+            }
+          }
+        }
+      }
   }
 }
 </style>

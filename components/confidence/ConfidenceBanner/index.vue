@@ -62,5 +62,29 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+    height: 600px;
+    .content {
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .text {
+        .title {
+          font-size: 40px;
+          line-height: 56px;
+          margin-top: 196px;
+        }
+        .info {
+          font-size: 24px;
+          line-height: 32px;
+          margin-top: 24px;
+          max-width: 100%;
+        }
+      }
+    }
+  }
 }
 </style>

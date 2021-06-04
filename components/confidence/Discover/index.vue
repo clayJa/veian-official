@@ -94,5 +94,36 @@ export default {
       text-align: center;
     }
   }
+  @media only screen and (max-width: 760px) {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .discover,.join {
+      width: 100%;
+      height: 448px;
+      float: none;
+    }
+    .text-wrapper {
+      .title {
+        font-size: 40px;
+        line-height: 56px;
+      }
+      .info {
+        font-size: 20px;
+      }
+      .button {
+        white-space: nowrap;
+        padding: 16px 32px;
+        border-radius: 28px;
+        border: 1px solid #FFFFFF;
+        font-size: 18px;
+        line-height: 25px;
+        margin-top: 48px;
+        min-width: 226px;
+      }
+    }
+  }
 }
 </style>

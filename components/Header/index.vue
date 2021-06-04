@@ -267,10 +267,10 @@ a {
       font-weight: 500;
       background: #fff;
       .sub-nav-item {
-        width: 158px;
+        min-width: 158px;
         height: 43px;
         line-height: 43px;
-        text-indent: 32px;
+        padding: 0 32px;
         font-weight: 500;
         a {
           color: #474747;
