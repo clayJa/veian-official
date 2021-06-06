@@ -83,6 +83,7 @@ export default {
   img {
     width: 100%;
     height: 100%;
+    border-radius: 24px;
   }
   .image-item {
     float: left;
@@ -109,6 +110,38 @@ export default {
         font-weight: 500;
         color: #474747;
         line-height: 32px;
+      }
+    }
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+    }
+    .image-item {
+      float: none;
+      width: 100%;
+      height: 319px;
+      margin-right: 0;
+      margin-bottom: 30px;
+      position: relative;
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+      .image-info {
+        left: 0;
+        bottom: 0;
+        width: 276px;
+        height: 103px;
+        border-radius: 0px 24px 0px 24px;
+        padding-top: 36px;
+        padding-left: 48px;
+        .zh-title {
+          font-size: 32px;
+          line-height: 32px;
+        }
       }
     }
   }
@@ -143,6 +176,32 @@ export default {
     color: #474747;
     line-height: 32px;
     margin-top: 24px;
+  }
+  @media only screen and (max-width: 760px) {
+    .image-wrapper {
+      float: none;
+      width: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .title-wrapper {
+      float: none;
+      margin-left: 0;
+      padding: 0 16px 96px 16px;
+    }
+    .part2-title {
+      font-size: 40px;
+      line-height: 56px;
+      margin-top: 48px;
+    }
+    .part2-info {
+      max-width: 100%;
+      font-size: 20px;
+      line-height: 32px;
+      margin-top: 48px;
+    }
   }
 }
 </style>

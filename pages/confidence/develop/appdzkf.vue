@@ -17,12 +17,12 @@
        </div>
      </div>
      <div class="part2 clearfix">
-       <div class="image-video">
-         <img src="@/static/trust/develop/appdzkf_app.png" alt="">
-       </div>
        <div class="title-wrapper">
         <div class="part2-title">APP</div>
         <div class="part2-info">如果希望在移动端搭建有自己专属的业务平台，形成独有的可掌控的会员、商品、营销数据资源，那么建议您使用APP开发。APP基于移动系统建立个性化的拓展应用，不仅可以提供更出色的用户交互体验，同时可以给予更丰富的业务功能。</div>
+       </div>
+       <div class="image-video">
+         <img src="@/static/trust/develop/appdzkf_app.png" alt="">
        </div>
      </div>
     <ProjectStep />
@@ -117,6 +117,51 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .sharp {
+      position: absolute;
+      width: 176px;
+      height: 176px;
+      right: 0;
+      top: 56px;
+      z-index: 0;
+      background-image: url('@/static/Combined_Shape_333.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+    img {
+      border-radius: 8px;
+    }
+    .image-item {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+      box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      margin-bottom: 30px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .image-info {
+        left: 32px;
+        bottom: 32px;
+        width: 146px;
+        height: 48px;
+        border-radius: 24px;
+        font-size: 14px;
+        line-height: 48px;
+        .zh-title {
+          font-family: PingFangSC-Semibold, PingFang SC;
+          font-weight: 600;
+        }
+        .en-title {
+          font-family: PingFang SC;
+          font-weight: 300;
+        }
+      }
+    }
+  }
 }
 .part2 {
   padding: 96px 135px 144px 122px;
@@ -149,6 +194,34 @@ export default {
     color: #474747;
     line-height: 32px;
     margin-top: 24px;
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .title-wrapper {
+      float: none;
+      margin-top: 0;
+    }
+    .image-video {
+      float: none;
+      width: 100%;
+      margin-top: 48px;
+    }
+    .part2-title {
+      max-width: 100%;
+      font-size: 40px;
+      line-height: 56px;
+      margin-top: 0;
+    }
+    .part2-info {
+      max-width: 100%;
+      font-size: 20px;
+      line-height: 32px;
+      margin-top: 48px;
+    }
   }
 }
 </style>

@@ -42,8 +42,8 @@
       </div>
     </div>
     <div class="mobile-header d-none d-md-block clearfix">
-       <div class="logo" @click="$router.push('/')"></div>
-       <div class="menu" @click="showMobileMenu = true"></div>
+      <div class="logo" @click="$router.push('/')"></div>
+      <div class="menu" @click="showMobileMenu = true"></div>
     </div>
     <div class="d-none d-md-block mobile-menu" v-if="showMobileMenu">
       <div class="top">
@@ -56,6 +56,7 @@
           ></b-form-input>
           <div class="button">搜索</div>
         </div>
+        <div class="close-icon" @click="showMobileMenu = false"></div>
       </div>
       <div class="mobile-nav-wrapper">
         <div
@@ -412,9 +413,19 @@ a {
   height: 100%;
   overflow: scroll;
   z-index: 999;
+  .close-icon {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    width: 14px;
+    height: 14px;
+    background-image: url('@/assets/images/close.png');
+    background-size: 100% 100%;
+  }
   .top {
     background: #1A82FF;
     padding: 74px 32px 20px 32px;
+    position: relative;
     .search {
       background: #F7F7F7;
       border-radius: 24px;

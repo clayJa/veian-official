@@ -81,6 +81,15 @@ export default {
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
+  @media only screen and (max-width: 760px){
+     .sharp {
+      width: 176px;
+      height: 176px;
+      left: auto;
+      right: 16px;
+      top: 56px;
+    }
+  }
 }
 .list-image {
   padding: 144px 93px 199px 135px;
@@ -127,6 +136,52 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    padding-right: 39px;
+    img {
+      border-radius: 24px;
+    }
+    .image-item {
+      width: 100%;
+      position: relative;
+      border-radius: 24px;
+      margin-right: 0;
+      margin-bottom: 85px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .image-info {
+        position: absolute;
+        left: 43px;
+        bottom: -55px;
+        width: 300px;
+        background: #FFFFFF;
+        box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+        padding-top: 30px;
+        padding-left: 32px;
+        padding-bottom: 30px;
+        text-align: left;
+        .title {
+          font-size: 22px;
+          font-family: PingFangSC-Light, PingFang SC;
+          font-weight: 300;
+          color: #3D3D3D;
+          line-height: 30px;
+        }
+        .info {
+          max-width: 238px;
+          font-size: 14px;
+          font-family: PingFangSC-Light, PingFang SC;
+          font-weight: 300;
+          color: #A5A5A5;
+          line-height: 20px;
+          margin-top: 4px;
+        }
+      }
+    }
+  }
 }
 .part2 {
   padding: 96px 135px;
@@ -153,6 +208,25 @@ export default {
     color: #474747;
     line-height: 32px;
     margin-top: 24px;
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .image-wrapper {
+      margin-top: 48px;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    .part2-title {
+      font-size: 40px;
+      line-height: 56px;
+    }
+    .part2-info {
+      font-size: 20px;
+      line-height: 32px;
+      margin-top: 48px;
+    }
   }
 }
 </style>

@@ -148,6 +148,53 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 40px;
+    .sharp {
+      width: 176px;
+      height: 176px;
+      right: 16px;
+      top: 56px;
+      z-index: 0;
+      background-image: url('@/static/Combined_Shape_333.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+    }
+    .image-item {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 30px;
+      box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+      border-radius: 24px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .image-info {
+        left: -24px;
+        right: -24px;
+        bottom: 48px;
+        height: 124px;
+        border-radius: 15px;
+        padding-top: 30px;
+        padding-left: 64px;
+        .zh-title {
+          font-size: 32px;
+          line-height: 32px;
+        }
+        .en-title {
+          font-size: 16px;
+          line-height: 22px;
+          margin-top: 12px;
+        }
+      }
+    }
+  }
 }
 .part2 {
   padding: 77px 61px 25px 135px;
@@ -171,6 +218,27 @@ export default {
     font-weight: 300;
     color: #474747;
     line-height: 42px;
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .title-wrapper {
+      float: none;
+      margin-top: 0;
+    }
+    .image-wrapper {
+      float: none;
+      width: 100%;
+      margin-top: 48px;
+    }
+    .part2-info {
+      max-width: 100%;
+      font-size: 20px;
+      line-height: 32px;
+    }
   }
 }
 .service {
@@ -260,6 +328,82 @@ export default {
           font-weight: 300;
           color: #474747;
           line-height: 32px;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .service-title {
+      .en {
+        font-size: 18px;
+        line-height: 32px;
+        letter-spacing: 2px;
+        margin-bottom: 24px;
+      }
+      .zh {
+        font-size: 40px;
+        line-height: 56px;
+      }
+    }
+    .service-list {
+      margin-top: 96px;
+      position: relative;
+      .sharp {
+        position: absolute;
+        width: 176px;
+        height: 176px;
+        right: 0px;
+        top: -40px;
+        z-index: 0;
+        background-image: url('@/static/Combined_Shape_333.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+      .service-item {
+        margin-bottom: 48px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        &:nth-child(2n + 1) {
+          .image {
+            float: none;
+          }
+          .description {
+            float: none;
+          }
+        }
+        .image {
+          float: none;
+          width: 100%;
+          border-radius: 24px;
+          img {
+            width: 100%;
+            border-radius: 24px;
+          }
+        }
+        .description {
+          float: right;
+          margin-top: 48px;
+          max-width: 100%;
+          .en-title {
+            width: 170px;
+            height: 40px;
+            background: fade(#1A82FF,10);
+            border-radius: 3px;
+            font-size: 16px;
+            line-height: 40px;
+            margin-bottom: 24px;
+          }
+          .zh-title {
+            font-size: 40px;
+            line-height: 56px;
+            margin-bottom: 24px;
+          }
+          .info {
+            font-size: 20px;
+            line-height: 32px;
+          }
         }
       }
     }

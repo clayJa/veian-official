@@ -18,7 +18,8 @@
      </div>
      <div class="part2">
        <div class="title-wrapper">
-        <div class="part2-title">数字化转型 <span style="font-weight: 300;">(Digital transformation)</span></div>
+        <div class="part2-title d-md-none">数字化转型 <span style="font-weight: 300;">(Digital transformation)</span></div>
+        <div class="part2-title d-md-block d-none">数字化转型 <br /><span style="font-size: 20px;line-height: 1;">(Digital transformation)</span></div>
         <div class="part2-info">是建立在数字化建立、数字化转换 、数字化复盘、数字化升级基础上，进一步渗透核心业务，以不断从塑进化商业模式为目标的高层次转型。业务系统定制充实了数字化转型的每一个过程。</div>
        </div>
        <div class="image-wrapper">
@@ -117,6 +118,51 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .sharp {
+      position: absolute;
+      width: 176px;
+      height: 176px;
+      right: 16px;
+      top: 56px;
+      z-index: 0;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+    .image-item {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 30px;
+      box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .image-info {
+        position: absolute;
+        left: 32px;
+        bottom: 32px;
+        width: 146px;
+        height: 48px;
+        border-radius: 24px;
+        font-size: 14px;
+        line-height: 48px;
+        .zh-title {
+          font-family: PingFangSC-Semibold, PingFang SC;
+          font-weight: 600;
+        }
+        .en-title {
+          font-family: PingFang SC;
+          font-weight: 300;
+        }
+      }
+    }
+  }
 }
 .part2 {
   padding: 96px 135px;
@@ -141,6 +187,27 @@ export default {
     color: #474747;
     line-height: 32px;
     margin-top: 24px;
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .image-wrapper {
+      width: 100%;
+    }
+    .part2-title {
+      font-size: 40px;
+      line-height: 40px;
+      margin-bottom: 16px;
+    }
+    .part2-info {
+      font-size: 20px;
+      line-height: 32px;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
   }
 }
 </style>
