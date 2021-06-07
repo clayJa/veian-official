@@ -160,6 +160,56 @@ export default {
     margin-top: 144px;
     text-align: center;
   }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .sharp {
+      width: 176px;
+      height: 176px;
+      left: auto;
+      top: 56px;
+      right: 16px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+    }
+    .image-item {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 30px;
+      box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+      border-radius: 24px;
+      padding: 24px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .image-info {
+        position: absolute;
+        left: 56px;
+        bottom: 54px;
+        font-size: 24px;
+        color: #FFFFFF;
+        line-height: 32px;
+        .zh-title {
+          font-family: PingFangSC-Medium;
+          font-weight: 500;
+        }
+      }
+    }
+    .description {
+      position: relative;
+      margin: 0 -16px;
+      max-width: calc(100% + 32px);
+      padding: 0 16px;
+      font-size: 20px;
+      line-height: 32px;
+      text-align: left;
+      margin-top: 96px;
+      background-color: #eff2f5;
+    }
+  }
 }
 .service {
   text-align: center;
@@ -203,6 +253,49 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+    padding: 0 16px 96px 16px;
+    .title {
+      font-size: 40px;
+      line-height: 56px;
+      max-width: 6em;
+      margin: auto;
+    }
+    .sub-title {
+      font-size: 20px;
+      line-height: 32px;
+      margin-top: 24px;
+    }
+    .service-list {
+      margin-top: 64px;
+      padding: 0;
+      .service-item {
+        float: none;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 64px;
+        text-align: center;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        .image {
+          display: inline-block;
+          width: 200px;
+          img {
+            width: 100%;
+          }
+        }
+        .title {
+          font-size: 24px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #474747;
+          line-height: 42px;
+          margin-top: 32px;
+        }
+      }
+    }
+  }
 }
 .spreading {
   padding: 144px 135px;
@@ -241,6 +334,7 @@ export default {
       }
       .icon {
         width: 92px;
+        display: inline-block;
         img {
           width: 100%;
         }
@@ -271,66 +365,216 @@ export default {
     }
     .img-1 {
       position: absolute;
-      top: 37px;
-      left: 13px;
+      top: 10%;
+      left: calc(13 / 470 * 100%);
+      width: calc(64 / 470 * 100%);
     }
     .img-2 {
       position: absolute;
-      top: 86px;
-      right: 66px;
+      top: calc(86 / 370 * 100%);
+      right: calc(66 / 470 * 100%);
+        width: calc(86 / 470 * 100%);
     }
     .img-3 {
       position: absolute;
-      top: 37px;
-      right: 42px;
+      top: calc(37 / 370 * 100%);
+      right: calc(42 / 470 * 100%);
+      width: calc(32 / 470 * 100%);
     }
     .img-4 {
       position: absolute;
-      top: 153px;
+      top: calc(153 / 370 * 100%);
       left: 0px;
+      width: calc(101 / 470 * 100%);
     }
     .img-5 {
       position: absolute;
       top: 0px;
-      left: 152px;
+      left: calc(152 / 470 * 100%);
+      width: calc(126 / 470 * 100%);
     }
     .img-6 {
       position: absolute;
-      top: 126px;
-      left: 249px;
+      top: calc(126 / 370 * 100%);
+      left: calc(249 / 470 * 100%);
+      width: calc(53 / 470 * 100%);
     }
     .img-7 {
       position: absolute;
-      bottom: 37px;
-      left: 28px;
+      bottom: calc(37 / 370 * 100%);
+      left: calc(28 / 470 * 100%);
+      width: calc(33 / 470 * 100%);
     }
     .img-8 {
       position: absolute;
-      top: 193px;
-      left: 187px;
+      top: calc(193 / 370 * 100%);
+      left: calc(187 / 470 * 100%);
+      width: calc(123 / 470 * 100%);
     }
     .img-9 {
       position: absolute;
-      top: 276px;
-      right: 74px;
+      top: calc(276 / 370 * 100%);
+      right: calc(74 / 470 * 100%);
+      width: calc(94 / 470 * 100%);
     }
     .img-10 {
       position: absolute;
-      top: 119px;
-      left: 104px;
+      top: calc(119 / 370 * 100%);
+      left: calc(104 / 470 * 100%);
+      width: calc(34 / 470 * 100%);
     }
     .img-11 {
       position: absolute;
-      bottom: 63px;
-      left: 89px;
+      bottom: calc(63 / 370 * 100%);
+      left: calc(89 / 470 * 100%);
+      width: calc(63 / 470 * 100%);
     }
     .img-12 {
       position: absolute;
-      bottom: 95px;
+      bottom: calc(95 / 370 * 100%);
       right: 0;
+      width: calc(87 / 470 * 100%);
     }
   }
-}
-:global{
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .left-part {
+      float: none;
+      .title {
+        max-width: 5em;
+        font-size: 40px;
+        line-height: 56px;
+      }
+      .sub-title {
+        max-width: 100%;
+        font-size: 20px;
+        line-height: 32px;
+        margin-bottom: 24px;
+      }
+      .list {
+        text-align: center;
+        .item {
+          float: left;
+          width: calc(50% - 14px);
+          height: 200px;
+          background: #F7F7F7;
+          border-radius: 12px;
+          padding: 20px;
+          text-align: center;
+          margin-right: 24px;
+          margin-bottom: 30px;
+          &:nth-child(2n) {
+            margin-right: 0;
+          }s
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+        .icon {
+          display: inline-block;
+          width: 92px;
+          img {
+            width: 100%;
+          }
+        }
+        .item-title {
+          font-size: 14px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #474747;
+          line-height: 24px;
+          margin-top: 12px;
+        }
+        .item-info {
+          font-size: 14px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #A6AAB1;
+          line-height: 24px;
+        }
+      }
+    }
+    .right-part {
+      float: none;
+      margin-top: 48px;
+      .image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 75vw;
+      }
+      .img-1 {
+        position: absolute;
+        top: 10%;
+        left: calc(13 / 470 * 100%);
+        width: calc(64 / 470 * 100%);
+      }
+      .img-2 {
+        position: absolute;
+        top: calc(86 / 370 * 100%);
+        right: calc(66 / 470 * 100%);
+         width: calc(86 / 470 * 100%);
+      }
+      .img-3 {
+        position: absolute;
+        top: calc(37 / 370 * 100%);
+        right: calc(42 / 470 * 100%);
+        width: calc(32 / 470 * 100%);
+      }
+      .img-4 {
+        position: absolute;
+        top: calc(153 / 370 * 100%);
+        left: 0px;
+        width: calc(101 / 470 * 100%);
+      }
+      .img-5 {
+        position: absolute;
+        top: 0px;
+        left: calc(152 / 470 * 100%);
+        width: calc(126 / 470 * 100%);
+      }
+      .img-6 {
+        position: absolute;
+        top: calc(126 / 370 * 100%);
+        left: calc(249 / 470 * 100%);
+        width: calc(53 / 470 * 100%);
+      }
+      .img-7 {
+        position: absolute;
+        bottom: calc(37 / 370 * 100%);
+        left: calc(28 / 470 * 100%);
+        width: calc(33 / 470 * 100%);
+      }
+      .img-8 {
+        position: absolute;
+        top: calc(193 / 370 * 100%);
+        left: calc(187 / 470 * 100%);
+        width: calc(123 / 470 * 100%);
+      }
+      .img-9 {
+        position: absolute;
+        top: calc(276 / 370 * 100%);
+        right: calc(74 / 470 * 100%);
+        width: calc(94 / 470 * 100%);
+      }
+      .img-10 {
+        position: absolute;
+        top: calc(119 / 370 * 100%);
+        left: calc(104 / 470 * 100%);
+        width: calc(34 / 470 * 100%);
+      }
+      .img-11 {
+        position: absolute;
+        bottom: calc(63 / 370 * 100%);
+        left: calc(89 / 470 * 100%);
+        width: calc(63 / 470 * 100%);
+      }
+      .img-12 {
+        position: absolute;
+        bottom: calc(95 / 370 * 100%);
+        right: 0;
+        width: calc(87 / 470 * 100%);
+      }
+    }
+  }
 }
 </style>

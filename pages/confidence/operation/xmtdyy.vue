@@ -125,14 +125,45 @@ export default {
       }
     }
   }
-  .description {
-    font-size: 20px;
-    font-family: PingFangSC-Light, PingFang SC;
-    font-weight: 300;
-    color: #474747;
-    line-height: 32px;
-    text-align: center;
-    margin-top: 144px;
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    position: relative;
+    .sharp {
+      position: absolute;
+      width: 176px;
+      height: 176px;
+      right: 16px;
+      top: 56px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+    .image-item {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 30px;
+      box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .image-info {
+        position: absolute;
+        left: 32px;
+        bottom: 32px;
+        width: 146px;
+        height: 48px;
+        background: #FFFFFF;
+        border-radius: 24px;
+        font-size: 14px;
+        color: #474747;
+        line-height: 48px;
+        text-align: center;
+      }
+    }
   }
 }
 .service {
@@ -185,6 +216,51 @@ export default {
         color: #A6AAB1;
         line-height: 32px;
         margin-top: 12px;
+      }
+    }
+  }
+  @media only screen and (max-width: 760px) {
+    .title {
+      font-size: 40px;
+      line-height: 56px;
+    }
+    .sub-title {
+      font-size: 20px;
+      line-height: 32px;
+      margin-top: 24px;
+    }
+    .service-list {
+      margin-top: 64px;
+      padding: 0;
+      margin-bottom: 96px;
+      .service-item {
+        float: none;
+        margin-right: 0;
+        margin-bottom: 64px;
+        text-align: center;
+        &:last-child {
+          margin-right: 0;
+          margin-bottom: 96px;
+        }
+        .image {
+          display: inline-block;
+          width: 200px;
+          img {
+            width: 100%;
+          }
+        }
+        .title {
+          font-size: 24px;
+          line-height: 42px;
+          margin-top: 32px;
+        }
+        .info {
+          max-width: 320px;
+          font-size: 18px;
+          line-height: 32px;
+          margin-top: 12px;
+          margin: 0 auto;
+        }
       }
     }
   }

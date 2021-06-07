@@ -18,9 +18,12 @@
      <div class="seo-info">
        <img src="@/static/trust/marketing/seo_info.jpg" alt="">
        <div class="content">
-        <div class="info">
+        <div class="info d-md-none">
           <div>SEO优化策略是一项全面的计划，通过搜索引擎引流让更多访问者访问您的网站。</div>
           <div>成功的SEO包括使用基于关键字的页面内容关联策略; 以及通过其他站点引入入站链接的页外策略。</div>
+        </div>
+        <div class="info d-md-block d-none">
+          <div>SEO优化策略是一项全面的计划，通过搜索引擎引流让更多访问者访问您的网站。成功的SEO包括使用基于关键字的页面内容关联策略; 以及通过其他站点引入入站链接的页外策略。</div>
         </div>
        </div>
      </div>
@@ -105,6 +108,29 @@ export default {
       border-radius: 50%;
     }
   }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .search-intro {
+      float: none;
+      max-width: 100%;
+      font-size: 32px;
+      line-height: 56px;
+      margin-top: 0;
+      .author {
+        font-size: 20px;
+        margin-top: 3em;
+      }
+    }
+    .search-image {
+      width: 100%;
+      height: auto;
+      margin-top: 48px;
+      img {
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
 }
 .seo-info {
   position: relative;
@@ -130,6 +156,33 @@ export default {
       line-height: 42px;
       white-space: nowrap;
     }
+  }
+  @media only screen and (max-width: 760px) {
+      position: relative;
+      img {
+        width: 100%;
+        height: 444px;
+        object-fit: cover;
+      }
+      .content {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        .info {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          padding: 0 16px;
+          transform: translate(0,-50%);
+          font-size: 24px;
+          letter-spacing: 0.11px;
+          line-height: 42px;
+          white-space: normal;
+        }
+      }
   }
 }
 .seo-content {
@@ -178,11 +231,50 @@ export default {
       line-height: 32px;
     }
   }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 52px;
+    background: #F7F7F7;
+    .item {
+      float: none;
+      width: 100%;
+      height: 253px;
+      box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.1);
+      padding: 32px;
+      border-radius: 16px;
+      margin-right: 0;
+      margin-bottom: 30px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .title-wrapper {
+        height: 64px;
+        margin-bottom: 25px;
+        .title {
+          font-size: 24px;
+          line-height: 32px;
+          height: 64px;
+        }
+        .icon {
+          float: right;
+          i {
+            font-size: 40px;
+          }
+        }
+      }
+      .info {
+        font-size: 14px;
+        line-height: 32px;
+      }
+    }
+  }
 }
 .image {
   padding: 60px 160px;
   img {
     width: 100%;
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
   }
 }
 </style>

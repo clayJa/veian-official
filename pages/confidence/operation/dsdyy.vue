@@ -23,10 +23,22 @@
      </div>
      <div class="operation-steps">
        <div class="title">电商精细化运营服务</div>
-       <div class="wrapper clearfix">
+       <div class="wrapper clearfix d-md-none">
         <div
           :class="['item',index + 1 > 4 ? 'right' : 'left', { spItem: index === 3 }, { noLine: index === 4 } ]"
           v-for="(item, index) in stepList"  :key="item.title">
+          <div class="image">
+            <img :src="item.image" alt="">
+          </div>
+          <div class="text">{{ item.title }}</div>
+          <div class="info">{{ item.info }}</div>
+          <div class="line"></div>
+        </div>
+       </div>
+       <div class="mobile-wrapper clearfix d-md-block d-none">
+        <div
+          :class="['item',index + 1 > 4 ? 'right' : 'left', { spItem: index === 3 }, { noLine: index === 4 } ]"
+          v-for="(item, index) in mobileStepList"  :key="item.title">
           <div class="image">
             <img :src="item.image" alt="">
           </div>
@@ -71,6 +83,24 @@ export default {
           info: '首页与商品详情、商品文案与拍摄、活动策划与设计等' },
         { image: require('@/static/trust/operation/dsdyy_step5.png'), title: '营销推广',
           info: '直通车、钻展、聚划算、淘抢购、内容推广、淘内直播平台类等内容资源' },
+      ],
+      mobileStepList: [
+        { image: require('@/static/trust/operation/dsdyy_step1.png'), title: '开店服务',
+          info: '组织建构建立，店铺入驻申请，开店前期' },
+        { image: require('@/static/trust/operation/dsdyy_step2.png'), title: '日常运营',
+          info: '宝贝编辑上下架、标题优化、商品信息库存维护店铺评价处理等' },
+        { image: require('@/static/trust/operation/dsdyy_step3.png'), title: '活动运营',
+          info: '双十一、双十二、618、聚划算、淘抢购等活动规范与运营' },
+        { image: require('@/static/trust/operation/dsdyy_step4.png'), title: '数据运营',
+          info: '店铺分析诊断、竞店分析、行业分析、定制数据包、品牌数据银行等' },
+        { image: require('@/static/trust/operation/dsdyy_step5.png'), title: '营销推广',
+          info: '直通车、钻展、聚划算、淘抢购、内容推广、淘内直播平台类等内容资源' },
+        { image: require('@/static/trust/operation/dsdyy_step6.png'), title: '设计制造',
+          info: '首页与商品详情、商品文案与拍摄、活动策划与设计等' },
+        { image: require('@/static/trust/operation/dsdyy_step7.png'), title: '客户运营',
+          info: '客户分组、淘宝群维护、微淘内容策划等' },
+        { image: require('@/static/trust/operation/dsdyy_step8.png'), title: '商品管理',
+          info: '库存效期预警、库存周转管理、商品生产' },
       ],
     }
   },
@@ -151,6 +181,51 @@ export default {
     line-height: 32px;
     text-align: center;
     margin-top: 144px;
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .sharp {
+      width: 176px;
+      height: 176px;
+      right: 16px;
+      top: 56px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+    .image-item {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 30px;
+      box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .image-info {
+        left: 32px;
+        bottom: 32px;
+        width: 146px;
+        height: 48px;
+        border-radius: 24px;
+        font-size: 14px;
+        line-height: 48px;
+      }
+    }
+    .description {
+      position: relative;
+      margin: 0 -16px;
+      max-width: calc(100% + 32px);
+      padding: 0 16px;
+      font-size: 20px;
+      line-height: 32px;
+      text-align: left;
+      margin-top: 96px;
+      background-color: #eff2f5;
+    }
   }
 }
 .operation-steps {
@@ -266,6 +341,52 @@ export default {
       line-height: 32px;
       margin-top: 12px;
       text-align: center;
+    }
+  }
+  @media only screen and (max-width: 760px) {
+    .title {
+      font-size: 40px;
+      line-height: 56px;
+    }
+    .mobile-wrapper {
+      padding-left: 0;
+      padding-right: 0;
+      margin-top: 64px;
+      margin-bottom: 96px;
+      .item {
+        float: none;
+        margin-right: 0;
+        margin-bottom: 30px;
+        position: relative;
+        text-align: center;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        &.left .line,&.right .line, &.spItem .line {
+          display: none;
+        }
+      }
+      .image {
+        display: inline-block;
+        width: 224px;
+        img {
+          width: 100%;
+        }
+      }
+      .text {
+        font-size: 24px;
+        line-height: 42px;
+        margin-top: 32px;
+        text-align: center;
+      }
+      .info {
+        margin: auto;
+        max-width: 200px;
+        font-size: 18px;
+        line-height: 32px;
+        margin-top: 12px;
+        text-align: center;
+      }
     }
   }
 }

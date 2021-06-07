@@ -20,7 +20,7 @@
      </div>
      <div class="google-ads-source">
        <div class="title">Google广告资源</div>
-       <div class="wrapper">
+       <div class="wrapper clearfix">
          <div class="item" v-for="item in adsSource" :key="item.text">
            <div class="image">
              <img :src="item.image" alt="">
@@ -206,6 +206,59 @@ export default {
     margin-top: 144px;
     text-align: center;
   }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    position: relative;
+    .sharp {
+      position: absolute;
+      width: 176px;
+      height: 176px;
+      left: auto;
+      top: 56px;
+      right: 16px;
+    }
+    img {
+      border-radius: 24px;
+    }
+    .image-item {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 30px;
+      box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+      border-radius: 24px;
+      padding: 24px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .image-info {
+        left: 56px;
+        bottom: 54px;
+        font-size: 24px;
+        color: #FFFFFF;
+        line-height: 32px;
+        .zh-title {
+          font-family: PingFangSC-Medium;
+          font-weight: 500;
+        }
+        .en-title {
+          font-family: PingFang SC;
+          font-weight: 300;
+        }
+      }
+    }
+    .description {
+      position: relative;
+      margin: 0 -16px;
+      max-width: calc(100% + 32px);
+      padding: 0 16px;
+      font-size: 20px;
+      line-height: 32px;
+      text-align: left;
+      margin-top: 96px;
+      background-color: #eff2f5;
+    }
+  }
 }
 .google-ads-source {
   margin-bottom: 114px;
@@ -244,6 +297,46 @@ export default {
         color: #474747;
         line-height: 24px;
         margin-top: 32px;
+      }
+    }
+  }
+  @media only screen and (max-width: 760px) {
+    margin-bottom: 0;
+    padding: 96px 16px;
+    .title {
+      font-size: 40px;
+      line-height: 56px;
+      margin-bottom: 0;
+      text-align: center;
+    }
+    .wrapper {
+      background: #FFFFFF;
+      box-shadow: 10px 10px 40px 0px rgba(54, 33, 0, 0.1);
+      border-radius: 12px;
+      margin: 0;
+      padding: 0;
+      padding-top: 64px;
+      width: 100%;
+      display: block;
+      .item {
+        display: block;
+        float: left;
+        width: 50%;
+        margin: 0;
+        text-align: center;
+        margin-bottom: 64px;
+        .image {
+          display: inline-block;
+          width: 64px;
+          img {
+            width: 100%;
+          }
+        }
+        .text {
+          font-size: 14px;
+          line-height: 24px;
+          margin-top: 32px;
+        }
       }
     }
   }
@@ -293,6 +386,49 @@ export default {
       line-height: 32px;
       text-align: center;
       margin-top: 32px;
+    }
+  }
+  @media only screen and (max-width: 760px) {
+    .title {
+      font-size: 40px;
+      line-height: 56px;
+      margin-bottom: 68px;
+    }
+    .wrapper {
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-bottom: 28px;
+      .item {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 68px;
+      }
+      .image {
+        display: inline-block;
+        width: 96px;
+        img {
+          width: 100%;
+        }
+      }
+      .text {
+        font-size: 32px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #474747;
+        line-height: 48px;
+        text-align: center;
+        margin-top: 30px;
+      }
+      .info {
+        font-size: 20px;
+        font-family: PingFangSC-Light, PingFang SC;
+        font-weight: 300;
+        color: #A6AAB1;
+        line-height: 32px;
+        text-align: center;
+        margin-top: 32px;
+      }
     }
   }
 }
@@ -353,6 +489,59 @@ export default {
       width: 100%;
     }
   }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .content-wrapper {
+      float: none;
+      margin-top: 0;
+      width: 100%;
+      .title {
+        font-size: 40px;
+        line-height: 56px;
+        margin-bottom: 48px;
+      }
+      .item {
+        float: left;
+        width: calc(50% - 16px);
+        height: 220px;
+        box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        padding: 24px 0;
+        margin-right: 32px;
+        margin-bottom: 36px;
+        text-align: center;
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+        .image {
+          display: inline-block;
+          width: 92px;
+          margin: 0 36px;
+          margin-bottom: 18px;
+          img {
+            width: 100%;
+          }
+        }
+        .text {
+          font-size: 14px;
+          line-height: 24px;
+          margin-bottom: 4px;
+        }
+        .info {
+          font-size: 12px;
+          line-height: 20px;
+        }
+      }
+    }
+    .image-wrapper {
+      float: none;
+      width: 100%;
+      margin-top: 48px;
+      img {
+        width: 100%;
+      }
+    }
+  }
 }
 .service {
   text-align: center;
@@ -400,6 +589,50 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+    .title {
+      font-size: 40px;
+      line-height: 56px;
+    }
+    .service-list {
+      margin-top: 64px;
+      margin-bottom: 96px;
+      padding-left: 0;
+      padding-right: 0;
+      .service-item {
+        float: none;
+        margin-right: 0;
+        margin-bottom: 64px;
+        text-align: center;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        .image {
+          width: 200px;
+          display: inline-block;
+          img {
+            width: 100%;
+          }
+        }
+        .text {
+          font-size: 24px;
+          line-height: 42px;
+          margin-top: 32px;
+          margin-bottom: 12px;
+        }
+        .info {
+          max-width: 200px;
+          margin: auto;
+          text-align: center;
+          font-size: 18px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #A6AAB1;
+          line-height: 32px;
+        }
+      }
+    }
+  }
 }
 .steps {
   text-align: center;
@@ -425,6 +658,25 @@ export default {
     margin-bottom: 104px;
     img {
       width: 100%;
+    }
+  }
+  @media only screen and (max-width: 760px) {
+    padding: 96px 16px;
+    .title {
+        font-size: 40px;
+        line-height: 56px;
+        margin-bottom: 24px;
+    }
+    .sub-title {
+      font-size: 20px;
+      line-height: 32px;
+      margin-bottom: 64px;
+    }
+    .image {
+      margin: 0;
+      img {
+        width: 100%;
+      }
     }
   }
 }
