@@ -260,6 +260,85 @@ export default {
 
       }
     }
+    @media only screen and (max-width: 760px) {
+      .wrapper {
+        padding: 144px 16px 96px 16px;
+      }
+      .text-wrapper {
+        position: relative;
+        margin-bottom: 68px;
+        .title-desc {
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 32px;
+          text-transform: uppercase;
+        }
+        .title {
+          font-size: 40px;
+          line-height: 56px;
+          margin: 24px 0;
+        }
+        .subtitle {
+          font-size: 32px;
+          font-weight: 300;
+        }
+      }
+      .show-img {
+        position: relative;
+        .icon-bg {
+          position: absolute;
+          width: 176px;
+          height: 176px;
+          opacity: 0.3;
+          right: -44px;
+          top: -44px;
+        }
+        .img-wrapper {
+          height: 332px;
+          background: @white2;
+          border-radius: 16px;
+          padding: 16px;
+          position: relative;
+          z-index: 1;
+
+          img {
+            border-radius: 16px;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+          }
+        }
+      }
+      .footer-desc {
+        margin-top: 50px;
+        .action-bar-wrapper {
+          position: relative;
+          height: 108px;
+        }
+        .action-bar {
+          right: 0;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          .action-button {
+            &+.action-button {
+              margin-left: 45px;
+            }
+          }
+        }
+        .address-desc {
+          font-size: 44px;
+          line-height: 64px;
+          margin-bottom: 12px;
+        }
+        .address {
+          font-size: 20px;
+          line-height: 32px;
+
+
+        }
+      }
+    }
   }
   .secondary-block {
     //height: 880px;
