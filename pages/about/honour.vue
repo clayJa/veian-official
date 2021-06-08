@@ -160,6 +160,33 @@ export default {
       }
 
     }
+    @media only screen and (max-width: 760px) {
+      height: 600px;
+      .wrapper {
+        padding: 216px 16px;
+        .text-wrapper {
+          margin-bottom: 32px;
+          .title-desc {
+            font-size: 14px;
+            line-height: 32px;
+            letter-spacing: 2px;
+          }
+          .title {
+            font-size: 40px;
+            margin: 24px 0;
+            line-height: 56px;
+            height: 56px;
+          }
+          .subtitle {
+            font-size: 24px;
+            line-height: 32px;
+            height: 32px;
+            position: relative;
+          }
+        }
+
+      }
+    }
   }
 
   .secondary-block {
@@ -169,33 +196,29 @@ export default {
       padding: 135px 135px 72px 135px;
 
     }
-    .page-title-nav {
-      text-align: center;
-      margin-bottom: 48px;
-      .title {
-        height: 64px;
-        font-size: 56px;
-        font-weight: 600;
-        line-height: 64px;
-        white-space: nowrap;
+    .tab-wrapper {
+      position: absolute;
+      top: -40px;
+      left: 135px;
+      right: 135px;
+    }
+    @media only screen and (max-width: 760px) {
+      .wrapper {
+        padding: 135px 16px;
       }
-      .subtitle {
-        height: 32px;
-        font-size: 24px;
-        font-weight: 300;
-        line-height: 32px;
+     .tab-wrapper {
+        position: absolute;
+        top: -40px;
+        left: 16px;
+        right: 0;
       }
     }
-
-  }
-  .tab-wrapper {
-    position: absolute;
-    top: -40px;
-    left: 135px;
-    right: 135px;
   }
   .show-box-nav {
     margin-bottom: 12px;
+    @media only screen and (max-width: 760px) {
+      text-align: center;
+    }
   }
   .pagination-nav {
     text-align: center;
@@ -262,7 +285,49 @@ export default {
       bottom: -50px;
       left: -50px;
     }
-
+    @media only screen and (max-width: 760px) {
+        position: relative;
+        float: none;
+        display: inline-block;
+        padding: 0;
+        margin-bottom: 64px;
+        .box-item {
+          width: 100%;
+          height: auto;
+        }
+        .text-wrapper {
+          font-weight: 300;
+          text-align: center;
+          .title {
+            color: #171717;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 22px;
+            height: 22px;
+            margin-bottom: 4px;
+          }
+          .subtitle {
+            font-size: 14px;
+            line-height: 20px;
+            height: 20px;
+          }
+        }
+        .img-wrapper {
+          height: 160px;
+          position: relative;
+          margin-bottom: 24px;
+          img {
+            object-fit: cover;
+          }
+        }
+        .img-back {
+          position: absolute;
+          width: 176px;
+          height: 176px;
+          bottom: -50px;
+          left: -50px;
+        }
+    }
   }
 
   img {
