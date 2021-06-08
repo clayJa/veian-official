@@ -18,7 +18,7 @@
 
         </div>
         <div class="wrapper">
-          <div class="show-box clearfix" v-for="(item, i) in showInfoList">
+          <div class="show-box clearfix" v-for="(item, i) in showInfoList" :key="i">
             <div class="box-item row row-no-gutters">
               <div :class="`text-wrapper col-md-6 col-xs-12 ${i % 2 !== 0 ? 'right' : ''}`">
                 <div class="title-desc">{{item.titleDesc}}</div>
@@ -191,6 +191,32 @@ export default {
       }
 
     }
+    @media only screen and (max-width: 760px) {
+      height: 600px;
+      .wrapper {
+        padding: 216px 16px 0 16px;
+        .text-wrapper {
+          margin-bottom: 32px;
+          .title-desc {
+            font-size: 14px;
+            line-height: 32px;
+            letter-spacing: 2px;
+          }
+          .title {
+            font-size: 40px;
+            margin: 24px 0;
+            line-height: 52px;
+            height: 52px;
+          }
+          .subtitle {
+            font-size: 24px;
+            line-height: 32px;
+            height: 32px;
+          }
+        }
+
+      }
+    }
   }
 
   .secondary-block {
@@ -199,8 +225,18 @@ export default {
     .wrapper {
       padding: 135px 0;
     }
-
-
+    @media only screen and (max-width: 760px) {
+      padding: 40px 16px 0 16px;
+      .wrapper {
+        padding: 0;
+      }
+      .tab-wrapper {
+        position: absolute;
+        top: -40px;
+        left: 16px;
+        right: 0;
+      }
+    }
   }
   .third-block {
     background: @white2;
@@ -282,6 +318,76 @@ export default {
       }
 
     }
+    @media only screen and (max-width: 760px) {
+      background: @white2;
+      position: relative;
+      .wrapper {
+        padding: 96px 16px;
+      }
+      .page-title-nav {
+        text-align: center;
+        margin-bottom: 56px;
+        .title-desc {
+          font-size: 18px;
+          line-height: 32px;
+          letter-spacing: 2px;
+        }
+        .title {
+          height: auto;
+          font-size: 40px;
+          line-height: 56px;
+          overflow: inherit;
+          white-space: normal;
+          margin: 24px 0;
+        }
+        .subtitle {
+          font-size: 16px;
+          line-height: 32px;
+        }
+      }
+
+      .list-nav {
+        .list-item {
+          padding: 40px 24px;
+          background: #FFFFFF;
+          box-shadow: 10px 10px 40px 0px rgba(54, 33, 0, 0.1);
+          border-radius: 12px;
+          &+.list-item {
+            margin-top: 24px;
+          }
+
+          .item-title {
+            margin-bottom: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            .title-text {
+              float: left;
+
+              height: 24px;
+              font-size: 18px;
+              font-weight: 500;
+              line-height: 24px;
+
+            }
+            .extra {
+              float: right;
+              font-size: 16px;
+              font-weight: 400;
+              color: #474747;
+            }
+          }
+          .item-content {
+            font-size: 14px;
+            font-weight: 400;
+            color: #A6AAB1;
+            line-height: 24px;
+            text-overflow:ellipsis;
+          }
+        }
+
+      }
+    }
   }
   .tab-wrapper {
     position: absolute;
@@ -348,7 +454,55 @@ export default {
       bottom: -50px;
       left: -50px;
     }
+    @media only screen and (max-width: 760px) {
+      .box-item{
+        height: auto;
+      }
+      .text-wrapper {
+        margin-bottom: 48px;
+        padding: 128px 16px 0 16px;
+        &.right {
+          float: right;
+        }
+        .title-desc {
+          font-size: 18px;
+          line-height: 32px;
+          letter-spacing: 2px;
+        }
+        .title {
+          font-size: 56px;
+          font-weight: 500;
+          line-height: 64px;
+          height: 64px;
+          margin: 24px 0;
+        }
+        .subtitle {
+          font-size: 16px;
+          line-height: 32px;
+          font-weight: 400;
+        }
+        .content {
+          font-size: 16px;
+          line-height: 32px;
+          font-weight: 400;
+        }
+      }
+      .img-wrapper {
+        height: 100%;
+        position: relative;
+        img {
+          object-fit: cover;
+        }
 
+      }
+      .img-back {
+        position: absolute;
+        width: 176px;
+        height: 176px;
+        bottom: -50px;
+        left: -50px;
+      }
+    }
   }
 
   img {

@@ -24,10 +24,12 @@
                 <img class="img-back" src="@/assets/images/about/dots_group.png" alt="">
                 <div class="text-wrapper clearfix">
                   <div class="title-desc">Simple</div>
-                  <div class="title">简单</div>
-                  <div class="subtitle-nav">
-                    <div class="subtitle">时间长流，我们认为</div>
-                    <div class="subtitle">最可贵的是能够体会，被信任的满足感。</div>
+                  <div class="clearfix text">
+                    <div class="title">简单</div>
+                    <div class="subtitle-nav">
+                      <div class="subtitle">时间长流，我们认为</div>
+                      <div class="subtitle">最可贵的是能够体会，被信任的满足感。</div>
+                    </div>
                   </div>
 
                 </div>
@@ -42,10 +44,12 @@
                 <img class="img-back" src="@/assets/images/about/dots_group.png" alt="">
                 <div class="text-wrapper clearfix">
                   <div class="title-desc">Happy</div>
-                  <div class="title">快乐</div>
-                  <div class="subtitle-nav">
-                    <div class="subtitle">因为快乐</div>
-                    <div class="subtitle">所以我们是不会辜负的！</div>
+                  <div class="clearfix text">
+                    <div class="title">快乐</div>
+                    <div class="subtitle-nav">
+                      <div class="subtitle">因为快乐</div>
+                      <div class="subtitle">所以我们是不会辜负的！</div>
+                    </div>
                   </div>
 
                 </div>
@@ -63,10 +67,12 @@
                 <img class="img-back" src="@/assets/images/about/dots_group.png" alt="">
                 <div class="text-wrapper clearfix">
                   <div class="title-desc">trusting</div>
-                  <div class="title">信任</div>
-                  <div class="subtitle-nav">
-                    <div class="subtitle">因为信任</div>
-                    <div class="subtitle">所有的事最终都将只是简单的出发和到达。</div>
+                  <div class="clearfix text">
+                    <div class="title">信任</div>
+                    <div class="subtitle-nav">
+                      <div class="subtitle">因为信任</div>
+                      <div class="subtitle">所有的事最终都将只是简单的出发和到达。</div>
+                    </div>
                   </div>
 
                 </div>
@@ -158,6 +164,32 @@ export default {
       }
 
     }
+    @media only screen and (max-width: 760px) {
+      height: 600px;
+      color: @white;
+      .wrapper {
+        padding: 216px 16px;
+        .text-wrapper {
+          margin-bottom: 32px;
+          .title-desc {
+            font-size: 14px;
+            line-height: 32px;
+            letter-spacing: 2px;
+          }
+          .title {
+            font-size: 40px;
+            margin: 24px 0;
+            line-height: 56px;
+            height: 56px;
+          }
+          .subtitle {
+            font-size: 24px;
+            line-height: 32px;
+            height: 32px;
+          }
+        }
+      }
+    }
   }
 
   .secondary-block {
@@ -166,7 +198,12 @@ export default {
     .wrapper {
       padding: 135px;
     }
-
+    .tab-wrapper {
+      position: absolute;
+      top: -40px;
+      left: 135px;
+      right: 135px;
+    }
     .right-block {
       padding-left: 58px;
       .show-box {
@@ -177,12 +214,27 @@ export default {
         }
       }
     }
-  }
-  .tab-wrapper {
-    position: absolute;
-    top: -40px;
-    left: 135px;
-    right: 135px;
+    @media only screen and (max-width: 760px) {
+      .wrapper {
+        padding: 135px 16px;
+      }
+     .tab-wrapper {
+        position: absolute;
+        top: -40px;
+        left: 16px;
+        right: 0;
+      }
+      .right-block {
+        padding-left: 0;
+        .show-box {
+          margin-top: 232px;
+          .img-back {
+            right: auto;
+            left: 0;
+          }
+        }
+      }
+    }
   }
   .show-box {
     position: relative;
@@ -240,7 +292,59 @@ export default {
       bottom: -50px;
       left: -50px;
     }
-
+    @media only screen and (max-width: 760px) {
+      position: relative;
+      width: 100%;
+      &+.show-box {
+        margin-top: 120px;
+      }
+      .box-item{
+        width: 100%;
+      }
+      .text-wrapper {
+        margin-bottom: 32px;
+        .title-desc {
+          font-size: 18px;
+          line-height: 24px;
+          letter-spacing: 1px;
+          margin-bottom: 12px;
+          width: 100%;
+        }
+        .text {
+          display: flex;
+        }
+        .title {
+          float: none;
+          font-size: 44px;
+          line-height: 56px;
+          height: 56px;
+          margin-right: 32px;
+          flex-shrink: 0;
+        }
+        .subtitle-nav {
+        }
+        .subtitle {
+          font-size: 20px;
+          line-height: 34px;
+        }
+      }
+      .img-wrapper {
+        height: 343px;
+        position: relative;
+        border-radius: 16px;
+        img {
+          object-fit: cover;
+          border-radius: 16px;
+        }
+      }
+      .img-back {
+        position: absolute;
+        width: 176px;
+        height: 176px;
+        bottom: -50px;
+        left: -50px;
+      }
+    }
   }
 
   img {
