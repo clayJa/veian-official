@@ -32,19 +32,31 @@
                 </div>
               </div>
             </li>
-            <li :class="`timeline-item ${i % 2 === 0 ? 'left': 'right'}`" v-for="(item, i) in developList">
+            <li :class="`timeline-item ${i % 2 === 0 ? 'left': 'right'}`"
+                 v-for="(item, i) in developList" :key="i">
               <div class="tail"></div>
               <div class="head blue">
                 <div class="dot"></div>
               </div>
               <div class="content">
                 <div class="show-box">
-                  <div class="box-item">
+                  <div class="box-item d-md-none">
                     <div class="img-wrapper">
                       <img class="img" :src="item.img" alt="">
                     </div>
                     <div class="text-wrapper">
                       <div class="title">{{item.time}}</div>
+                      <div :class="`text-content ${i % 2 === 0 ? 'left': 'right'}`">{{item.content}}</div>
+                    </div>
+                  </div>
+                  <div class="box-item d-md-block d-none">
+                    <div class="mobile-title">
+                      <div class="title">{{item.time}}</div>
+                      <div class="img-wrapper">
+                        <img class="img" :src="item.img" alt="">
+                      </div>
+                    </div>
+                    <div class="text-wrapper">
                       <div :class="`text-content ${i % 2 === 0 ? 'left': 'right'}`">{{item.content}}</div>
                     </div>
 
@@ -169,6 +181,33 @@ export default {
       }
 
     }
+    @media only screen and (max-width: 760px) {
+      height: 600px;
+      .wrapper {
+        padding: 216px 16px;
+        .text-wrapper {
+          margin-bottom: 32px;
+          .title-desc {
+            font-size: 14px;
+            line-height: 32px;
+            letter-spacing: 2px;
+          }
+          .title {
+            font-size: 40px;
+            margin: 24px 0;
+            line-height: 56px;
+            height: 56px;
+          }
+          .subtitle {
+            font-size: 24px;
+            line-height: 32px;
+            height: 32px;
+            position: relative;
+          }
+        }
+
+      }
+    }
   }
 
   .secondary-block {
@@ -176,6 +215,12 @@ export default {
     position: relative;
     .wrapper {
       padding: 135px;
+    }
+    .tab-wrapper {
+      position: absolute;
+      top: -40px;
+      left: 135px;
+      right: 135px;
     }
     .page-title-nav {
       text-align: center;
@@ -195,13 +240,33 @@ export default {
         line-height: 32px;
       }
     }
-
-  }
-  .tab-wrapper {
-    position: absolute;
-    top: -40px;
-    left: 135px;
-    right: 135px;
+    @media only screen and (max-width: 760px) {
+      .wrapper {
+        padding: 135px 16px;
+      }
+     .tab-wrapper {
+        position: absolute;
+        top: -40px;
+        left: 16px;
+        right: 0;
+      }
+      .page-title-nav {
+        text-align: left;
+        margin-bottom: 48px;
+        .title {
+          height: 45px;
+          font-size: 32px;
+          font-weight: 600;
+          line-height: 45px;
+          margin-bottom: 32px;
+        }
+        .subtitle {
+          height: 32px;
+          font-size: 24px;
+          line-height: 32px;
+        }
+      }
+    }
   }
   .timeline-nav {
     position: relative;
@@ -318,6 +383,95 @@ export default {
       top: 0;
       right: 0;
     }
+    @media only screen and (max-width: 760px) {
+      position: relative;
+      box-sizing: border-box;
+      line-height: 1.5715;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      .timeline-item {
+        list-style: none;
+        margin: 0;
+        padding-bottom: 20px;
+        position: relative;
+        height: 300px;
+        &.first {
+          height: 100px;
+        }
+        &.last {
+          height: auto;
+          margin-top: 35px;
+          .text {
+            text-align: left;
+            height: 32px;
+            font-size: 24px;
+            line-height: 32px;
+          }
+        }
+
+        .tail {
+          border-left: 2px solid #f0f0f0;
+          height: calc(100% - 48px);
+          top: 48px;
+          left: 22px;
+          &.small {
+            height: calc(100% - 10px);
+            top: 10px;
+          }
+        }
+
+        .head {
+          border-radius: 12px;
+          width: 48px;
+          height: 48px;
+          margin-left: -22px;
+          left: 22px;
+          .dot {
+            width: 15px;
+            height: 15px;
+            margin-top: calc(50% - 7.5px);
+            margin-left: calc(50% - 7.5px);
+          }
+          &.black {
+            width: 15px;
+            height: 15px;
+            margin-left: -6px;
+          }
+
+        }
+        .content {
+          margin: 0;
+          position: relative;
+          top: -7.001px;
+          word-break: break-word;
+        }
+        &.right {
+          .content {
+            left: 72px;
+            text-align: left;
+            width: calc(100% - 72px);
+          }
+
+        }
+        &.left {
+          .content {
+            margin: 0;
+            text-align: left;
+            left: 72px;
+            width: calc(100% - 72px);
+          }
+        }
+      }
+
+      .img-back {
+        position: absolute;
+        width: 176px;
+        height: 176px;
+        top: 0;
+        right: 0;
+      }
+    }
   }
   .show-box {
     position: relative;
@@ -381,7 +535,65 @@ export default {
       bottom: -50px;
       left: -50px;
     }
+    @media only screen and (max-width: 760px) {
+      position: relative;
+      &+.show-box {
+        margin-top: 118px;
+      }
+      .box-item{
+        width: 100%;
+        display: flex;
+      }
+      .text-wrapper {
+        margin-bottom: 32px;
+        margin-top: 32px;
+        flex: 1;
+        .title-desc {
+          color: @mainColor;
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 24px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          margin-bottom: 12px;
+        }
+        .text-content {
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
 
+      .mobile-title {
+        position: relative;
+        .title {
+          color: @fontColor;
+          font-size: 44px;
+          font-weight: 400;
+          line-height: 48px;
+          height: 48px;
+          white-space: nowrap;
+          margin-bottom: 0;
+        }
+      }
+      .img-wrapper {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        margin-right: 0;
+        right: 0;
+        bottom: 0;
+        img {
+          object-fit: cover;
+        }
+      }
+      .img-back {
+        position: absolute;
+        width: 176px;
+        height: 176px;
+        bottom: -50px;
+        left: -50px;
+      }
+    }
   }
 
   img {
