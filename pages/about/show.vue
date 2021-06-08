@@ -22,7 +22,7 @@
           <img class="img-back" src="@/assets/images/about/dots_group.png" alt="">
 
           <div class="show-box-nav clearfix">
-            <div class="show-box" v-for="item in dataArray">
+            <div class="show-box" v-for="(item,i) in dataArray" :key="i">
               <div class="box-item">
                 <div class="img-wrapper">
                   <img class="img" :src="item.img" alt="">
@@ -161,6 +161,33 @@ export default {
       }
 
     }
+    @media only screen and (max-width: 760px) {
+      height: 600px;
+      .wrapper {
+        padding: 216px 16px;
+        .text-wrapper {
+          margin-bottom: 32px;
+          .title-desc {
+            font-size: 14px;
+            line-height: 32px;
+            letter-spacing: 2px;
+          }
+          .title {
+            font-size: 40px;
+            margin: 24px 0;
+            line-height: 56px;
+            height: 56px;
+          }
+          .subtitle {
+            font-size: 24px;
+            line-height: 32px;
+            height: 32px;
+            position: relative;
+          }
+        }
+
+      }
+    }
   }
 
   .secondary-block {
@@ -170,6 +197,12 @@ export default {
       padding: 135px 135px 72px 135px;
       position: relative;
     }
+    .tab-wrapper {
+      position: absolute;
+      top: -40px;
+      left: 135px;
+      right: 135px;
+    }
     .img-back {
       position: absolute;
       width: 176px;
@@ -178,12 +211,17 @@ export default {
       top: 376px;
       z-index: 0;
     }
-  }
-  .tab-wrapper {
-    position: absolute;
-    top: -40px;
-    left: 135px;
-    right: 135px;
+    @media only screen and (max-width: 760px) {
+      .wrapper {
+        padding: 135px 16px;
+      }
+     .tab-wrapper {
+        position: absolute;
+        top: -40px;
+        left: 16px;
+        right: 0;
+      }
+    }
   }
   .show-box-nav {
     margin-bottom: 12px;
@@ -196,7 +234,6 @@ export default {
     position: relative;
     float: left;
     padding: 0 10px 48px 10px;
-    //width: 560px;
     .box-item{
       width: 370px;
       height: 370px;
@@ -243,7 +280,6 @@ export default {
       }
     }
     .img-wrapper {
-      //width: 260px;
       height: 256px;
       position: relative;
 
@@ -253,7 +289,50 @@ export default {
         border-top-left-radius: 12px;
       }
     }
+    @media only screen and (max-width: 760px) {
+      position: relative;
+      float: none;
+      padding: 0 10px 48px 10px;
+      .box-item{
+        width: 100%;
+        height: 370px;
+        box-shadow: 10px 10px 40px 0px rgba(54, 33, 0, 0.1);
+        border-radius: 12px;
+        background-color: #fff;
+      }
+      .text-wrapper {
+        font-weight: 300;
+        text-align: left;
+        padding: 24px 32px 20px 32px;
+        .title-desc {
+          font-size: 18px;
+          line-height: 24px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          margin-bottom: 12px;
+        }
+        .title {
+          font-size: 24px;
+          line-height: 32px;
+          height: 32px;
+          margin-bottom: 5px;
 
+        }
+
+        .subtitle {
+          font-size: 16px;
+          line-height: 32px;
+          height: 32px;
+        }
+      }
+      .img-wrapper {
+        height: 256px;
+        img {
+          border-top-right-radius: 12px;
+          border-top-left-radius: 12px;
+        }
+      }
+    }
 
   }
 
