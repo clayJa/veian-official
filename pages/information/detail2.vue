@@ -193,7 +193,21 @@ export default {
       border: 1px solid #E5E5E5;
       padding: 32px 64px 64px 64px;
     }
-
+    @media only screen and (max-width: 760px) {
+      padding-top: 86px;
+      .wrapper {
+        padding: 0;
+        .page-content-wrapper {
+          display: block;
+          width: 100%;
+        }
+      }
+      .article-wrapper {
+        display: inherit;
+        padding: 0;
+        padding-bottom: 64px;
+      }
+    }
   }
   .breadcrumb-wrapper {
     padding: 0 135px;

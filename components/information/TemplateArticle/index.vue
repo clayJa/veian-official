@@ -72,12 +72,20 @@ export default {
   font-weight: 400;
   color: #474747;
   line-height: 24px;
+  @media only screen and (max-width: 760px) {
+    font-size: 14px;
+    line-height: 24px;
+  }
 }
 p {
   white-space: pre-line;
 }
 img {
   margin: 48px 0;
+  @media only screen and (max-width: 760px) {
+    margin: 48px 0;
+    width: 100%;
+  }
 }
 
 </style>

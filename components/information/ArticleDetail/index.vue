@@ -19,6 +19,7 @@
       <div class="article-footer">
         <div class="share-nav clearfix">
           <div class="share-wrapper">分享未苒网络科技至：
+            <br class="d-md-block" />
             <span>
               <i class="icon iconfont icon-icon_wechat">&#xe620;</i>
               <i class="icon iconfont icon-icon_sina_weibo">&#xe61f;</i>
@@ -247,13 +248,6 @@ export default {
     }
 
   }
-  .img-back {
-    position: absolute;
-    width: 176px;
-    height: 176px;
-    bottom: -50px;
-    left: -50px;
-  }
   .article-content {
     padding: 20px 0;
   }
@@ -294,12 +288,150 @@ export default {
         button {
           width: 170px;
           color: @fontColor3;
+          border-color: #E5E5E5;
+          &:hover {
+            color: @mainColor !important;
+          }
         }
       }
     }
   }
+  @media only screen and (max-width: 760px) {
+    position: relative;
+    .article-item{
+      height: auto;
+      padding-right: 0;
+      padding: 0 16px;
+    }
+    .text-wrapper {
+      position: relative;
+      vertical-align: top;
+      padding: 32px 39px 0 39px;
+      //&.right {
+      //  float: right;
+      //}
+      .title-desc {
+        color: #474747;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        height: 24px;
 
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
+      }
+      .title {
+        height: 28px;
+        font-size: 20px;
+        font-weight: 500;
+        color: #474747;
+        line-height: 28px;
+        text-align: center;
 
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
+
+        margin-bottom: 24px;
+      }
+      .subtitle {
+        height: 24px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #A6AAB1;
+        line-height: 24px;
+        position: relative;
+        text-align: center;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
+
+      }
+      .content {
+        color: #A6AAB1;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 400;
+        position: relative;
+        //white-space: pre-line;
+        margin: 20px 0;
+      }
+      .action {
+        position: absolute;
+        bottom: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #E5E5E5;
+        line-height: 20px;
+        .icon {
+          margin-left: 20px;
+        }
+
+        &:hover {
+          color: @mainColor;
+        }
+
+      }
+    }
+    .img-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      img {
+        object-fit: cover;
+        border-radius: 16px;
+
+      }
+
+    }
+    .article-content {
+      padding: 20px 0;
+    }
+    .article-footer {
+
+      .share-nav {
+        padding: 36px 0;
+        .share-wrapper {
+          float: none;
+          font-size: 16px;
+          line-height: 30px;
+        }
+        span {
+          display: inline-block;
+          margin-top: 18px;
+        }
+        .icon {
+          margin-left: 0;
+          margin-right: 14px;
+          font-size: 30px;
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+      .back-nav {
+        margin-top: 12px;
+        .other-article {
+          float: none;
+          .other-title {
+            line-height: 24px;
+          }
+        }
+        .action {
+          float: none;
+          button {
+            width: 170px;
+            height: 48px;
+            border-radius: 24px;
+            margin-top: 32px;
+            color: @fontColor3;
+          }
+        }
+      }
+    }
+  }
 }
 
 

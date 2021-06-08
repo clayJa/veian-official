@@ -11,7 +11,7 @@
             <li class="active"><a>正文</a></li>
           </ol>
           <Divider />
-          <div class="page-content-wrapper">
+          <div class="page-content-wrapper clearfix">
           <div class="article-wrapper">
             <ArticleDetail :data="articleData" />
           </div>
@@ -242,15 +242,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .secondary-block {
-    background: @white;
-    position: relative;
-    .wrapper {
-      padding: 135px 0;
-    }
-
-
-  }
   .third-block {
     //background: @white;
     position: relative;
@@ -272,6 +263,28 @@ export default {
       .card-item {
         &+.card-item {
           margin-top: 32px;
+        }
+      }
+    }
+    @media only screen and (max-width: 760px) {
+      .wrapper {
+        padding: 0;
+        padding-top: 86px;
+        .page-content-wrapper {
+          display: block;
+          width: 100%;
+        }
+      }
+      .article-wrapper {
+        display: inherit;
+      }
+      .card-wrapper {
+        display: block;
+        padding: 64px 16px 96px 16px;
+        .card-item {
+          &+.card-item {
+            margin-top: 32px;
+          }
         }
       }
     }

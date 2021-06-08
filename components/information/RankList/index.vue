@@ -76,6 +76,21 @@ export default {
       text-overflow: ellipsis;
     }
   }
+  @media only screen and (max-width: 760px) {
+    width: 100%;
+    .card-title {
+      font-size: 24px;
+      line-height: 33px
+    }
+    .card-item {
+      height: 45px;
+      line-height: 45px;
+      border-bottom: 1px solid #E5E5E5;
+      .text {
+        font-size: 14px;
+      }
+    }
+  }
 }
 
 

@@ -224,6 +224,7 @@ a {
       .logo {
         margin-left: 16px;
         margin-top: 16px;
+        margin-bottom: 16px;
         float: left;
       }
       .menu {

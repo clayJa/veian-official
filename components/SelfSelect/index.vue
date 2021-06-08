@@ -92,10 +92,12 @@ export default {
     color: #03101F;
     line-height: 17px;
     cursor: pointer;
+    min-width: fit-content;
+    white-space: nowrap;
     i {
       position: absolute;
       color: #03101F;
-      right: 18px;
+      right: 0;
       top: 50%;
       font-size: 12px;
       transform: translateY(-50%) scale(0.5) rotate(-180deg);
@@ -106,12 +108,12 @@ export default {
     padding-top: 14px;
     position: absolute;
     top: 100%;
-    left: 0;
     right: 0;
     background: #FFFFFF;
     box-shadow: 0px 2px 6px 0px rgba(71, 71, 71, 0.4);
     border: 1px solid #E5E5E5;
     transform: translateY(4px);
+    min-width: fit-content;
     .select-item {
       position: relative;
       cursor: pointer;
@@ -123,6 +125,8 @@ export default {
       color: #03101F;
       line-height: 17px;
       margin-bottom: 18px;
+      white-space: nowrap;
+      min-width: fit-content;
       &.active i,&:hover i{
         visibility: visible;
       }
@@ -134,6 +138,33 @@ export default {
           top: 50%;
           font-size: 12px;
           transform: translateY(-50%);
+      }
+    }
+  }
+  @media only screen and (max-width: 760px) {
+    .input-wrapper {
+      padding: 8px 18px;
+      font-size: 12px;
+      line-height: 17px;
+      i {
+        font-size: 12px;
+      }
+    }
+    .select-options {
+      padding-top: 14px;
+      box-shadow: 0px 2px 6px 0px rgba(71, 71, 71, 0.4);
+      border: 1px solid #E5E5E5;
+      transform: translateY(4px);
+      .select-item {
+        padding-left: 48px;
+        padding-right: 20px;
+        font-size: 12px;
+        line-height: 17px;
+        margin-bottom: 18px;
+        i {
+            left: 16px;
+            font-size: 12px;
+        }
       }
     }
   }

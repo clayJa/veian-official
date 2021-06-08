@@ -35,17 +35,17 @@
                 </div>
               </div>
             </div>
+            <div class="pagination-nav">
+              <Pagination
+                  :pageSize="pageSize"
+                  :total="total"
+                  @onchange="changePage"
+              />
+            </div>
           </div>
           <div class="card-wrapper">
             <InfoCard title="热门资讯"  :data="hotInfoList" path="/information/detail" />
           </div>
-          </div>
-          <div class="pagination-nav">
-            <Pagination
-                :pageSize="pageSize"
-                :total="total"
-                @onchange="changePage"
-            />
           </div>
         </div>
       </div>
@@ -261,6 +261,31 @@ export default {
       }
 
     }
+    @media only screen and (max-width: 760px) {
+      height: 600px;
+      .wrapper {
+        padding: 160px 16px;
+        .text-wrapper {
+          margin-bottom: 0px;
+          .title-desc {
+            font-size: 14px;
+            line-height: 32px;
+            letter-spacing: 0px;
+          }
+          .title {
+            font-size: 40px;
+            margin: 24px 0;
+            line-height: 56px;
+          }
+          .subtitle {
+            font-size: 24px;
+            line-height: 32px;
+            height: 32px;
+          }
+        }
+
+      }
+    }
   }
 
   .secondary-block {
@@ -269,8 +294,6 @@ export default {
     .wrapper {
       padding: 135px 0;
     }
-
-
   }
   .third-block {
     background: @white2;
@@ -337,6 +360,60 @@ export default {
     .card-wrapper {
       display: table-cell;
       vertical-align: top;
+    }
+    @media only screen and (max-width: 760px) {
+      .wrapper {
+        padding: 96px 16px 48px 16px;
+        .page-content-wrapper {
+          display: block;
+
+        }
+      }
+
+      .list-nav {
+        display: block;
+        // vertical-align: top;
+        padding-right: 0;
+        .list-item {
+          border-radius: 16px;
+          border: 1px solid #E5E5E5;
+          background: #FFFFFF;
+
+          &+.list-item {
+            margin-top: 32px;
+          }
+          .item-title {
+            margin-bottom: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            .title-text {
+              float: left;
+              height: 24px;
+              font-size: 18px;
+              font-weight: 500;
+              line-height: 24px;
+            }
+            .extra {
+              float: right;
+              font-size: 16px;
+              font-weight: 400;
+              color: #474747;
+            }
+          }
+          .item-content {
+            font-size: 14px;
+            font-weight: 400;
+            color: #A6AAB1;
+            line-height: 24px;
+            text-overflow:ellipsis;
+          }
+        }
+
+      }
+      .card-wrapper {
+        display: block;
+      }
     }
   }
   .tab-wrapper {
@@ -436,11 +513,85 @@ export default {
       bottom: -50px;
       left: -50px;
     }
+    @media only screen and (max-width: 760px) {
+      position: relative;
+      .box-item{
+        height: auto;
+        display: block;
+      }
+      .text-wrapper {
+        position: relative;
+        display: block;
+        padding: 32px 32px 20px 32px;
+        .title-desc {
+          color: #333;
+          font-size: 16px;
+          line-height: 24px;
+          height: 24px;
+        }
+        .title {
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 24px;
+          height: 24px;
+          margin: 12px 0;
 
+        }
+        .subtitle {
+          color: #A6AAB1;
+          font-size: 16px;
+          line-height: 32px;
+          font-weight: 400;
+          position: relative;
+        }
+        .content {
+          font-size: 14px;
+          line-height: 24px;
+          padding-bottom: 20px;
+        }
+        .action {
+          position: absolute;
+          bottom: 20px;
+          font-size: 14px;
+          font-weight: 500;
+          color: #E5E5E5;
+          line-height: 20px;
+          .icon {
+            margin-left: 20px;
+            width: 16px;
+          }
+          &:hover {
+            color: @mainColor;
+          }
+        }
+      }
+      .img-wrapper {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        img {
+          object-fit: cover;
+          border-radius: 16px;
+        }
+
+      }
+      .img-back {
+        position: absolute;
+        width: 176px;
+        height: 176px;
+        bottom: -50px;
+        left: -50px;
+      }
+    }
   }
   .pagination-nav {
     text-align: center;
     margin-top: 28px;
+    @media only screen and (max-width: 760px) {
+      margin-top: 48px;
+      margin-bottom: 48px;
+    }
   }
   img {
     width: 100%;
