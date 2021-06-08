@@ -3,15 +3,15 @@
     <Header />
     <div>
       <div class="banner" :style="{background: `url('${bannerImg}')  no-repeat center center`}">
-        <div class="wrapper clearfix">
+        <div class="wrapper clearfix d-md-none">
           <div class="main-data">
             <div class="text-wrapper">
               <div class="title">公司概况</div>
               <div class="subtitle">截止现在</div>
               <div class="subtitle">未苒网络科技概况</div>
             </div>
-            <div class="data-intro row row-no-gutters">
-              <div class="data-item col-md-4">
+            <div class="data-intro row row-no-gutters clearfix">
+              <div class="data-item">
                 <div class="number-wrapper"><RollNum :number="26.4"/> <span class="unit">%</span></div>
                 <div class="desc">
                   <span>
@@ -21,7 +21,7 @@
                 </div>
 
               </div>
-              <div class="data-item col-md-4">
+              <div class="data-item">
                 <div class="number-wrapper"><RollNum :number="59.1"/><span class="unit">%</span></div>
                 <div class="desc">
                   <span>
@@ -30,7 +30,7 @@
                 </div>
 
               </div>
-              <div class="data-item col-md-4">
+              <div class="data-item">
                 <div class="number-wrapper"><RollNum :number="31.9"/><span class="unit">%</span></div>
                 <div class="desc">
                   <span>
@@ -44,10 +44,53 @@
           <div class="clients-serve">
             <div class="title">服务客户</div>
             <div class="number"><RollNum :number="5000"/>+</div>
-            <div class="unit">clint</div>
+            <div class="unit">client</div>
 
           </div>
 
+        </div>
+        <div class="wrapper clearfix d-md-block d-none">
+          <div class="main-data">
+            <div class="text-wrapper">
+              <div class="title">公司概况</div>
+              <div class="subtitle">截止现在</div>
+              <div class="subtitle">未苒网络科技概况</div>
+            </div>
+            <div class="clients-serve">
+              <div class="title">服务客户</div>
+              <div class="number"><RollNum :number="5000"/>+</div>
+              <div class="unit">client</div>
+            </div>
+            <div class="data-intro clearfix">
+              <div class="data-item">
+                <div class="number-wrapper"><RollNum :number="26.4"/> <span class="unit">%</span></div>
+                <div class="desc">
+                  <span>
+                    <img class="icon" src="@/assets/images/about/refresh-ccw.png" alt="">
+                    数字增长
+                  </span>
+                </div>
+
+              </div>
+              <div class="data-item">
+                <div class="number-wrapper"><RollNum :number="59.1"/><span class="unit">%</span></div>
+                <div class="desc">
+                  <span>
+                    <img class="icon" src="@/assets/images/about/trending-up.png" alt="">
+                    互动增长</span>
+                </div>
+
+              </div>
+              <div class="data-item">
+                <div class="number-wrapper"><RollNum :number="31.9"/><span class="unit">%</span></div>
+                <div class="desc">
+                  <span>
+                    <img class="icon" src="@/assets/images/about/bar-chart.png" alt="">
+                    数据沉淀</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="secondary-block ">
@@ -89,14 +132,14 @@
               <div class="subtitle">服务的是你，也是我自己</div>
             </div>
             <div class="data-intro row row-no-gutters">
-              <div class="data-item col-md-4">
+              <div class="data-item col-md-4 col-xs-6">
                 <div class="number-wrapper"><RollNum :number="80"/><span class="unit">%</span></div>
                 <div class="desc">
                   <span>执行团队比例</span>
                 </div>
 
               </div>
-              <div class="data-item col-md-4">
+              <div class="data-item col-md-4 col-xs-6">
                 <div class="number-wrapper"><RollNum :number="1000"/>+</div>
                 <div class="desc">
                   <span>经典客户案例</span>
@@ -273,6 +316,7 @@ export default {
         //&+.data-item {
         //  margin-left: 36px;
         //}
+        float: left;
         padding-right: 36px;
 
         .number-wrapper {
@@ -300,6 +344,98 @@ export default {
           }
         }
 
+      }
+    }
+    @media only screen and (max-width: 760px) {
+      height: 600px;
+      color: @white;
+      padding: 109px 16px;
+      .main-data {
+        float: none;
+        padding: 0;
+      }
+      .clients-serve {
+        float: none;
+        width: 120px;
+        height: 120px;
+        border-radius: 4px;
+        border: 2px solid #FFFFFF;
+        padding-top: 20px;
+        padding-left: 20px;
+        .title {
+          height: 18px;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 18px;
+          margin-bottom: 4px;
+        }
+        .number {
+          font-family: @MontserratFont;
+          height: 32px;
+          font-size: 30px;
+          font-weight: 800;
+          line-height: 36px;
+          margin-bottom: 0px;
+        }
+        .unit {
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 20px;
+          text-transform: uppercase;
+        }
+
+      }
+
+      .text-wrapper {
+        margin-bottom: 24px;
+        .title {
+          margin-bottom: 24px;
+          font-size: 40px;
+          line-height: 56px;
+          height: 56px;
+        }
+        .subtitle {
+          font-size: 18px;
+          line-height: 32px;
+          height: 32px;
+        }
+      }
+      .data-intro {
+        font-weight: 400;
+        width: 100%;
+        margin-top: 24px;
+        text-align: center;
+        .data-item {
+          display: inline-block;
+          padding-right: 30px;
+          &:last-child {
+            padding-right: 0;
+          }
+          .number-wrapper {
+            font-family: @DINCondensedFont;
+            font-size: 40px;
+            height: 40px;
+            line-height: 40px;
+            letter-spacing: 1px;
+            margin-bottom: 13px;
+            .unit {
+              font-size: 24px;
+              letter-spacing: 1px;
+            }
+          }
+          .desc {
+            height: 20px;
+            font-size: 14px;
+            line-height: 20px;
+            .icon {
+              width: 22px;
+              height: 22px;
+              object-fit: contain;
+              vertical-align: middle;
+            }
+          }
+
+        }
       }
     }
   }
@@ -404,6 +540,78 @@ export default {
         }
       }
     }
+    @media only screen and (max-width: 760px) {
+        background: @white;
+        padding: 136px 16px 0 16px;
+        position: relative;
+        .tab-wrapper {
+          position: absolute;
+          top: -40px;
+          left: 16px;
+          right: 0;
+        }
+        .media-nav {
+          .media-wrapper {
+            //width: 618px;
+            height: 528px;
+            position: relative;
+            border-radius: 15px;
+            .media-back {
+              border-radius: 15px;
+            }
+            .img-back {
+              width: 176px;
+              height: 176px;
+              bottom: -48px;
+              left: 0;
+            }
+            .play-btn {
+              position: absolute;
+              width: 112px;
+              height: 112px;
+              top: 50%;
+              left: 50%;
+              margin-left: -56px;
+              margin-top: -56px;
+            }
+            .video {
+              border-radius: 15px;
+            }
+          }
+          .media-desc {
+            padding: 112px 0 32px 0px;
+            .text-wrapper {
+              margin-bottom: 38px;
+
+              .title-desc {
+                font-size: 18px;
+                line-height: 32px;
+                letter-spacing: 2px;
+              }
+              .title {
+                font-size: 40px;
+                margin: 24px 0;
+                line-height: 56px;
+                height: 56px;
+              }
+              .subtitle {
+                font-size: 16px;
+                line-height: 32px;
+                height: 32px;
+              }
+              .content {
+                color: @fontColor3;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 32px;
+                &+.content {
+                  margin-top: 32px;
+                }
+              }
+            }
+          }
+        }
+    }
   }
   .third-block {
     padding: 115px 135px;
@@ -507,7 +715,72 @@ export default {
       }
     }
 
+    @media only screen and (max-width: 760px) {
+      padding: 96 16px;
+      .main-data {
+        .text-wrapper {
+          margin-bottom: 32px;
+          .title-desc {
+            font-size: 18px;
+            line-height: 32px;
+            letter-spacing: 2px;
+          }
+          .title {
+            font-size: 40px;
+            font-weight: 400;
+            margin: 24px 0;
+            line-height: 56px;
+            height: 56px;
+          }
+          .subtitle {
+            font-size: 16px;
+            line-height: 32px;
+            height: 32px;
+            position: relative;
+          }
+        }
+        .data-intro {
 
+          .data-item {
+            padding-right: 36px;
+            &:last-child {
+              padding-right: 0;
+            }
+            .number-wrapper {
+              font-family: @DINCondensedFont;
+              font-size: 55px;
+              height: 60px;
+              line-height: 60px;
+              letter-spacing: 2px;
+              margin-bottom: 0px;
+              .unit {
+                font-size: 48px;
+                letter-spacing: 2px;
+              }
+            }
+            .desc {
+              height: 20px;
+              font-size: 14px;
+              font-weight: 400;
+              color: @fontColor2;
+              line-height: 20px;
+            }
+
+          }
+        }
+
+      }
+      .logo-wrapper {
+        .logo-item {
+          &:first-child {
+            margin-top: 27px;
+          }
+          &+.logo-item {
+            margin-top: 47px;
+          }
+        }
+      }
+    }
   }
   .four-block {
     height: 700px;
@@ -541,7 +814,34 @@ export default {
         margin-top: 14px;
       }
     }
-
+    @media only screen and (max-width: 760px) {
+      height: 700px;
+      margin-bottom: 48px;
+      .text-wrapper {
+        padding-top: 198px;
+        width: 100%;
+        .title-desc {
+          font-size: 18px;
+          line-height: 32px;
+          letter-spacing: 2px;
+        }
+        .title {
+          font-size: 40px;
+          margin: 24px 0;
+          line-height: 56px;
+          height: 56px;
+        }
+        .content {
+          font-size: 16px;
+          line-height: 32px;
+          padding: 0 16px;
+        }
+        .action {
+          margin-top: 24px;
+          text-align: center;
+        }
+      }
+    }
   }
   .five-block {
     height: 700px;
@@ -580,7 +880,33 @@ export default {
       }
 
     }
-
+    @media only screen and (max-width: 760px) {
+      height: 700px;
+      padding: 0 16px;
+      .text-wrapper {
+        margin: 0 auto;
+        padding-top: 202px;
+        width: 100%;
+        .title-desc {
+          font-size: 18px;
+          line-height: 32px;
+          letter-spacing: 2px;
+        }
+        .title {
+          font-size: 40px;
+          margin: 24px 0;
+          line-height: 56px;
+          height: 56px;
+        }
+        .content {
+          font-size: 16px;
+          line-height: 32px;
+          &+.content {
+            margin-top: 32px;
+          }
+        }
+      }
+    }
   }
 
 
@@ -601,6 +927,10 @@ export default {
 
     .icon {
       margin-right: 12px;
+    }
+    @media only screen and (max-width: 760px) {
+      border-radius: 24px;
+      padding: 12px 48px;
     }
   }
 

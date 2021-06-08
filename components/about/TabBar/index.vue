@@ -1,9 +1,9 @@
 <template>
   <div class="tab-bar-nav">
-    <template class="tab-item" v-for="(item, i) in menus" >
+    <div class="tab-item" v-for="(item, i) in menus" :key="i">
       <a :class="`tab-text ${activePath === item.path ? 'active' : ''}`" :href="item.path" :key="item.name"  >{{item.name}}</a>
       <Divider v-if="i !== menus.length - 1" class="divider" type="vertical" :key="i" />
-    </template>
+    </div>
 
   </div>
 
@@ -73,12 +73,34 @@ export default {
   background: #FFFFFF;
   box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
+  white-space: nowrap;
   .divider {
     margin: 0 12px;
   }
   .tab-text {
     padding: 10px 12px;
   }
+  .tab-item {
+    display: inline-block;
+  }
+  @media only screen and (max-width: 760px) {
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    padding: 0 16px;
+    background: #FFFFFF;
+    box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    overflow: scroll;
+    .divider {
+      margin: 0 12px;
+    }
+    .tab-text {
+      padding: 10px 12px;
+    }
+}
 }
 a {
   background-color: transparent;
