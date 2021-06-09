@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed-bar d-md-none">
+  <div :class="['fixed-bar', scroll ? '' : 'd-md-none']">
     <div class="consult">
       <img src="@/static/icon_consult.png" alt="">
     </div>
@@ -14,6 +14,11 @@
 <script lang="ts">
 export default {
   name: 'FixedBar',
+  data() {
+    return {
+      scroll: false
+    }
+  },
   methods: {
     scrollToTop () {
       let sTop = document.documentElement.scrollTop || document.body.scrollTop
@@ -21,7 +26,19 @@ export default {
           window.requestAnimationFrame(this.scrollToTop)
           window.scrollTo(0, sTop - sTop / 8)
       }
+    },
+    getScrollStatus() {
+      const doc = document.documentElement
+      const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+      if (top > 600) {
+        this.scroll = true
+      } else if (top < 600) {
+        this.scroll = false
+      }
     }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.getScrollStatus)
   }
 }
 </script>
@@ -46,6 +63,23 @@ export default {
   }
   img {
     width: 100%;
+  }
+  @media only screen and (max-width: 760px) {
+    width: 64px;
+    height: 192px;
+    box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 16px 0px 0px 16px;
+    padding: 26px 16px;
+    z-index: 100;
+    .consult,.wechat {
+      margin-bottom: 24px;
+    }
+    .consult,.wechat, .top {
+      cursor: pointer;
+    }
+    img {
+      width: 100%;
+    }
   }
 }
 

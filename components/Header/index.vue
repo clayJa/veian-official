@@ -1,5 +1,5 @@
 <template>
-  <div class="header-nav">
+  <div :class="['header-nav', scroll ? 'scroll' : 'static']">
     <div class="header  d-md-none">
       <div class="container header-wrapper">
         <div class="logo" @click="$router.push('/')"></div>
@@ -100,6 +100,7 @@ export default {
       modalShow: false,
       showMobileMenu: false,
       activePath: '',
+      scroll: false,
       menu: [
         { name: '首页', path: '/' },
         { name: '简单', path: '/uncomplicated' },
@@ -178,10 +179,20 @@ export default {
       } else if(item.subMenu && item.subMenu.length > 0) {
         return item.subMenu[0].path
       }
+    },
+    getScrollStatus() {
+      const doc = document.documentElement
+      const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+      if (top > 60) {
+        this.scroll = true
+      } else if (top < 60) {
+        this.scroll = false
+      }
     }
   },
   mounted() {
     console.log(this.$nuxt.$route.path)
+     window.addEventListener('scroll', this.getScrollStatus)
   },
   components: {
   }
@@ -195,7 +206,7 @@ export default {
   background-image: url('~/assets/images/logo.png');
   background-size: 100% 100%;
   @media only screen and (max-width: 760px) {
-    background-image: url('~/assets/images/logo_white.png') !important;
+    background-image: url('~/assets/images/logo_white.png');
     width: 175px;
     height: 54px;
   }
@@ -216,10 +227,20 @@ a {
   position: relative;
   height: @headerHeight;
   @media only screen and (max-width: 760px) {
+      &.scroll {
+        background-color: #1A82FF;
+        .mobile-header .logo {
+          background-image: url('~/assets/images/logo_white.png') !important;
+        }
+        .mobile-header .menu {
+          background-image: url('~/assets/images/menu_icon.png') !important;
+        }
+      }
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
+      height: 86px;
       z-index: 200;
       .logo {
         margin-left: 16px;

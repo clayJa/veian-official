@@ -15,11 +15,6 @@
       </div>
       <div class="info">
         <div class="contact clearfix">
-          <div class="qrcode">
-            <img src="@/static/qrcode_dark.png" alt="">
-            <p>扫一扫</p>
-            <p>添加客服微信</p>
-          </div>
           <div class="phone">
             <div class="text">立即与项目经理通话</div>
             <div class="phone-number">151 6828 8480</div>
@@ -32,6 +27,11 @@
               ></b-form-input>
               <PillButton class="consulting">预约咨询</PillButton>
             </div>
+          </div>
+          <div class="qrcode">
+            <img src="@/static/qrcode_dark.png" alt="">
+            <p>扫一扫</p>
+            <p>添加客服微信</p>
           </div>
         </div>
         <PillButton class="bottom-button">一对一线上咨询，24h回复</PillButton>
@@ -120,9 +120,30 @@ export default {
       height: 24px;
     }
   }
+  @media only screen and (max-width: 760px) {
+    .content {
+      padding: 24px;
+      width: calc(100% - 32px);
+      height: auto;
+      background: #FFFFFF;
+      border-radius: 12px;
+      .title {
+        float: left;
+        font-size: 24px;
+        line-height: 33px;
+      }
+      .close {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
 }
 .info {
   margin-top: 32px;
+  @media only screen and (max-width: 760px) {
+    margin-top: 30px;
+  }
 }
 .contact {
   .qrcode {
@@ -181,6 +202,58 @@ export default {
     font-weight: 400;
     color: #FFFFFF;
     line-height: 22px;
+  }
+  @media only screen and (max-width: 760px) {
+    .qrcode {
+      float: none;
+      padding-right: 0;
+      border-right: none;
+      font-size: 16px;
+      line-height: 22px;
+      p {
+        margin-bottom: 0;
+      }
+      img {
+        width: 120px;
+        margin-bottom: 18px;
+      }
+    }
+    .phone {
+      padding-left: 0;
+      .text {
+        font-size: 16px;
+        line-height: 32px;
+      }
+      .phone-number {
+        font-size: 56px;
+        line-height: 42px;
+        margin-top: 8px;
+      }
+    }
+    .input-wrapper {
+      margin-top: 12px;
+      position: relative;
+      margin-bottom: 32px;
+    }
+    #model-input {
+      vertical-align: middle;
+      float: left;
+      width: 100%;
+      height: 48px;
+      border-radius: 24px;
+      border: 1px solid #E5E5E5;
+      box-shadow: none !important;
+      margin-right: 10px;
+      padding-right: 120px;
+    }
+    .consulting {
+      padding: 14px 28px;
+      font-size: 16px;
+      line-height: 22px;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
 }
 .bottom-button {

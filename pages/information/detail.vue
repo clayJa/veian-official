@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detail-wrapper">
     <Header />
     <div>
       <div class="third-block">
@@ -155,60 +155,6 @@ export default {
         title: '大数据环境下，网站建设更需创新学习能力',
         updateAt: '2020-09-17',
         source: '鼎易科技',
-  //       content: `
-  // <p style="text-align: center;">
-  //   <img title="TinyMCE Logo" src="//www.tiny.cloud/images/glyph-tinymce@2x.png" alt="TinyMCE Logo" width="110" height="97" />
-  // </p>
-  //
-  // <h2 style="text-align: center;">Welcome to the TinyMCE editor demo!</h2>
-  //
-  // <h2>Got questions or need help?</h2>
-  //
-  // <ul>
-  //   <li>Our <a href="https://www.tiny.cloud/docs/">documentation</a> is a great resource for learning how to configure TinyMCE.</li>
-  //   <li>Have a specific question? Try the <a href="https://stackoverflow.com/questions/tagged/tinymce" target="_blank" rel="noopener"><code>tinymce</code> tag at Stack Overflow</a>.</li>
-  //   <li>We also offer enterprise grade support as part of <a href="https://www.tiny.cloud/pricing">TinyMCE premium plans</a>.</li>
-  // </ul>
-  //
-  // <h2>A simple table to play with</h2>
-  //
-  // <table style="border-collapse: collapse; width: 100%;" border="1">
-  //   <thead>
-  //     <tr>
-  //       <th>Product</th>
-  //       <th>Cost</th>
-  //       <th>Really?</th>
-  //     </tr>
-  //   </thead>
-  //   <tbody>
-  //     <tr>
-  //       <td>TinyMCE</td>
-  //       <td>Free</td>
-  //       <td>YES!</td>
-  //     </tr>
-  //     <tr>
-  //       <td>Plupload</td>
-  //       <td>Free</td>
-  //       <td>YES!</td>
-  //     </tr>
-  //   </tbody>
-  // </table>
-  //
-  // <h2>Found a bug?</h2>
-  //
-  // <p>
-  //   If you think you have found a bug please create an issue on the <a href="https://github.com/tinymce/tinymce/issues">GitHub repo</a> to report it to the developers.
-  // </p>
-  //
-  // <h2>Finally ...</h2>
-  //
-  // <p>
-  //   Don't forget to check out our other product <a href="http://www.plupload.com" target="_blank">Plupload</a>, your ultimate upload solution featuring HTML5 upload support.
-  // </p>
-  // <p>
-  //   Thanks for supporting TinyMCE! We hope it helps you and your users create great content.<br>All the best from the TinyMCE team.
-  // </p>`,
-
       }
     },
     requestHotInfo() {
@@ -242,6 +188,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  .detail-wrapper {
+    @media only screen and (max-width: 760px) {
+      /deep/ .header-nav {
+        .mobile-header {
+          .logo {
+            background-image: url('@/assets/images/logo.png');
+          }
+          .menu {
+            background-image: url('@/assets/images/menu_icon_dark.png');
+          }
+        }
+      }
+    }
+  }
   .third-block {
     //background: @white;
     position: relative;
@@ -307,6 +267,16 @@ export default {
     .icon {
       color: @mainColor;
       margin-right: 10px;
+    }
+    @media only screen and (max-width: 760px) {
+      height: 63px;
+      line-height: 63px;
+      a {
+        font-size: 13px;
+      }
+      .icon {
+        margin-right: 10px;
+      }
     }
   }
 

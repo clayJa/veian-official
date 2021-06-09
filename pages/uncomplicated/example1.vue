@@ -1,6 +1,6 @@
 <template>
   <div class="simple-example1">
-    <Header :class="scroll ? '' : 'static'"></Header>
+    <Header></Header>
     <div class="banner">
       <div class="content">
         <img src="@/static/simple/example1_bannner.jpg" alt="">
@@ -57,18 +57,8 @@ export default {
   methods: {
     toPath() {
     },
-    getScrollStatus() {
-      const doc = document.documentElement
-      const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
-      if (top > 100) {
-        this.scroll = true
-      } else if (top < 100) {
-        this.scroll = false
-      }
-    }
   },
   mounted() {
-    window.addEventListener('scroll', this.getScrollStatus)
   },
   components: {
     Header,

@@ -46,6 +46,16 @@ export default {
     color: @mainColor;
     margin-right: 10px;
   }
+  @media only screen and (max-width: 760px) {
+    height: 63px;
+    line-height: 63px;
+    a {
+      font-size: 13px;
+    }
+    .icon {
+      margin-right: 10px;
+    }
+  }
 }
 
 
