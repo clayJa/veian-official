@@ -2,7 +2,7 @@
   <div>
     <Header />
     <div>
-      <div class="banner" :style="{background: `url('${bannerImg}') no-repeat center/100%`}">
+      <div class="banner" :style="{background: `url('${bannerImg}')`}">
         <div class="wrapper">
           <div class="text-wrapper">
             <div class="title-desc">Welcome to weiran technology</div>
@@ -30,12 +30,13 @@
                     </div>
                   </div>
                 </div>
-                <div class="list-item" v-for="item in infoList" :key="item.id">
+                <div class="list-item clearfix" v-for="item in infoList" :key="item.id" @click="toDetail(item.id)">
                   <div class="item-title-wrapper clearfix">
                     <div class="item-title">{{item.title}}</div>
-                    <PillButton class="action-button">查看</PillButton>
+                    <PillButton class="action-button d-md-none">查看</PillButton>
                   </div>
                   <div class="item-content">{{item.content}}</div>
+                  <PillButton class="action-button d-md-block d-none">查看</PillButton>
                 </div>
                 <!-- <div class="pagination-nav">
                   <Pagination
@@ -279,6 +280,32 @@ export default {
         }
       }
     }
+    @media only screen and (max-width: 760px) {
+      height: 600px;
+      background-size: cover;
+      .wrapper {
+        padding: 160px 16px;
+        .text-wrapper {
+          margin-bottom: 0px;
+          .title-desc {
+            font-size: 14px;
+            line-height: 32px;
+            letter-spacing: 0px;
+          }
+          .title {
+            font-size: 40px;
+            margin: 24px 0;
+            line-height: 56px;
+          }
+          .subtitle {
+            font-size: 24px;
+            line-height: 32px;
+            height: 32px;
+          }
+        }
+
+      }
+    }
   }
   .third-block {
     background: #fff;
@@ -391,47 +418,115 @@ export default {
         margin-top: 60px;
       }
     }
+    @media only screen and (max-width: 760px) {
+      .wrapper {
+        padding: 96px 16px;
+        padding-top: 0;
+      }
+      .title {
+        font-size: 32px;
+        line-height: 45px;
+        padding-bottom: 23px;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #E5E5E5;
+      }
+      .list-nav {
+        float: none;
+        .search-wrapper {
+          #help-search {
+            height: 60px;
+            background: #FFFFFF;
+            border-radius: 4px;
+            border: 1px solid #E5E5E5;
+          }
+          .total-wrapper {
+            padding: 30px 0;
+            border-bottom: 1px solid #E5E5E5;
+            .total {
+              float: left;
+              font-size: 16px;
+              line-height: 22px
+            }
+            .select {
+              position: relative;
+              float: right;
+              width: 106px;
+              &::after {
+                content: '筛选：';
+                font-size: 12px;
+                line-height: 17px;
+              }
+            }
+            .label {
+              display: inline-block;
+              font-size: 12px;
+              font-family: PingFangSC-Regular, PingFang SC;
+              font-weight: 400;
+              color: #03101F;
+              line-height: 17px;
+              vertical-align: middle;
+            }
+          }
+        }
+        .list-item {
+          padding-top: 28px;
+          padding-bottom: 20px;
+          width: 100%;
+          border-bottom: 1px solid #E5E5E5;
+          .item-title {
+            float: left;
+            max-width: 100%;
+            max-height: 56px;
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            font-size: 20px;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #474747;
+            line-height: 28px;
+            margin-bottom: 20px;
+          }
+          .action-button {
+            padding: 4px 20px;
+            font-size: 14px;
+            line-height: 20px;
+            float: right;
+          }
+          .item-content {
+            font-size: 16px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #989CA2;
+            line-height: 30px;
+            max-height: 120px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            margin-bottom: 12px;
+          }
+        }
+
+      }
+      .card-wrapper {
+        float: none;
+        margin-top: 60px;
+        .mt60 {
+          margin-top: 60px;
+        }
+      }
+    }
   }
   .pagination-nav {
     text-align: right;
     margin-top: 40px;
-  }
-  .tag-wrapper {
-    .tag-title {
-      font-size: 24px;
-      font-family: PingFangSC-Regular, PingFang SC;
-      font-weight: 400;
-      color: #03101F;
-      line-height: 33px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #E5E5E5;
-    }
-    .tag-list {
-      padding-top: 30px;
-      max-width: 350px;
-      .tag {
-        cursor: pointer;
-        float: left;
-        padding: 8px 24px;
-        font-size: 14px;
-        font-family: PingFangSC-Regular, PingFang SC;
-        font-weight: 400;
-        color: #A6AAB1;
-        line-height: 20px;
-        margin-right: 12px;
-        margin-bottom: 16px;
-        border-radius: 4px;
-        border: 1px solid #E5E5E5;
-        max-width: 186px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow:ellipsis;
-        &:hover {
-          background: #FF424C;
-          border-color: #FF424C;
-          color: #fff;
-        }
-      }
+    @media only screen and (max-width: 760px) {
+      text-align: left;
+      margin-top: 40px;
+      margin-bottom: 64px;
     }
   }
   img {
