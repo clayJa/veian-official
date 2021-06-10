@@ -68,3 +68,30 @@ a {
     transform: translateX(-10px);
   }
 }
+@keyframes moveCircle {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+@keyframes moveItemCircle {
+  0% {
+    top: calc(24px - 7.5px);
+  }
+  100% {
+    top: calc(100% + 60px);
+  }
+}
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

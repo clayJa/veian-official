@@ -27,7 +27,9 @@
 <!--            <img class="img-back" src="@/assets/images/about/dots_group.png" alt="">-->
             <li class="timeline-item first">
               <div class="tail small"></div>
-              <div class="head black">
+              <div class="head black"
+                  :style="{animation: activeIndex === -1 ? `moveCircle 1.5s linear` : '', zIndex:  activeIndex === -1 ? 99 : ''}"
+                  @animationend.stop="handleAnimationEnd(-1)">
                 <div class="dot">
                 </div>
               </div>
@@ -35,11 +37,28 @@
             <li :class="`timeline-item ${i % 2 === 0 ? 'left': 'right'}`"
                  v-for="(item, i) in developList" :key="i">
               <div class="tail"></div>
-              <div class="head blue">
-                <div class="dot"></div>
+              <div class="head blue"
+                :style="{
+                  animation: activeIndex === i ? `scaleAnimation 3s linear` : '',
+                }"
+              >
               </div>
+              <div class="dot"
+                :style="{
+                  animation: activeIndex === i ? `moveCircle 3s linear` : '',
+                  backgroundColor: activeIndex === i ? '#474747' : '#fff',
+                  zIndex: activeIndex === i ? 99 : '',
+                }"
+                @animationend.stop="handleAnimationEnd(i)"
+              ></div>
+              <div class="dot-copy"></div>
               <div class="content">
-                <div class="show-box">
+                <div :class="['show-box', { active: activeIndex === i }]"
+                  :style="{
+                    animation: activeIndex === i ? `scaleAnimation 3s linear` : '',
+                     zIndex: activeIndex === i ? 100 : '',
+                  }"
+                >
                   <div class="box-item d-md-none">
                     <div class="img-wrapper">
                       <img class="img" :src="item.img" alt="">
@@ -94,6 +113,7 @@ export default {
     return {
       curPath: '/about/development',
       bannerImg: bannerImg,
+      activeIndex: -1,
       developList: [
         {
           img: require('@/assets/images/about/development/photo1.jpg'),
@@ -130,6 +150,10 @@ export default {
       console.log('play')
       this.isPlay = true
     },
+    handleAnimationEnd(index) {
+      console.log(index)
+      this.activeIndex = index === this.developList.length - 1 ? -1 : index + 1
+    }
   },
 
 }
@@ -311,7 +335,15 @@ export default {
           top: 10px;
         }
       }
-
+      .dot,.dot-copy {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        background-color: @white;
+        top: calc(24px - 7.5px);
+        left: calc(50% - 7.5px);
+      }
       .head {
         background-color: @blackColor2;
         //border: 2px solid transparent;
@@ -323,14 +355,6 @@ export default {
         margin-left: -22px;
 
         left: 50%;
-        .dot {
-          width: 15px;
-          height: 15px;
-          border-radius: 100%;
-          background-color: @white;
-          margin-top: calc(50% - 7.5px);
-          margin-left: calc(50% - 7.5px);
-        }
 
 
         &.blue {
@@ -420,19 +444,18 @@ export default {
             top: 10px;
           }
         }
-
+        .dot, .dot-copy {
+          width: 15px;
+          height: 15px;
+          top: calc(24px - 7.5px);
+          left: calc(24px - 7.5px);
+        }
         .head {
           border-radius: 12px;
           width: 48px;
           height: 48px;
           margin-left: -22px;
           left: 22px;
-          .dot {
-            width: 15px;
-            height: 15px;
-            margin-top: calc(50% - 7.5px);
-            margin-left: calc(50% - 7.5px);
-          }
           &.black {
             width: 15px;
             height: 15px;
@@ -476,6 +499,12 @@ export default {
   .show-box {
     position: relative;
     //width: 560px;
+    &.active {
+      background: #FFFFFF;
+      box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      border-radius: 16px;
+    }
     &+.show-box {
       margin-top: 118px;
     }
@@ -537,6 +566,14 @@ export default {
     }
     @media only screen and (max-width: 760px) {
       position: relative;
+      animation: none !important;
+      &.active {
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        border-radius: 0;
+        z-index: auto !important;
+      }
       &+.show-box {
         margin-top: 118px;
       }
@@ -600,5 +637,4 @@ export default {
     width: 100%;
     height: 100%;
   }
-
 </style>

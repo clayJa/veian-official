@@ -228,6 +228,9 @@ export default {
       a {
         color: @white;
       }
+      .nav-icon {
+        color: @white;
+      }
       &:hover {
         .nav-icon {
           color: @white2;
