@@ -2,9 +2,19 @@
   <div class="project-step">
     <img src="@/static/trust/creativity/project_step_background.jpg" alt="">
     <div class="wrapper container d-md-none">
-      <div class="item" v-for="item in list" :key="item.title">
+      <div class="item" v-for="(item,i) in list" :key="item.title">
         <div class="step">step</div>
-        <div class="title">{{ item.title }}</div>
+        <div class="title">
+          <span>{{ item.title }}</span>
+          <span class="line">
+            <div class="line-active"
+              :style="{
+                animation: activeIndex === i ? `moveLine 2s linear` : '',
+              }"
+              @animationend.stop="handleAnimationEnd(i)"
+            ></div>
+          </span>
+        </div>
         <div class="content">
           <div class="content-item" v-for="content in item.contents" :key="content">
             {{ content }}
@@ -47,6 +57,7 @@ export default {
         { title: '测试走查', contents: ['功能Bug测试','交互走查','视觉走查','产品走查','可用性测试'] },
         { title: '上线', contents: ['产品运营','用户反馈收集','用户流量统计'] },
       ],
+      activeIndex: 0,
       swiperOption: {
         loop: false,
         // autoplay: 1000,
@@ -59,6 +70,10 @@ export default {
     }
   },
   methods: {
+    handleAnimationEnd(index) {
+      // console.log(index)
+      this.activeIndex = index === this.list.length - 1 ? 0 : index + 1
+    }
   },
   components: {
   }
@@ -107,8 +122,7 @@ export default {
       font-weight: 500;
       color: #FFFFFF;
       line-height: 28px;
-      &::after {
-        content: '';
+      .line {
         display: block;
         width: 45px;
         height: 2px;
@@ -116,7 +130,26 @@ export default {
         border-radius: 1px;
         margin-top: 30px;
         margin-bottom: 24px;
+        position: relative;
       }
+      .line .line-active {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 2px;
+        background: #1A82FF;
+      }
+      // &::after {
+      //   content: '';
+      //   display: block;
+      //   width: 45px;
+      //   height: 2px;
+      //   background: #FFFFFF;
+      //   border-radius: 1px;
+      //   margin-top: 30px;
+      //   margin-bottom: 24px;
+      // }
     }
     .content {
       font-size: 16px;
