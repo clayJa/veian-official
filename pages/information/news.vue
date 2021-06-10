@@ -18,7 +18,7 @@
 
 
           <div class="list-nav">
-            <div class="list-item" v-for="item in infoList" :key="item.title">
+            <div class="list-item" v-for="item in infoList" :key="item.title" @click="toDetail(item.id)">
               <div class="show-box" >
                 <div class="box-item clearfix">
                   <div class="img-wrapper">
@@ -165,6 +165,9 @@ export default {
     this.requestHotInfo()
   },
   methods: {
+    toDetail(id) {
+      this.$router.push(`/information/detail?id=${id}`)
+    },
     requestData(params) {
       const {limit = 15, page = 1} = params
       const arr = []
@@ -174,6 +177,7 @@ export default {
 
       this.infoList = [
         {
+          id: generateId(),
           img: img,
           title: '浙江广播电台 FM 104.5《浙商读书会》司…',
           updateAt: '2020.09.17',
@@ -181,6 +185,7 @@ export default {
 
         },
         {
+          id: generateId(),
           img: img,
           title: '浙江广播电台 FM 104.5《浙商读书会》司…',
           updateAt: '2021.04.14',
@@ -188,6 +193,7 @@ export default {
 
         },
         {
+          id: generateId(),
           img: img,
           title: '大数据环境下，网站建设更需创新学习能力',
           updateAt: '2021.03.25',
@@ -313,10 +319,15 @@ export default {
       padding-right: 48px;
       .list-item {
         //padding: 40px 48px;
+        cursor: pointer;
         border-radius: 16px;
         border: 1px solid #E5E5E5;
         background: #FFFFFF;
-
+        &:hover {
+          a {
+            color: #1A82FF;
+          }
+        }
         &+.list-item {
           margin-top: 24px;
         }
