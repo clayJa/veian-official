@@ -91,6 +91,7 @@ export default {
     font-weight: 400;
     color: #03101F;
     line-height: 17px;
+     min-height: 33px;
     cursor: pointer;
     min-width: fit-content;
     white-space: nowrap;
@@ -146,6 +147,7 @@ export default {
       padding: 8px 18px;
       font-size: 12px;
       line-height: 17px;
+      min-height: 33px;
       i {
         font-size: 12px;
       }

@@ -17,7 +17,7 @@
           </div>
 
           <div class="card-wrapper">
-            <InfoCard class="card-item" title="热门资讯" :data="hotInfoList" path="/information/detail" />
+            <InfoCard class="card-item" title="推荐资讯" :data="hotInfoList" path="/information/detail" />
             <InfoCard class="card-item" title="人气排名" :data="popularityInfoList" path="/information/detail" />
           </div>
           </div>
@@ -39,7 +39,7 @@ import Pagination from '~/components/Pagination/index'
 import InfoCard from '~/components/information/InfoCard/index'
 import Divider from '@/components/Divider'
 import ArticleDetail from '@/components/information/ArticleDetail'
-import { newsDetail, newsHot } from '@/service/news'
+import { newsDetail, newsSearch } from '@/service/news'
 
 const bannerImg = require('assets/images/information/banner_back.jpg')
 
@@ -130,39 +130,37 @@ export default {
     }
   },
   created() {
-    this.requestData({limit: this.pageSize})
+    this.requestData()
     this.requestHotInfo()
     this.requestPopularityInfo()
 
   },
   methods: {
-    requestData(params) {
-      const {limit = 15, page = 1} = params
-      const arr = []
-      for (let i = 0; i < limit; i++) {
-        arr.push({})
-      }
-
-      this.articleData = {
-        next: {
-          id: 123,
-          title: '诚贺复星集团品牌官网正式上线，重塑全新品牌形象'
-        },
-        prev: {
-          id: 456,
-          title: '新鸿儒再次牵手安恒信息，为数字经济高速发展护航',
-        },
-        title: '大数据环境下，网站建设更需创新学习能力',
-        updateAt: '2020-09-17',
-        source: '鼎易科技',
-      }
+    async requestData() {
+    const query = this.$route.query
+    const res = await newsDetail({id: query.id})
+    console.log(res,'requestData')
+    this.articleData = res
+      // this.articleData = {
+      //   next: {
+      //     id: 123,
+      //     title: '诚贺复星集团品牌官网正式上线，重塑全新品牌形象'
+      //   },
+      //   prev: {
+      //     id: 456,
+      //     title: '新鸿儒再次牵手安恒信息，为数字经济高速发展护航',
+      //   },
+      //   title: '大数据环境下，网站建设更需创新学习能力',
+      //   updateAt: '2020-09-17',
+      //   source: '鼎易科技',
+      // }
     },
     async requestHotInfo() {
-      const res = await newsHot()
+      const res = await newsSearch({order: 'recommend'})
       this.hotInfoList = res.data
     },
     async requestPopularityInfo() {
-      const res = await newsHot()
+      const res = await newsSearch({order: 'hot'})
       this.popularityInfoList = res.data
     },
   },

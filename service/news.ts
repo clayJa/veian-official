@@ -6,6 +6,6 @@ export const newsSearch = async (params) => {
 export const newsDetail = async (params) => {
   return await request.post('/backApi/api/news/detail', params)
 }
-export const newsHot = async (params) => {
-  return await request.post('/backApi/api/news/hot', params)
+export const newsTagsList = async (params) => {
+  return await request.post('/backApi/api/news/tags/list', params)
 }

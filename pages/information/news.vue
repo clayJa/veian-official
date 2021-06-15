@@ -22,12 +22,12 @@
               <div class="show-box" >
                 <div class="box-item clearfix">
                   <div class="img-wrapper">
-                    <img class="img" :src="item.img" alt="">
+                    <img class="img" :src="item.cover_picture" alt="">
                   </div>
                   <div class="text-wrapper right">
-                    <div class="title-desc">{{item.updateAt}}</div>
+                    <div class="title-desc">{{item.updated_at}}</div>
                     <div class="title">{{item.title}}</div>
-                    <div class="content">{{item.content}}</div>
+                    <div class="content">{{item.description}}</div>
                     <a :href="`/information/detail${item.id ? '?id='+ item.id : ''}`" class="action">查看更多<InlineSvg :src="require('assets/images/icon_arrow_right.svg')" class="icon" />
                     </a>
                   </div>
@@ -63,7 +63,8 @@ import TabBar from '~/components/about/TabBar/index'
 import Join from '~/components/Join/index'
 import Pagination from '~/components/Pagination/index'
 import InfoCard from '~/components/information/InfoCard/index'
-
+import { newsSearch } from '@/service/news'
+import { getMenu } from '@/service/public'
 
 const bannerImg = require('assets/images/information/banner_back.jpg')
 
@@ -152,71 +153,49 @@ export default {
       bannerImg: bannerImg,
       infoList: [],
       hotInfoList: [],
-
+      category: [],
       pageSize: 3,
       currentPage: 1,
       total: 20,
     }
   },
   created() {
-    const query = this.$route.query
-    console.log('query', query)
-    this.requestData({limit: this.pageSize})
+    // const query = this.$route.query
+    // console.log('query', query)
+    this.getPageData()
     this.requestHotInfo()
   },
   methods: {
     toDetail(id) {
       this.$router.push(`/information/detail?id=${id}`)
     },
-    requestData(params) {
-      const {limit = 15, page = 1} = params
-      const arr = []
-      for (let i = 0; i < limit; i++) {
-        arr.push({})
-      }
-
-      this.infoList = [
-        {
-          id: generateId(),
-          img: img,
-          title: '浙江广播电台 FM 104.5《浙商读书会》司…',
-          updateAt: '2020.09.17',
-          content: '近日，我们鼎易科技的创始人刘总受邀参加了浙江广播电台FM104.5的《浙商读书会》访谈节目。《浙商读书会》是浙江广播电台推出的一档读书推荐交流类节目，邀请浙江',
-
-        },
-        {
-          id: generateId(),
-          img: img,
-          title: '浙江广播电台 FM 104.5《浙商读书会》司…',
-          updateAt: '2021.04.14',
-          content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
-
-        },
-        {
-          id: generateId(),
-          img: img,
-          title: '大数据环境下，网站建设更需创新学习能力',
-          updateAt: '2021.03.25',
-          content: '在创新时代，网站建设的到底有什么实际的意义呢？我们能够切实的体会到网站在日常生活中起着不可替代的作用，更切实际的来讲，整个社会也已经离不开网络了。网站其实',
-
-        },
-      ]
+    async requestData(params) {
+      const res = await newsSearch({
+        limit: this.pageSize,
+        page: this.currentPage,
+        category: this.category,
+        ...params
+      })
+      this.infoList = res.data
+      this.pageSize = res.per_page
+      this.currentPage = res.current_page
+      this.total = res.total
     },
-    requestHotInfo() {
-      const arr = []
-      for (let i = 0; i < 10; i++) {
-        arr.push({})
-      }
-
-      this.hotInfoList = dataList
+    async requestHotInfo() {
+      const res = await newsSearch({order: 'hot'})
+      this.hotInfoList = res.data
     },
-
     changePage(page, pageSize) {
-      console.log('page, pageSize', page, pageSize)
       this.requestData({
         limit: pageSize,
         page: page,
       })
+    },
+    async getPageData() {
+      const res = await getMenu({id: localStorage.getItem('currentPageId')})
+      const category = res.data[0].category.map(it => it.id)
+      this.category = category
+      this.requestData({category})
     }
   },
 

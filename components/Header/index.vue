@@ -4,19 +4,20 @@
       <div class="container header-wrapper">
         <div class="logo" @click="$router.push('/')"></div>
         <div class="nav-wrapper ml-auto">
-          <div :class="['nav-item', {active: $nuxt.$route.path === item.path || ($nuxt.$route.path.includes(item.path) && item.path !== '/')}]" v-for="item in menu" :key="item.name">
-            <a :href="computePath(item)">
-              {{ item.name }}
-              <i class="iconfont nav-icon" v-if="item.subMenu && item.subMenu.length > 0" >&#xe629;</i>
+          <div :class="['nav-item', {active: $nuxt.$route.path === item.sub_path || ($nuxt.$route.path.includes(item.sub_path) && item.sub_path !== '/')}]" v-for="item in menus" :key="item.id">
+            <a @click.stop="toPath(item)">
+              {{ item.title }}
+              <i class="iconfont nav-icon" v-if="getChilds(item).length > 0" >&#xe629;</i>
             </a>
-            <div class="sub-nav-wrapper" v-if="item.subMenu && item.subMenu.length > 0" >
-              <div :class="['sub-nav-item', {active: $nuxt.$route.path === subItem.path || $nuxt.$route.path.includes(subItem.path) }]"
-                v-for="subItem in item.subMenu" :key="subItem.name">
-                <a :href="computePath(subItem)">{{subItem.name}}</a>
-                <div class="third-nav-wrapper" v-if="subItem.subMenu && subItem.subMenu.length > 0" >
-                  <div :class="['sub-nav-item', {active: $nuxt.$route.path === thirdItem.path }]"
-                    v-for="thirdItem in subItem.subMenu" :key="thirdItem.name">
-                    <a :href="thirdItem.path">{{thirdItem.name}}</a>
+            <div class="sub-nav-wrapper" v-if="getChilds(item).length > 0" >
+              <!-- <div :class="['sub-nav-item', {active: $nuxt.$route.path === subItem.sub_path || $nuxt.$route.path.includes(subItem.sub_path) }]" -->
+              <div :class="['sub-nav-item']"
+                v-for="subItem in getChilds(item)" :key="subItem.id">
+                <a @click.stop="toPath(subItem)">{{subItem.title}}</a>
+                <div class="third-nav-wrapper" v-if="getChilds(subItem).length > 0" >
+                  <div :class="['sub-nav-item', {active: $nuxt.$route.path === thirdItem.sub_path }]"
+                    v-for="thirdItem in getChilds(subItem)" :key="thirdItem.id">
+                    <a @click.stop="toPath(thirdItem)">{{thirdItem.title}}</a>
                   </div>
                 </div>
               </div>
@@ -61,21 +62,21 @@
       <div class="mobile-nav-wrapper">
         <div
           @click="changeActivePath(item)"
-          :class="['mobile-nav-item', {active: activePath === item.path || $nuxt.$route.path === item.path || ($nuxt.$route.path.includes(item.path) && item.path !== '/')}]"
-          v-for="item in menu" :key="item.name">
+          :class="['mobile-nav-item', {active: activePath === item.sub_path || $nuxt.$route.path === item.sub_path || ($nuxt.$route.path.includes(item.sub_path) && item.sub_path !== '/')}]"
+          v-for="item in menus" :key="item.id">
           <a class="clearfix"  @click.stop="changeActivePath(item)">
-            {{ item.name }}
-            <i class="iconfont mobile-nav-icon" v-if="item.subMenu && item.subMenu.length > 0" >&#xe629;</i>
+            {{ item.title }}
+            <i class="iconfont mobile-nav-icon" v-if="getChilds(item).length > 0" >&#xe629;</i>
           </a>
           <div :class="['mobile-sub-nav-wrapper']"
-            v-if="item.subMenu && item.subMenu.length > 0" >
-            <div :class="['mobile-sub-nav-item',  {active: $nuxt.$route.path === subItem.path || $nuxt.$route.path.includes(subItem.path) }]"
-              v-for="subItem in item.subMenu" :key="subItem.name">
-              <a :href="computePath(subItem)">{{subItem.name}}</a>
-              <div class="mobile-third-nav-wrapper" v-if="subItem.subMenu && subItem.subMenu.length > 0" >
-                <div :class="['mobile-sub-nav-item', {active: $nuxt.$route.path === thirdItem.path }]"
-                  v-for="thirdItem in subItem.subMenu" :key="thirdItem.name">
-                  <a :href="thirdItem.path">{{thirdItem.name}}</a>
+            v-if="getChilds(item).length > 0" >
+            <div :class="['mobile-sub-nav-item',  {active: $nuxt.$route.path === subItem.sub_path || $nuxt.$route.path.includes(subItem.sub_path) }]"
+              v-for="subItem in getChilds(item)" :key="subItem.id">
+              <a @click.stop="toPath(subItem)">{{subItem.title}}</a>
+              <div class="mobile-third-nav-wrapper" v-if="getChilds(subItem).length > 0" >
+                <div :class="['mobile-sub-nav-item', {active: $nuxt.$route.path === thirdItem.sub_path }]"
+                  v-for="thirdItem in getChilds(subItem)" :key="thirdItem.id">
+                  <a @click.stop="toPath(thirdItem)">{{thirdItem.title}}</a>
                 </div>
               </div>
             </div>
@@ -86,7 +87,6 @@
   </div>
 </template>
 <script lang="ts">
-import { computeLayout } from '@/static/js/flexibility';
 import { getMenu } from '@/service/public';
 interface Data {
   text: string,
@@ -102,55 +102,60 @@ export default {
       showMobileMenu: false,
       activePath: '',
       scroll: false,
-      menu: [
-        { name: '首页', path: '/' },
-        { name: '简单', path: '/uncomplicated' },
-        { name: '信任', path: '/confidence',
-          subMenu: [
-            { name: '创意', path: '/confidence/creativity',
-              subMenu: [
-                { name: '创意交互设计', path: '/confidence/creativity/cyjhsj' },
-                { name: '视频数字化应用', path: '/confidence/creativity/spszhyy' },
-                { name: '视觉识别系统 (VI)', path: '/confidence/creativity/sjsbxt' },
-                { name: '全景虚拟现实 (VR)', path: '/confidence/creativity/qjxnxs' },
-                { name: '年度设计服务', path: '/confidence/creativity/ndsjfw' },
-              ]
-            },
-            { name: '开发', path: '/confidence/develop',
-              subMenu: [
-                { name: '高端网站定制', path: '/confidence/develop/gdwzdz' },
-                { name: '小程序定制开发', path: '/confidence/develop/xcxdzkf' },
-                { name: 'APP定制开发', path: '/confidence/develop/appdzkf' },
-                { name: 'H5定制开发', path: '/confidence/develop/h5dzkf' },
-                { name: '电商定制开发', path: '/confidence/develop/dsdzkf' },
-                { name: '业务系统定制开发', path: '/confidence/develop/ywxtdz' },
-              ]
-            },
-            { name: '营销', path: '/confidence/marketing',
-              subMenu: [
-                { name: 'SEO&SEM', path: '/confidence/marketing/seo' },
-                { name: '新媒体营销', path: '/confidence/marketing/xmtyx' },
-                { name: '海外营销', path: '/confidence/marketing/hwyx' },
-              ]
-            },
-            { name: '运营', path: '/confidence/operation',
-              subMenu: [
-                { name: '电商代运营', path: '/confidence/operation/dsdyy' },
-                { name: '网站代运营', path: '/confidence/operation/wzdyy' },
-                { name: '新媒体代运营', path: '/confidence/operation/xmtdyy' },
-              ]
-            },
-          ]
-        },
-        { name: '快乐', path: '/information',
-          subMenu: [
-            { name: '未苒资讯', path: '/information/news' },
-            { name: '帮助中心', path: '/information/help' },
-          ]
-        },
-        { name: '我们', path: '/about/introduce' },
-        { name: '联系', path: '/contact' },
-      ]
+      // menu: [
+      //   { name: '首页', path: '/' },
+      //   { name: '简单', path: '/uncomplicated' },
+      //   { name: '信任', path: '/confidence',
+      //     subMenu: [
+      //       { name: '创意', path: '/confidence/creativity',
+      //         subMenu: [
+      //           { name: '创意交互设计', path: '/confidence/creativity/cyjhsj' },
+      //           { name: '视频数字化应用', path: '/confidence/creativity/spszhyy' },
+      //           { name: '视觉识别系统 (VI)', path: '/confidence/creativity/sjsbxt' },
+      //           { name: '全景虚拟现实 (VR)', path: '/confidence/creativity/qjxnxs' },
+      //           { name: '年度设计服务', path: '/confidence/creativity/ndsjfw' },
+      //         ]
+      //       },
+      //       { name: '开发', path: '/confidence/develop',
+      //         subMenu: [
+      //           { name: '高端网站定制', path: '/confidence/develop/gdwzdz' },
+      //           { name: '小程序定制开发', path: '/confidence/develop/xcxdzkf' },
+      //           { name: 'APP定制开发', path: '/confidence/develop/appdzkf' },
+      //           { name: 'H5定制开发', path: '/confidence/develop/h5dzkf' },
+      //           { name: '电商定制开发', path: '/confidence/develop/dsdzkf' },
+      //           { name: '业务系统定制开发', path: '/confidence/develop/ywxtdz' },
+      //         ]
+      //       },
+      //       { name: '营销', path: '/confidence/marketing',
+      //         subMenu: [
+      //           { name: 'SEO&SEM', path: '/confidence/marketing/seo' },
+      //           { name: '新媒体营销', path: '/confidence/marketing/xmtyx' },
+      //           { name: '海外推广', path: '/confidence/marketing/hwtg' },
+      //         ]
+      //       },
+      //       { name: '运营', path: '/confidence/operation',
+      //         subMenu: [
+      //           { name: '电商代运营', path: '/confidence/operation/dsdyy' },
+      //           { name: '网站代运营', path: '/confidence/operation/wzdyy' },
+      //           { name: '新媒体代运营', path: '/confidence/operation/xmtdyy' },
+      //         ]
+      //       },
+      //     ]
+      //   },
+      //   { name: '快乐', path: '/information',
+      //     subMenu: [
+      //       { name: '未苒资讯', path: '/information/news' },
+      //       { name: '帮助中心', path: '/information/help' },
+      //     ]
+      //   },
+      //   { name: '我们', path: '/about/introduce' },
+      //   { name: '联系', path: '/contact' },
+      // ]
+    }
+  },
+  computed: {
+    menus() {
+      return this.$store.getters['getMenus']
     }
   },
   methods: {
@@ -162,24 +167,36 @@ export default {
       this.$router.push('/search')
     },
     changeActivePath(item) {
-      if (!item.subMenu || item.subMenu.length === 0){
-        this.$router.push(item.path)
+      if (this.getChilds(item).length === 0){
+        this.$router.push(item.sub_path)
         this.showMobileMenu = false
+        localStorage.setItem('currentPageId',item.id)
         return
       }
-      if(item.subMenu.length > 0 && this.activePath === item.path) {
-        console.log(this.activePath,item.path)
+      if(this.getChilds(item).length > 0 && this.activePath === item.sub_path) {
+        console.log(this.activePath,item.sub_path)
         this.activePath = ''
       } else {
-        this.activePath = item && item.path
+        this.activePath = item && item.sub_path
+        localStorage.setItem('currentPageId',item.id)
       }
     },
     computePath(item) {
-      if(!item.subMenu) {
-        return item.path
-      } else if(item.subMenu && item.subMenu.length > 0) {
-        return item.subMenu[0].path
+      if(this.getChilds(item).length === 0) {
+        localStorage.setItem('currentPageId',item.id)
+        return item.sub_path
+      } else if(this.getChilds(item).length > 0) {
+        localStorage.setItem('currentPageId',this.getChilds(item)[0].id)
+        return this.getChilds(item)[0].sub_path
       }
+    },
+    getChilds(item) {
+      if(item.children_menu && item.children_menu.length > 0) {
+        return item.children_menu
+      } else if(item.sub_menu && item.sub_menu.length > 0) {
+        return item.sub_menu
+      }
+      return []
     },
     getScrollStatus() {
       const doc = document.documentElement
@@ -190,13 +207,19 @@ export default {
         this.scroll = false
       }
     },
+    toPath(item) {
+      const path = this.computePath(item)
+      this.$router.push(path)
+    },
     async getMenuData () {
-      const res = await getMenu({parent_id: 3})
-      console.log(res,11111)
+      const res = await getMenu({parent_id: 0})
+      this.$store.commit('setMenus',res.data)
+      // console.log(res,11111,this.menus)
     }
   },
   mounted() {
     console.log(this.$nuxt.$route.path)
+    console.log(this.menus,'menus')
      window.addEventListener('scroll', this.getScrollStatus)
      this.getMenuData()
   },
@@ -311,6 +334,7 @@ a {
           }
           .third-nav-wrapper {
             display: block;
+            background-color: #fff;
           }
         }
       }
@@ -537,6 +561,9 @@ a {
         a > {
           color: #FFFFFF;
         }
+        &.active a {
+          color: #1A82FF;
+        }
       }
       .mobile-third-nav-wrapper {
         padding-bottom: 20px;
@@ -549,6 +576,9 @@ a {
           padding-top: 10px;
           > a {
             color: #FFFFFF;
+          }
+          &.active a {
+            color: #1A82FF;
           }
         }
       }

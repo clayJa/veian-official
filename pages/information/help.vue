@@ -23,11 +23,14 @@
             <div class="clearfix">
               <div class="list-nav">
                 <div class="search-wrapper">
-                  <b-form-input
-                    id="help-search"
-                    placeholder="查找相关咨询内容…"
-                    v-model="searchText"
-                  ></b-form-input>
+                  <div class="input-wrapper">
+                    <b-form-input
+                      id="help-search"
+                      placeholder="查找相关咨询内容…"
+                      v-model="searchText"
+                    ></b-form-input>
+                    <i class="iconfont input-search" @click="handleTextSearch">&#xe63a;</i>
+                  </div>
                   <div class="total-wrapper clearfix">
                     <div class="total">{{ total }}条咨询</div>
                     <div class="select">
@@ -47,6 +50,7 @@
                   <Pagination
                       :pageSize="pageSize"
                       :total="total"
+                      v-if="total"
                       @onchange="changePage"
                   />
                 </div>
@@ -58,7 +62,7 @@
                   <div class="tag-title">关键词</div>
                   <div class="tag-list clearfix">
                     <div class="tag" v-for="tag in tags" :key="tag.vlaue">
-                      {{ tag.name }}
+                      {{ tag.label }}
                     </div>
                   </div>
                 </div>
@@ -79,7 +83,8 @@ import Join from '~/components/Join/index'
 import SelfSelect from '~/components/SelfSelect/index'
 import Pagination from '~/components/Pagination/index'
 import RankList from '~/components/information/RankList/index'
-import { newsSearch, newsHot } from '@/service/news'
+import { newsSearch, newsTagsList } from '@/service/news'
+import { getMenu } from '@/service/public'
 
 const bannerImg = require('assets/images/information/information_help_banner.jpg')
 
@@ -194,45 +199,70 @@ export default {
       pageSize: 3,
       currentPage: 1,
       total: 20,
-      tags,
+      // tags,
       searchText: '',
-      select: 1,
+      select: '',
       options: [
         { label: '网址建设', value: 1},
         { label: '移动互联', value: 2},
         { label: '网址运维', value: 3},
         { label: '影像创意与制作', value: 4},
-      ]
+      ],
+      category: []
+    }
+  },
+  computed: {
+    tags() {
+      return this.options.filter(it => it.value === this.select && this.select)
     }
   },
   created() {
     // const query = this.$route.query
     // console.log('query', query)
-    this.requestData({limit: this.pageSize})
+    this.getPageData()
     this.requestHotInfo()
+    this.getNewsTagsList()
   },
   methods: {
     handleSelectChange(value) {
       this.select = value
+      this.requestData()
     },
     handleTabBarChange(value) {
       console.log(value)
       this.active = value
     },
     async requestData(params) {
-      const res = await newsSearch(params)
+      const res = await newsSearch({
+        keyword: this.searchText,
+        limit: this.pageSize,
+        page: this.currentPage,
+        tags: this.select,
+        category: this.category,
+        ...params
+      })
       this.infoList = res.data
       this.pageSize = res.per_page
       this.currentPage = res.current_page
       this.total = res.total
     },
     async requestHotInfo() {
-      const res = await newsHot()
+      const res = await newsSearch({order: 'hot'})
       this.hotInfoList = res.data
     },
-
+    async getNewsTagsList() {
+      const res = await newsTagsList()
+      const options = res.data.map(it => ({ label: it.name, value: it.id}))
+      this.options = [
+        { label: '全部', value: ''},
+        ...options
+      ]
+      console.log(res, 'getNewsTagsList')
+    },
+    handleTextSearch () {
+      this.requestData()
+    },
     changePage(page, pageSize) {
-      // console.log('page, pageSize', page, pageSize)
       this.requestData({
         limit: pageSize,
         page: page,
@@ -240,6 +270,12 @@ export default {
     },
     toDetail(id) {
       this.$router.push(`/information/detail?id=${id}`)
+    },
+    async getPageData() {
+      const res = await getMenu({id: localStorage.getItem('currentPageId')})
+      const category = res.data[0].category.map(it => it.id)
+      this.category = category
+      this.requestData({category})
     }
   },
 
@@ -351,12 +387,14 @@ export default {
     }
     .list-nav {
       float: left;
+      width: 755px;
       .search-wrapper {
         #help-search {
           height: 60px;
           background: #FFFFFF;
           border-radius: 4px;
           border: 1px solid #E5E5E5;
+          padding-right: 48px;
         }
         .total-wrapper {
           padding: 30px 0;
@@ -456,12 +494,14 @@ export default {
       }
       .list-nav {
         float: none;
+        width: 100%;
         .search-wrapper {
           #help-search {
             height: 60px;
             background: #FFFFFF;
             border-radius: 4px;
             border: 1px solid #E5E5E5;
+            padding-right: 48px;
           }
           .total-wrapper {
             padding: 30px 0;
@@ -582,11 +622,15 @@ export default {
         white-space: nowrap;
         overflow: hidden;
         text-overflow:ellipsis;
-        &:hover {
-          background: #FF424C;
-          border-color: #FF424C;
-          color: #fff;
-        }
+
+        background: #FF424C;
+        border-color: #FF424C;
+        color: #fff;
+        // &:hover {
+        //   background: #FF424C;
+        //   border-color: #FF424C;
+        //   color: #fff;
+        // }
       }
     }
     @media only screen and (max-width: 760px) {
@@ -632,5 +676,22 @@ export default {
     width: 100%;
     height: 100%;
   }
-
+  .input-wrapper {
+    position: relative;
+    .input-search {
+      display: inline-block;
+      font-size: 18px;
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    @media only screen and (max-width: 760px) {
+      .input-search {
+        font-size: 18px;
+        right: 24px;
+      }
+    }
+  }
 </style>
