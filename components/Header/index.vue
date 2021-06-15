@@ -87,6 +87,7 @@
 </template>
 <script lang="ts">
 import { computeLayout } from '@/static/js/flexibility';
+import { getMenu } from '@/service/public';
 interface Data {
   text: string,
   visible: boolean,
@@ -188,11 +189,16 @@ export default {
       } else if (top < 60) {
         this.scroll = false
       }
+    },
+    async getMenuData () {
+      const res = await getMenu({parent_id: 3})
+      console.log(res,11111)
     }
   },
   mounted() {
     console.log(this.$nuxt.$route.path)
      window.addEventListener('scroll', this.getScrollStatus)
+     this.getMenuData()
   },
   components: {
   }

@@ -54,7 +54,17 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     '@nuxtjs/style-resources',
+    '@nuxtjs/axios',
   ],
+  axios: {
+    proxy: true,
+  },
+  proxy: {
+    '/backApi': {
+      target: 'http://api.veianweb.com',
+      pathRewrite: { '^/backApi': '' }
+    },
+  },
   styleResources:{
     less:'./assets/style/variable.less'
   },

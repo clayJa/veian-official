@@ -4,8 +4,8 @@
       {{title}}
     </div>
     <div class="card-body">
-      <div class="card-item" v-for="(item, i) in showList" :key="i">
-        <a :class="`text black`" :href="`${item[pathKey] || defaultPath}${item.id ? '?id='+ item.id : ''}`"  >{{item[labelKey]}}</a>
+      <div class="card-item" v-for="(item, i) in data" :key="i">
+        <a :class="`text black`" :href="`${item[pathKey] || path}${item.id ? '?id='+ item.id : ''}`"  >{{item[labelKey]}}</a>
       </div>
     </div>
   </div>
@@ -43,8 +43,6 @@ export default {
   },
   data() {
     return {
-      showList: this.data,
-      defaultPath: this.path,
     }
   },
 

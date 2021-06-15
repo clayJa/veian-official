@@ -5,8 +5,8 @@
       <span class="title-text">{{title}}</span>
     </div>
     <div class="card-body">
-      <div class="card-item" v-for="(item, i) in showList" :key="i">
-        <a :class="`text black`" :href="`${item[pathKey] || defaultPath}${item.id ? '?id='+ item.id : ''}`"  >{{item[labelKey]}}</a>
+      <div class="card-item" v-for="(item, i) in data" :key="i">
+        <a :class="`text black`" :href="`${item[pathKey] || path}${item.id ? '?id='+ item.id : ''}`"  >{{item[labelKey]}}</a>
       </div>
     </div>
   </div>
@@ -56,7 +56,7 @@ export default {
 .card-nav {
   padding: 24px 24px 20px 24px;
   width: 390px;
-  height: 520px;
+  // height: 520px;
   border-radius: 16px;
   border: 1px solid #E5E5E5;
   background-color: #fff;

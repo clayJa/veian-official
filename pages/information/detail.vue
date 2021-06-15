@@ -17,8 +17,8 @@
           </div>
 
           <div class="card-wrapper">
-            <InfoCard class="card-item" title="热门资讯" :data="hotInfoList" />
-            <InfoCard class="card-item" title="人气排名" :data="popularityInfoList" />
+            <InfoCard class="card-item" title="热门资讯" :data="hotInfoList" path="/information/detail" />
+            <InfoCard class="card-item" title="人气排名" :data="popularityInfoList" path="/information/detail" />
           </div>
           </div>
 
@@ -39,7 +39,7 @@ import Pagination from '~/components/Pagination/index'
 import InfoCard from '~/components/information/InfoCard/index'
 import Divider from '@/components/Divider'
 import ArticleDetail from '@/components/information/ArticleDetail'
-
+import { newsDetail, newsHot } from '@/service/news'
 
 const bannerImg = require('assets/images/information/banner_back.jpg')
 
@@ -157,31 +157,14 @@ export default {
         source: '鼎易科技',
       }
     },
-    requestHotInfo() {
-      const arr = []
-      for (let i = 0; i < 10; i++) {
-        arr.push({})
-      }
-
-      this.hotInfoList = dataList
+    async requestHotInfo() {
+      const res = await newsHot()
+      this.hotInfoList = res.data
     },
-    requestPopularityInfo() {
-      const arr = []
-      for (let i = 0; i < 10; i++) {
-        arr.push({})
-      }
-
-      this.popularityInfoList = dataList
+    async requestPopularityInfo() {
+      const res = await newsHot()
+      this.popularityInfoList = res.data
     },
-
-
-    changePage(page, pageSize) {
-      console.log('page, pageSize', page, pageSize)
-      this.requestData({
-        limit: pageSize,
-        page: page,
-      })
-    }
   },
 
 }
