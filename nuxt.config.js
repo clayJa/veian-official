@@ -64,6 +64,10 @@ export default {
       target: 'http://api.veianweb.com',
       pathRewrite: { '^/backApi': '' }
     },
+    '/imageHost': {
+      target: 'http://api.veianweb.com/upload',
+      pathRewrite: { '^/imageHost': '' }
+    },
   },
   styleResources:{
     less:'./assets/style/variable.less'

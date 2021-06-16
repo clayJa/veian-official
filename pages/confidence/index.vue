@@ -3,11 +3,11 @@
     <Header></Header>
     <div class="banner">
       <div class="content">
-        <img src="@/static/trust/trust_background.jpg" alt="">
+        <img :src="bannerObj.image" alt="">
         <div class="text">
-            <div class="home_banner_title1 mt160">Welcome to weiran technology</div>
-            <div class="home_banner_title2">全行业 全渠道</div>
-            <div class="home_banner_title2">数字化企业服务</div>
+            <div class="home_banner_title1 mt160">{{bannerObj.title_en}}</div>
+            <div class="home_banner_title2">{{bannerObj.name}}</div>
+            <div class="home_banner_title2">{{bannerObj.description}}</div>
         </div>
       </div>
     </div>
@@ -136,9 +136,22 @@ export default {
         { image: require('@/static/trust/operation_image2.png'),name: '网站代运营' },
         { image: require('@/static/trust/operation_image3.png'),name: '新媒体代运营' },
       ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

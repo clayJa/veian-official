@@ -2,9 +2,9 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/marketing/xmttg_banner.jpg')"
-      title="新媒体推广"
-      info="前沿的线上推广方式之一"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
      />
     <div class="list-image">
       <div class="sharp"></div>
@@ -90,10 +90,23 @@ export default {
         { img: require('@/static/trust/marketing/10.png') },
         { img: require('@/static/trust/marketing/11.png') },
         { img: require('@/static/trust/marketing/12.png') },
-      ]
+      ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

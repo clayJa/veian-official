@@ -2,10 +2,10 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/develop/appdzkf_banner.jpg')"
-      title="App定制开发"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
       class="banner"
-      info="创新性开发，需求从心出发，到创意设计，始终是用户的关注焦点"
      />
      <div class="list-image clearfix">
        <div class="sharp"></div>
@@ -44,10 +44,23 @@ export default {
         { image: require('@/static/trust/develop/appdzkf_image1.png'), title: '可拓展性强' },
         { image: require('@/static/trust/develop/appdzkf_image2.png'), title: '数据归属唯一' },
         { image: require('@/static/trust/develop/appdzkf_image3.png'), title: '客户关系强关联'},
-      ]
+      ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

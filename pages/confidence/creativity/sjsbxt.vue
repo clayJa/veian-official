@@ -2,9 +2,9 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/creativity/sjsbxt_banner.jpg')"
-      title="视觉识别系统"
-      info="让您的识别系统符号具象化、视觉化、标识化的传达"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
       class="banner"
      />
      <div class="list-image clearfix">
@@ -43,10 +43,23 @@ export default {
         { image: require('@/static/trust/creativity/sjsbxt_image1.png'), infoZh: '标识', infoEn: 'Logo' },
         { image: require('@/static/trust/creativity/sjsbxt_image2.png'), infoZh: '识别', infoEn: 'Identify' },
         { image: require('@/static/trust/creativity/sjsbxt_image3.png'), infoZh: '记忆', infoEn: 'Memory' },
-      ]
+      ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

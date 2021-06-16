@@ -2,10 +2,10 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/operation/wzdyy_banner.jpg')"
-      title="网站运营维护"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
       class="banner"
-      info="让您更省心的聚焦于经营的核心"
      />
      <div class="list-image">
        <div class="sharp"></div>
@@ -55,9 +55,22 @@ export default {
         { image: require('@/static/trust/operation/wzdyy_icon3.png'), title: '专家团队',
           info: '丰富且资深的团队资源、市场前沿实战团队让客户少走弯路' },
       ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

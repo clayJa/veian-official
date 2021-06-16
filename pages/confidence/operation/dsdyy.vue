@@ -2,10 +2,10 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/operation/dsdyy_banner.jpg')"
-      title="电商代运营"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
       class="banner"
-      info="全链路电商托管服务"
      />
      <div class="list-image">
        <div class="sharp"></div>
@@ -102,9 +102,22 @@ export default {
         { image: require('@/static/trust/operation/dsdyy_step8.png'), title: '商品管理',
           info: '库存效期预警、库存周转管理、商品生产' },
       ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

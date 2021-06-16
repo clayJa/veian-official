@@ -2,9 +2,9 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/creativity/spszhyy_banner.jpg')"
-      title="视频数字化应用"
-      info="用更全面、更生动、更贴切的方式，塑造更饱满、立体、鲜活的品牌形象。给您的客户讲故事"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj. description"
      />
      <div class="list-image clearfix">
        <div class="sharp"></div>
@@ -42,10 +42,23 @@ export default {
         { image: require('@/static/trust/creativity/spszhyy_image1.png'), infoZh: '表现', infoEn: 'Expression' },
         { image: require('@/static/trust/creativity/spszhyy_image2.png'), infoZh: '应用', infoEn: 'Application' },
         { image: require('@/static/trust/creativity/spszhyy_image3.png'), infoZh: '传达', infoEn: 'Convey' },
-      ]
+      ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

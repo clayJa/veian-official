@@ -2,9 +2,9 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/develop/h5dzkf_banner.jpg')"
-      title="H5定制开发"
-      info="H5的创新性，始终是用户聚焦的需求阵地"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
      />
      <div class="list-wrapper">
       <div class="sharp"></div>
@@ -48,10 +48,23 @@ export default {
         { image: require('@/static/trust/develop/h5dzkf_image2.png'), infoZh: 'IP打造' },
         { image: require('@/static/trust/develop/h5dzkf_image3.png'), infoZh: '多媒体矩阵' },
         { image: require('@/static/trust/develop/h5dzkf_image4.png'), infoZh: '用户运营' },
-      ]
+      ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

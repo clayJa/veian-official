@@ -2,9 +2,9 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/creativity/qjxnxs_banner.jpg')"
-      title="全景虚拟现实"
-      info="运用极致思维，塑造沉浸式的场景，向虚拟现实世界沉浸，开启全新的体验方式"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
      />
      <div class="list-image clearfix">
        <div class="sharp"></div>
@@ -42,10 +42,23 @@ export default {
         { image: require('@/static/trust/creativity/qjxnxs_image1.png'), infoZh: '塑造', infoEn: 'Shape' },
         { image: require('@/static/trust/creativity/qjxnxs_image2.png'), infoZh: '传达', infoEn: 'Convey' },
         { image: require('@/static/trust/creativity/qjxnxs_image3.png'), infoZh: '沉浸', infoEn: 'Immersed' },
-      ]
+      ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

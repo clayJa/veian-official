@@ -2,9 +2,9 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/develop/gdwzdz_banner.jpg')"
-      title="高端网站定制"
-      info="打造品牌专属定制网站，驱动品牌创新发展。每一个细节都将恒久远的纯高品质"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
      />
      <div class="list-image clearfix">
        <div class="sharp"></div>
@@ -77,9 +77,22 @@ export default {
           info: '将巨量数据提炼成简洁、生动的视觉呈现，进而以丰富的交互效果，最终实现数据价值以及规律视觉化'
         },
       ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

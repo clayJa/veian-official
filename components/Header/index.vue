@@ -173,7 +173,6 @@ export default {
       if (this.getChilds(item).length === 0){
         this.$router.push(item.sub_path)
         this.showMobileMenu = false
-        localStorage.setItem('currentPageId',item.id)
         return
       }
       if(this.getChilds(item).length > 0 && this.activePath === item.sub_path) {
@@ -181,19 +180,28 @@ export default {
         this.activePath = ''
       } else {
         this.activePath = item && item.sub_path
-        localStorage.setItem('currentPageId',item.id)
       }
+    },
+    storeMenuMap(item) {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      localStorage.setItem('menuMap',JSON.stringify({
+        ...menuMap,
+        [item.sub_path]: item.id
+      }))
+    },
+    computeMenuMap(arr) {
+      arr.forEach(it => {
+        this.storeMenuMap(it)
+        this.computeMenuMap(this.getChilds(it))
+      });
     },
     computePath(item) {
       if(this.getChilds(item).length === 0) {
-        localStorage.setItem('currentPageId',item.id)
         return item.sub_path
       } else if(this.getChilds(item).length > 0) {
         if(item.sub_path === '/confidence') {
-          localStorage.setItem('currentPageId',item.id)
           return item.sub_path
         }
-        localStorage.setItem('currentPageId',this.getChilds(item)[0].id)
         return this.getChilds(item)[0].sub_path
       }
     },
@@ -221,12 +229,13 @@ export default {
     async getMenuData () {
       const res = await getMenu({parent_id: 0})
       this.$store.commit('setMenus',res.data)
+      this.computeMenuMap(res.data)
       // console.log(res,11111,this.menus)
     }
   },
   mounted() {
-    console.log(this.$nuxt.$route.path)
-    console.log(this.menus,'menus')
+    // console.log(this.$nuxt.$route.path)
+    // console.log(this.menus,'menus')
      window.addEventListener('scroll', this.getScrollStatus)
      this.getMenuData()
   },

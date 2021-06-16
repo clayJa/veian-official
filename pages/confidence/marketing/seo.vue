@@ -2,9 +2,9 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/marketing/seo_banner.jpg')"
-      :title="`SEO&SEM`"
-      info="企业在线最有效的推广方式之一"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
      />
      <div class="seo-search clearfix">
         <div class="search-intro">
@@ -66,10 +66,23 @@ export default {
         { icon: '&#xe638;',title: '提升<br />品牌影响力', info: '百度、360、搜狗、谷歌排名同步提升，实现全网首页霸屏,维护好排名、持续产单' },
         { icon: '&#xe637;',title: '比竞价<br />广告更实惠', info: '支出占比不足竞价广告的1%' },
         { icon: '&#xe636;',title: '精准营销', info: 'SEO属于搜索引擎营销，获取的流量更精准，能够给企业带来持续不断的优质营销订单' },
-      ]
+      ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

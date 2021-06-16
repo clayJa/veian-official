@@ -2,9 +2,9 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/creativity/cyjhsj_banner.jpg')"
-      title="创意交互设计"
-      info="从点滴开始，用更富魅力的、更有张力的方法，探索极致的品牌需求与产品交互方式，敲响客户的心门。"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
      />
      <div class="list-wrapper">
       <div class="sharp"></div>
@@ -77,10 +77,23 @@ export default {
         { image: require('@/static/trust/creativity/cyjhsj_image2.png'), infoZh: '为联想', infoEn: 'Lenovo' },
         { image: require('@/static/trust/creativity/cyjhsj_image3.png'), infoZh: '为传达', infoEn: 'Convey' },
         { image: require('@/static/trust/creativity/cyjhsj_image4.png'), infoZh: '为传播', infoEn: 'Spread' },
-      ]
+      ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

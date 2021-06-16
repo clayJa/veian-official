@@ -272,7 +272,8 @@ export default {
       this.$router.push(`/information/detail?id=${id}`)
     },
     async getPageData() {
-      const res = await getMenu({id: localStorage.getItem('currentPageId')})
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await getMenu({id: menuMap[this.$nuxt.$route.path]})
       const category = res.data[0].category.map(it => it.id)
       this.category = category
       this.requestData({category})

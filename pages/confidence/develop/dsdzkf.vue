@@ -2,9 +2,9 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/develop/dsdzkf_banner.jpg')"
-      title="电商定制开发"
-      info="天下没有一摸一样的个体，故此所有的商业化也不尽相同"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
       class="banner"
      />
      <div class="list-wrapper">
@@ -48,9 +48,22 @@ export default {
         { image: require('@/static/trust/develop/dsdzkf_image2.png'), title: '销售', info: '扫一扫、附近、搜索、分享...' },
         { image: require('@/static/trust/develop/dsdzkf_image3.png'), title: '数据', info: '用户体验方便到极致，不用下载很方便' },
       ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

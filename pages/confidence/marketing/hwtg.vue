@@ -2,9 +2,9 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/marketing/hwtg_banner.jpg')"
-      title="海外推广"
-      info="打开巨量外贸蓝海市场"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
      />
      <div class="list-image clearfix">
        <div class="sharp"></div>
@@ -135,9 +135,22 @@ export default {
         { image: require('@/static/trust/marketing/hwtg_icon4.png'), title: '海外优化推广',
           info: '48课时的海外营销<br />课程培训，专业讲解<br />让您更懂外贸推广' },
       ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,

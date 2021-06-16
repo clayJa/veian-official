@@ -2,9 +2,9 @@
   <div>
     <Header></Header>
     <ConfidenceBanner
-      :imgae="require('@/static/trust/creativity/ndsjfw_banner.jpg')"
-      title="年度设计服务"
-      info="一个出色的周期，都由每一个出色的细节，组成了恒久远的品质"
+      :imgae="bannerObj.image"
+      :title="bannerObj.name"
+      :info="bannerObj.description"
       class="banner"
      />
      <div class="list-image clearfix">
@@ -43,10 +43,23 @@ export default {
         { image: require('@/static/trust/creativity/ndsjfw_image1.png'), infoZh: '运用', infoEn: 'Use' },
         { image: require('@/static/trust/creativity/ndsjfw_image2.png'), infoZh: '推广', infoEn: 'Promote' },
         { image: require('@/static/trust/creativity/ndsjfw_image3.png'), infoZh: '宣传', infoEn: 'Propaganda' },
-      ]
+      ],
+      bannerObj: {}
     }
   },
+  mounted() {
+    this.getPageData()
+  },
   methods: {
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      const data = res.data[0] || {}
+      this.bannerObj = {
+        image: `/imageHost/${data.cover_picture ? data.cover_picture[0] : ''}`,
+        ...data
+      }
+    }
   },
   components: {
     Header,
