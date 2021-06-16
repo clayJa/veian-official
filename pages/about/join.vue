@@ -283,6 +283,7 @@ export default {
         background: #FFFFFF;
         box-shadow: 10px 10px 40px 0px rgba(54, 33, 0, 0.1);
         border-radius: 12px;
+        cursor: pointer;
         &+.list-item {
           margin-top: 24px;
         }
