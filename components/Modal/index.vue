@@ -165,7 +165,8 @@ export default {
     }
   }
   .phone {
-    padding-left: 200px;
+    padding-left: 0;
+    float: right;
     .text {
       font-size: 16px;
       font-family: PingFangSC-Regular, PingFang SC;

@@ -1,6 +1,6 @@
 <template>
   <div :class="['fixed-bar', scroll ? '' : 'd-md-none']">
-    <div class="consult">
+    <div class="consult" @click="showModal">
       <img src="@/static/icon_consult.png" alt="">
     </div>
     <div class="wechat">
@@ -26,6 +26,9 @@ export default {
           window.requestAnimationFrame(this.scrollToTop)
           window.scrollTo(0, sTop - sTop / 8)
       }
+    },
+    showModal() {
+      this.$store.commit('setGlobalModalVisible',true)
     },
     getScrollStatus() {
       const doc = document.documentElement

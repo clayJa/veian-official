@@ -42,7 +42,10 @@
             <div class="subtitle">如有兴趣加入我们欢迎把您的简历和作品投递到以下邮箱，简历投递邮箱：service@veianweb.com</div>
           </div>
           <div class="list-nav">
-            <div class="list-item" v-for="item in jobDescriptionList" :key="item.title">
+            <div :class="['list-item', { active: active === index}]"
+              v-for="(item,index) in jobDescriptionList"
+              @click="handleJobClick(index)"
+              :key="item.title">
               <div class="item-title clearfix">
                 <div class="title-text">{{item.title}}</div>
                 <div class="extra">{{item.updateAt}}</div>
@@ -75,6 +78,7 @@ export default {
     return {
       curPath: '/about/join',
       bannerImg: bannerImg,
+      active: null,
       showInfoList: [
         {
           img: img,
@@ -139,7 +143,9 @@ export default {
     }
   },
   methods: {
-
+    handleJobClick(index) {
+      this.active = index
+    }
   },
 
 }
@@ -274,7 +280,6 @@ export default {
     .list-nav {
       .list-item {
         padding: 40px 48px;
-        //height: 196px;
         background: #FFFFFF;
         box-shadow: 10px 10px 40px 0px rgba(54, 33, 0, 0.1);
         border-radius: 12px;
@@ -305,7 +310,8 @@ export default {
           }
         }
         .item-content {
-
+          max-height: 5em;
+          overflow: hidden;
           font-size: 14px;
           font-weight: 400;
           color: #A6AAB1;
@@ -314,6 +320,11 @@ export default {
 
           //overflow: hidden;
           text-overflow:ellipsis;
+          transition: all 3s;
+        }
+        &.active .item-content {
+          max-height: fit-content;
+          overflow: initial;
         }
       }
 

@@ -164,6 +164,9 @@ export default {
       this.text = ''
     },
     handleEnter() {
+      localStorage.setItem('searchText',this.text)
+      this.modalShow = false
+      this.text = ''
       this.$router.push('/search')
     },
     changeActivePath(item) {

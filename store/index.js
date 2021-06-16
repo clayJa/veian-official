@@ -1,29 +1,29 @@
 export const state = () => ({
-  isMobileMenu: true,
-  menus: []
+  globalModalVisible: false,
+  menus: [],
 });
 
 export const mutations = {
-  setIsMobileMenu(state, payload){
-    state.isMobileMenu = payload;
+  setGlobalModalVisible(state, payload){
+    state.globalModalVisible = payload;
   },
   setMenus(state, payload){
     state.menus = payload;
-  }
+  },
 };
 
 export const actions = {
-  setIsMobileMenu(vuexContext, payload){
-    vuexContext.commit('setIsMobileMenu', payload);
-  },
+  // setglobalModalVisible(vuexContext, payload){
+  //   vuexContext.commit('setglobalModalVisible', payload);
+  // },
 };
 
 export const getters = {
-  getIsMobileMenu(state){
-    return state.isMobileMenu;
+  getGlobalModalVisible(state){
+    return state.globalModalVisible;
   },
   getMenus(state){
     return state.menus;
-  }
+  },
 };
 

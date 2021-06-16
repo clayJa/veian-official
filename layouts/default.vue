@@ -9,17 +9,23 @@
 import FixedBar from '@/components/FixedBar/index.vue'
 import Modal from '@/components/Modal/index.vue'
 export default {
+  // setGlobalModalVisible
   data() {
     return {
       timer: null,
-      modalVisible: false
+      // modalVisible: false
+    }
+  },
+  computed: {
+    modalVisible() {
+      return this.$store.getters['getGlobalModalVisible']
     }
   },
   mounted() {
     if(localStorage.getItem('visited') !== 'true') {
       this.timer = setTimeout(() => {
-        this.modalVisible = true
-        console.log(this.modalVisible)
+        this.$store.commit('setGlobalModalVisible',true)
+        // console.log(this.modalVisible)
       },30000)
     }
   },
@@ -29,7 +35,7 @@ export default {
   methods: {
     handleVisibleChange(value) {
       localStorage.setItem('visited','true')
-      this.value =value
+      console.log(value)
     }
   },
   components: {

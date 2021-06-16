@@ -18,11 +18,14 @@
             <div class="clearfix">
               <div class="list-nav">
                 <div class="search-wrapper">
-                  <b-form-input
-                    id="help-search"
-                    placeholder="查找相关咨询内容…"
-                    v-model="searchText"
-                  ></b-form-input>
+                  <div class="input-wrapper">
+                    <b-form-input
+                      id="help-search"
+                      placeholder="查找相关咨询内容…"
+                      v-model="searchText"
+                    ></b-form-input>
+                    <i class="iconfont input-search" @click="handleTextSearch">&#xe63a;</i>
+                  </div>
                   <div class="total-wrapper clearfix">
                     <div class="total">{{ total }}条咨询</div>
                     <div class="select">
@@ -35,16 +38,17 @@
                     <div class="item-title">{{item.title}}</div>
                     <PillButton class="action-button d-md-none">查看</PillButton>
                   </div>
-                  <div class="item-content">{{item.content}}</div>
+                  <div class="item-content">{{item.description}}</div>
                   <PillButton class="action-button d-md-block d-none">查看</PillButton>
                 </div>
-                <!-- <div class="pagination-nav">
+                <div class="pagination-nav">
                   <Pagination
+                      v-if="total"
                       :pageSize="pageSize"
                       :total="total"
                       @onchange="changePage"
                   />
-                </div> -->
+                </div>
               </div>
               <div class="card-wrapper">
                 <InfoCard title="热门资讯"  :data="hotInfoList" path="/information/detail" />
@@ -63,7 +67,7 @@ import TabBar from '~/components/information/TabBar/index'
 import SelfSelect from '~/components/SelfSelect/index'
 import Pagination from '~/components/Pagination/index'
 import InfoCard from '~/components/information/InfoCard/index'
-
+import { newsSearch, newsTagsList } from '@/service/news'
 
 const bannerImg = require('@/static/search_banner.jpg')
 
@@ -167,7 +171,7 @@ export default {
       currentPage: 1,
       total: 20,
       searchText: '',
-      select: 1,
+      select: '',
       options: [
         { label: '网址建设', value: 1},
         { label: '移动互联', value: 2},
@@ -179,59 +183,61 @@ export default {
   created() {
     const query = this.$route.query
     console.log('query', query)
+    if (process.browser){
+      this.searchText = window.localStorage.getItem('searchText')
+      window.localStorage.setItem('searchText','')
+    }
+    this.getNewsTagsList()
     this.requestData({limit: this.pageSize})
     this.requestHotInfo()
   },
   methods: {
     handleSelectChange(value) {
       this.select = value
+      this.requestData()
+    },
+    handleTextSearch () {
+      this.requestData()
     },
     handleTabBarChange(value) {
       console.log(value)
       this.active = value
     },
-    requestData(params) {
-      const {limit = 15, page = 1} = params
-      const arr = []
-      for (let i = 0; i < limit; i++) {
-        arr.push({})
-      }
-
-      this.infoList = [
-        {
-          title: '浙江广播电台 FM 104.5《浙商读书会》司…',
-          updateAt: '2020.09.17',
-          content: '近日，我们鼎易科技的创始人刘总受邀参加了浙江广播电台FM104.5的《浙商读书会》访谈节目。《浙商读书会》是浙江广播电台推出的一档读书推荐交流类节目，邀请浙江',
-
-        },
-        {
-          title: '浙江广播电台 FM 104.5《浙商读书会》司…',
-          updateAt: '2021.04.14',
-          content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展停滞阶段，想要突出重围就必须要有所“创新”不可在走老路，而“知识付费”即处于创新领域，又算是内容变现的',
-        },
-        {
-          title: '大数据环境下，网站建设更需创新学习能力',
-          updateAt: '2021.03.25',
-          content: '在创新时代，网站建设的到底有什么实际的意义呢？我们能够切实的体会到网站在日常生活中起着不可替代的作用，更切实际的来讲，整个社会也已经离不开网络了。网站其实',
-        },
+    async requestData(params) {
+      const res = await newsSearch({
+        keyword: this.searchText,
+        limit: this.pageSize,
+        page: this.currentPage,
+        tags: this.select,
+        ...params
+      })
+      this.infoList = res.data
+      this.pageSize = res.per_page
+      this.currentPage = res.current_page
+      this.total = res.total
+    },
+    async requestHotInfo() {
+      const res = await newsSearch({order: 'hot'})
+      this.hotInfoList = res.data
+    },
+    async getNewsTagsList() {
+      const res = await newsTagsList()
+      const options = res.data.map(it => ({ label: it.name, value: it.id}))
+      this.options = [
+        { label: '全部', value: ''},
+        ...options
       ]
+      console.log(res, 'getNewsTagsList')
     },
-    requestHotInfo() {
-      const arr = []
-      for (let i = 0; i < 10; i++) {
-        arr.push({})
-      }
-
-      this.hotInfoList = dataList
+    handleTextSearch () {
+      this.requestData()
     },
-
     changePage(page, pageSize) {
-      console.log('page, pageSize', page, pageSize)
       this.requestData({
         limit: pageSize,
         page: page,
       })
-    }
+    },
   },
 
 }
@@ -327,6 +333,7 @@ export default {
     }
     .list-nav {
       float: left;
+      width: 755px;
       .search-wrapper {
         #help-search {
           height: 60px;
@@ -432,6 +439,7 @@ export default {
       }
       .list-nav {
         float: none;
+        width: 100%;
         .search-wrapper {
           #help-search {
             height: 60px;
@@ -533,5 +541,22 @@ export default {
     width: 100%;
     height: 100%;
   }
-
+  .input-wrapper {
+    position: relative;
+    .input-search {
+      display: inline-block;
+      font-size: 18px;
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    @media only screen and (max-width: 760px) {
+      .input-search {
+        font-size: 18px;
+        right: 24px;
+      }
+    }
+  }
 </style>

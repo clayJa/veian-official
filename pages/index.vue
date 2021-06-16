@@ -21,7 +21,6 @@ import News from '@/components/index/News/index.vue'
 export default {
   data() {
     return {
-      hide: this.$store.getters['getIsMobileMenu']
     }
   },
   methods: {
