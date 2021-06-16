@@ -189,6 +189,10 @@ export default {
         localStorage.setItem('currentPageId',item.id)
         return item.sub_path
       } else if(this.getChilds(item).length > 0) {
+        if(item.sub_path === '/confidence') {
+          localStorage.setItem('currentPageId',item.id)
+          return item.sub_path
+        }
         localStorage.setItem('currentPageId',this.getChilds(item)[0].id)
         return this.getChilds(item)[0].sub_path
       }
@@ -327,6 +331,7 @@ a {
         line-height: 43px;
         padding: 0 32px;
         font-weight: 500;
+        background: #fff;
         a {
           color: #474747;
         }
@@ -337,7 +342,7 @@ a {
           }
           .third-nav-wrapper {
             display: block;
-            background-color: #fff;
+            // background-color: #fff;
           }
         }
       }
@@ -351,10 +356,13 @@ a {
       font-size: 12px;
       font-family: PingFangSC-Regular, PingFang SC;
       font-weight: 500;
-      background: #fff;
+      min-height: 100%;
+      border-bottom: none;
+      border-right: none;
+      // background: #fff;
       z-index: 200;
       &:hover,&.active {
-        background: #F7F7F7;
+        // background: #F7F7F7;
         > a {
           color: #1A82FF;
         }
