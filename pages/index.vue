@@ -23,7 +23,14 @@ export default {
     return {
     }
   },
+  mounted() {
+    this.fetchModuleConfig()
+  },
   methods: {
+    async fetchModuleConfig() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      await this.$store.dispatch('fetchModuleConfig',{id: menuMap[this.$nuxt.$route.path]})
+    }
   },
   components: {
     Header,

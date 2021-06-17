@@ -1,8 +1,23 @@
 <template>
   <div class="banner-container">
-    <div class="my-swiper" v-swiper:mySwiper="swiperOption">
+    <div class="my-swiper" v-swiper:mySwiper="swiperOption" :key="randomKey">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
+        <div class="swiper-slide" v-for="(item,index) in swiperBanner" :key="index">
+          <div class="content">
+            <img :src="item.image" alt="">
+            <div class="text container">
+              <div :class="`${item.banner_class} ${item.banner_class ? 'mw-70' : ''}`">
+                <div class="home_banner_title1 mt229" v-if="item.title1">{{ item.title1 }}</div>
+                <div class="home_banner_title2" v-if="item.title2">{{ item.title2 }}</div>
+                <div class="home_banner_title3" v-if="item.title3">{{ item.title3 }}</div>
+                <a :href="item.buttonLink">
+                  <PillButton class="button">{{ item.buttonText }}</PillButton>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="swiper-slide">
           <div class="content">
             <img src="@/static/home_banner_1.png" alt="">
             <div class="text">
@@ -10,7 +25,7 @@
                 <div class="home_banner_title2">我们的价值是成就客户需求！</div>
                 <div class="home_banner_title3">即：客户需求为先的价值取向</div>
                 <a href="/contact">
-                  <PillButton>联系我们</PillButton>
+                  <PillButton class="button">联系我们</PillButton>
                 </a>
             </div>
           </div>
@@ -23,7 +38,7 @@
                 <div class="home_banner_title1 mt229">Welcome to weiran technology</div>
                 <div class="home_banner_title2">简单、信任、 快乐</div>
                 <a href="/contact">
-                  <PillButton :style="{ background: '#fff', color: '#1A82FF', marginTop: '48px' }">联系我们</PillButton>
+                  <PillButton class="button">联系我们</PillButton>
                 </a>
               </div>
             </div>
@@ -33,16 +48,16 @@
           <div class="content">
             <img src="@/static/home_banner_3.png" alt="">
             <div class="text container">
-              <div class="banner_title_wrapper2 vertical-center mw-70">
+              <div class="banner_title_wrapper2 mw-70">
                 <div class="home_banner_title1 mt229">Welcome to weiran technology</div>
                 <div class="home_banner_title2">帮助客户在时代中完成数字化、品牌化升级</div>
                 <a href="/contact">
-                  <PillButton :style="{ background: '#fff', color: '#1A82FF', marginTop: '48px' }">联系我们</PillButton>
+                  <PillButton class="button">联系我们</PillButton>
                 </a>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
         <div class="swiper-pagination"></div>
     </div>
@@ -51,6 +66,7 @@
 
 <script lang="ts">
 import PillButton from '@/components/PillButton/index.vue'
+import _get from 'lodash/get'
 type DataProps = {
   swiperOption: any
 }
@@ -64,8 +80,24 @@ export default {
         pagination: '.swiper-pagination',
         paginationClickable :true,
         preventClicks: false,
-      }
+        updateOnImagesReady : true,
+        resizeReInit : true,
+      },
+      randomKey: Math.random()
     } as DataProps
+  },
+  computed: {
+    moduleConfig() {
+      return this.$store.getters['getModuleConfig']
+    },
+    swiperBanner() {
+      return _get(this.moduleConfig,'swiperBanner',[])
+    }
+  },
+  watch: {
+    swiperBanner() {
+      this.randomKey = Math.random();
+    }
   },
   methods: {
   },
@@ -210,9 +242,16 @@ export default {
 }
 .banner_title_wrapper2 {
   text-align: left;
-  max-width: 40%;
+  .button {
+    background: #fff;
+    color: #1A82FF;
+    margin-top: 48px;
+  }
   @media only screen and (max-width: 760px) {
     max-width: 100%;
+    .button {
+      margin-top: 48px;
+    }
   }
 }
 .carousel-indicators .active {

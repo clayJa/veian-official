@@ -1,8 +1,9 @@
-import { getMenu } from '@/service/public'
+import { getMenu, getHook } from '@/service/public'
 export const state = () => ({
   globalModalVisible: false,
   menus: [],
-  currentPageId: null
+  currentPageId: null,
+  moduleConfig: {}
 });
 
 export const mutations = {
@@ -15,6 +16,9 @@ export const mutations = {
   setCurrentPageId(state, payload){
     state.currentPageId = payload;
   },
+  setModuleConfig(state, payload){
+    state.moduleConfig = payload;
+  },
 };
 
 export const actions = {
@@ -24,6 +28,10 @@ export const actions = {
   async getPageData(vuexContext, payload) {
     const res = await getMenu(payload)
     return res
+  },
+  async fetchModuleConfig(vuexContext, payload) {
+    const res = await getHook(payload)
+    vuexContext.commit('setModuleConfig', res.data || {});
   }
 };
 
@@ -36,6 +44,9 @@ export const getters = {
   },
   getCurrentPageId(state){
     return state.currentPageId;
+  },
+  getModuleConfig(state){
+    return state.moduleConfig;
   },
 };
 

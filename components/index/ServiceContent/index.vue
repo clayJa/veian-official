@@ -4,11 +4,11 @@
       <b-row class="flex">
         <b-col md="4" sm="5">
           <div class="left">
-            <div class="title-en">Service Content</div>
-            <div class="title-zh">服务内容</div>
+            <div class="title-en">{{serviceContent.title_en}}</div>
+            <div class="title-zh">{{serviceContent.title}}</div>
             <div class="control clearfix">
               <div :class="['control-item', { active: index === current }]"
-                v-for="(item,index) in list" :key="item.name"
+                v-for="(item,index) in serviceList" :key="item.name"
                 @mouseover="changeCurrent(index)"
               >
                 <div class="icon-wrapper">
@@ -24,12 +24,12 @@
           <div class="right-wrapper">
             <div class="right">
               <div class="seq">0{{ current + 1}}</div>
-              <div class="image"><img :src="list[current].image" alt=""></div>
+              <div class="image"><img :src="serviceList[current] && serviceList[current].image" alt=""></div>
               <div class="content">
-                <div class="title-zh">{{ list[current].name }}</div>
-                <div class="title-en">{{ list[current].en }}</div>
-                <div class="description">{{ list[current].title }}</div>
-                <div class="detail">{{ list[current].content }}</div>
+                <div class="title-zh">{{ serviceList[current] && serviceList[current].name }}</div>
+                <div class="title-en">{{ serviceList[current] && serviceList[current].en }}</div>
+                <div class="description">{{ serviceList[current] && serviceList[current].title }}</div>
+                <div class="detail">{{ serviceList[current] && serviceList[current].content }}</div>
               </div>
             </div>
             <div class="sharp"></div>
@@ -39,11 +39,11 @@
     </div>
     <div class="mobile-wrapper d-none d-md-block">
       <div class="service-list">
-        <div class="title-en">Service Content</div>
-        <div class="title-zh">服务内容</div>
-         <div class="my-swiper" v-swiper:mySwiper="swiperOption">
+        <div class="title-en">{{serviceContent.title_en}}</div>
+        <div class="title-zh">{{serviceContent.title}}</div>
+         <div class="my-swiper" v-swiper:mySwiper="swiperOption" :key="randomKey">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(item,index) in list" :key="item.name">
+            <div class="swiper-slide" v-for="(item,index) in serviceList" :key="item.name">
               <div :class="['control-item']">
                 <div class="icon-wrapper">
                   <i v-html="item.icon" class="icon iconfont"></i>
@@ -56,13 +56,13 @@
                   <div class="service-container">
                     <div class="image">
                       <div class="seq">0{{ index + 1}}</div>
-                      <img :src="list[index].image" alt="">
+                      <img :src="serviceList[index] && serviceList[index].image" alt="">
                     </div>
                     <div class="content">
-                      <div class="title-zh">{{ list[index].name }}</div>
-                      <div class="title-en">{{ list[index].en }}</div>
-                      <div class="description">{{ list[index].title }}</div>
-                      <div class="detail">{{ list[index].content }}</div>
+                      <div class="title-zh">{{ serviceList[index] && serviceList[index].name }}</div>
+                      <div class="title-en">{{ serviceList[index] && serviceList[index].en }}</div>
+                      <div class="description">{{ serviceList[index] && serviceList[index].title }}</div>
+                      <div class="detail">{{ serviceList[index] && serviceList[index].content }}</div>
                     </div>
                   </div>
                   <div class="sharp"></div>
@@ -92,7 +92,7 @@
 </template>
 
 <script lang="ts">
-import InlineSvg from 'vue-inline-svg';
+import _get from 'lodash/get'
 type DataProps = {
   list: any[]
   current: any
@@ -127,8 +127,27 @@ export default {
         slidesPerView: 2.2,
         paginationClickable :true,
         preventClicks: false,
+        updateOnImagesReady : true,
+        resizeReInit : true,
       },
+      randomKey: Math.random()
     } as DataProps
+  },
+  computed: {
+    moduleConfig() {
+      return this.$store.getters['getModuleConfig']
+    },
+    serviceContent() {
+      return _get(this.moduleConfig,'serviceContent',{})
+    },
+    serviceList() {
+      return _get(this.moduleConfig,'serviceContent.serviceList',[])
+    }
+  },
+  watch: {
+    serviceList() {
+      this.randomKey = Math.random();
+    }
   },
   mounted() {
   },
@@ -138,7 +157,6 @@ export default {
     },
   },
   components: {
-    InlineSvg
   }
 }
 </script>
@@ -268,6 +286,7 @@ export default {
       img {
         width: 100%;
         height: 100%;
+        border-radius: 50%;
       }
     }
     .content {

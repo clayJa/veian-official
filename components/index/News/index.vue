@@ -1,10 +1,10 @@
 <template>
   <div class="news-wrapper">
     <div class="container">
-      <div class="en-mark">News</div>
+      <div class="en-mark">{{ newsContent.title_en }}</div>
       <div class="title-wrapper clearfix">
-        <div class="title">新闻资讯</div>
-        <div class="title-slogan">我们的声音　务实创新</div>
+        <div class="title">{{newsContent.title}}</div>
+        <div class="title-slogan">{{newsContent.description}}</div>
       </div>
       <div class="list-wrapper">
         <div class="list clearfix">
@@ -21,17 +21,17 @@
           <img src="@/static/Combined_Shape_light.png" alt="">
         </div>
       </div>
-      <div class="more-title">了解更多动态</div>
+      <div class="more-title">{{ moreContent.title }}</div>
     </div>
     <div class="address-wrapper d-md-none">
       <div class="container">
         <div class="address clearfix">
           <div class="left">
-            <div class="address-title">杭州总部</div>
-            <div class="address-info">浙江省 杭州市 西湖区 紫荆花北路 宝港广场A座4F</div>
+            <div class="address-title">{{ moreContent.address_name}}</div>
+            <div class="address-info">{{ moreContent.address }}</div>
           </div>
           <div class="right">
-            <a target="_blank" rel="nofollow" href="https://www.amap.com/search?id=B0FFLHNFHD&city=330106&geoobj=120.089339%7C30.305415%7C120.09625%7C30.308939&query_type=IDQ&zoom=17.5">
+            <a target="_blank" rel="nofollow" :href="moreContent.address_link">
               <PillButton class="navigation">
                 <InlineSvg class="icon" :src="require('@/assets/images/index/icon_map.svg')" />
                 <span>一键导航</span>
@@ -47,10 +47,10 @@
     </div>
     <div class="mobile-address-wrapper d-none d-md-block">
       <div class="address">
-        <div class="address-title">杭州总部</div>
-        <div class="address-info">浙江省 杭州市 西湖区 紫荆花北路 宝港广场A座4F</div>
+        <div class="address-title">{{ moreContent.address_name}}</div>
+        <div class="address-info">{{ moreContent.address }}</div>
         <div>
-          <a target="_blank" rel="nofollow" href="https://www.amap.com/search?id=B0FFLHNFHD&city=330106&geoobj=120.089339%7C30.305415%7C120.09625%7C30.308939&query_type=IDQ&zoom=17.5">
+          <a target="_blank" rel="nofollow" :href="moreContent.address_link">
             <PillButton class="navigation">
               <InlineSvg class="icon" :src="require('@/assets/images/index/icon_map.svg')" />
               <span>一键导航</span>
@@ -69,6 +69,7 @@
 <script lang="ts">
 import PillButton from '@/components/PillButton/index.vue'
 import InlineSvg from 'vue-inline-svg';
+import _get from 'lodash/get'
 export default {
   data() {
     return {
@@ -84,6 +85,17 @@ export default {
         },
       ]
     }
+  },
+  computed: {
+    moduleConfig() {
+      return this.$store.getters['getModuleConfig']
+    },
+    moreContent() {
+      return _get(this.moduleConfig,'moreContent',{})
+    },
+    newsContent() {
+      return _get(this.moduleConfig,'newsContent',{})
+    },
   },
   methods: {
     toPath() {

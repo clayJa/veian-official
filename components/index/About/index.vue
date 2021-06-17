@@ -43,21 +43,22 @@
       </svg>
     </div>
     <div class="content">
-      <div class="title">关于 未苒科技</div>
+      <div class="title">{{aboutContent.title ||'关于 未苒科技'}}</div>
       <div class="description">
-        <div class="d-md-none">
-          <div>未苒网络科技（杭州）成立于2017年，作为中国互联网资深服务商</div>
+        <div class="d-md-none" v-html="aboutContent.pc_description">
+          <!-- <div>未苒网络科技（杭州）成立于2017年，作为中国互联网资深服务商</div>
           <div>专注于互联网平台开发、新媒体运营服务、云计算服务三大板块，致力于为一流的品牌提供互联网全案服务。</div>
           <div>未苒网络科技已经成功为众多世界五百强、中国五百强企业提供网站建设服务，</div>
-          <div>并在微信公众号运营、云架构咨询服务得到客户和行业的一致认可。</div>
+          <div>并在微信公众号运营、云架构咨询服务得到客户和行业的一致认可。</div> -->
         </div>
-        <div class="d-none d-md-block">
+        <div class="d-none d-md-block" v-html="aboutContent.m_description">
           未苒网络科技（杭州）成立于2017年，作为中国互联网资深服务商。专注于互联网平台开发、新媒体运营服务、云计算服务三大板块，致力于为一流的品牌提供互联网全案服务。未苒网络科技已经成功为众多世界五百强、中国五百强企业提供网站建设服务，并在微信公众号运营、云架构咨询服务得到客户和行业的一致认可。
         </div>
       </div>
-      <a href="/about/introduce">
+      <a :href="aboutContent.buttonLink">
         <PillButton class="button">
-          <span>了解未苒科技</span>
+          <!-- <span>了解未苒科技</span> -->
+          <span>{{aboutContent.buttonText ||'了解未苒科技'}}</span>
           <i class="iconfont" style="margin-left: 12px;">&#xe61e;</i>
         </PillButton>
       </a>
@@ -66,12 +67,21 @@
 </template>
 
 <script lang="ts">
+import _get from 'lodash/get'
 import PillButton from '@/components/PillButton/index.vue'
 export default {
   name: 'About',
   data() {
     return {
     }
+  },
+  computed: {
+    moduleConfig() {
+      return this.$store.getters['getModuleConfig']
+    },
+    aboutContent() {
+      return _get(this.moduleConfig,'aboutContent',{})
+    },
   },
   methods: {
     toPath() {
