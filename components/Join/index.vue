@@ -1,16 +1,38 @@
 <template>
 <div class="join-us">
-  <img src="@/static/join_background.jpg" alt="">
+  <!-- <img src="@/static/join_background.jpg" alt=""> -->
+  <img :src="concatInfoImage" alt="">
   <div class="content">
-    <div>发现不同</div>
+    <!-- <div>发现不同</div>
     <div class="text2">让每一个梦想脱颖而出</div>
-    <PillButton class="button" @click="$router.push('/contact')">更多发现，由你开启</PillButton>
+    <PillButton class="button" @click="$router.push('/contact')">更多发现，由你开启</PillButton> -->
+    <div>{{ concatInfo.title1 }}</div>
+    <div class="text2">{{ concatInfo.title2 }}</div>
+    <PillButton class="button" @click="$router.push(concatInfo.buttonLink)">{{ concatInfo.buttonText }}</PillButton>
   </div>
 </div>
 </template>
 <script lang="ts">
 export default {
   name: 'Join',
+  data() {
+    return {
+      concatInfo: {},
+      concatInfoImage: ''
+    }
+  },
+  mounted() {
+    this.fetchGlobalSetting()
+  },
+  methods: {
+    async fetchGlobalSetting() {
+      const res1 = await this.$store.dispatch('fetchGlobalSetting',{name: 'concatInfo_image'})
+      const res2 = await this.$store.dispatch('fetchGlobalSetting',{name: 'concatInfo'})
+      this.concatInfoImage = res1.data[0].value
+      this.concatInfo = JSON.parse(res2.data[0].value)
+      console.log(this.concatInfoImage,this.concatInfo)
+    }
+  }
 }
 </script>
 <style lang="less" scoped>

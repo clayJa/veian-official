@@ -5,16 +5,20 @@
       <div class="first-block">
         <div class="wrapper">
           <div class="text-wrapper">
-            <div class="title-desc">Welcome to weiran technology</div>
+            <!-- <div class="title-desc">Welcome to weiran technology</div>
             <div class="title">我们的价值是成就客户需求！</div>
-            <div class="subtitle">即：客户需求为先的价值取向</div>
+            <div class="subtitle">即：客户需求为先的价值取向</div> -->
+            <div class="title-desc">{{ contactData.contact_title_en }}</div>
+            <div class="title">{{ contactData.contact_title1 }}</div>
+            <div class="subtitle">{{ contactData.contact_title2 }}</div>
           </div>
           <div class="show-img">
             <InlineSvg :src="require('@/assets/images/combined_shape.svg')" class="icon-bg" @error="log($event)" />
 
             <div class="img-wrapper">
 
-              <img src="@/assets/images/contact/business.jpg" alt="">
+              <!-- <img src="@/assets/images/contact/business.jpg" alt=""> -->
+              <img :src="contactData.contact_first_image" alt="">
 
             </div>
           </div>
@@ -24,16 +28,17 @@
               我们的位置
             </div>
             <div class="address">
-              浙江省 杭州市 西湖区 紫荆花北路 宝港广场A座4F
+              <!-- 浙江省 杭州市 西湖区 紫荆花北路 宝港广场A座4F -->
+              {{contactData.address}}
             </div>
           </div>
           <div class="col-md-6 col-xs-12 action-bar-wrapper">
             <div class="action-bar">
-            <span class="action-button secondary">
+            <a class="action-button secondary" target="_blank" rel="nofollow" :href="contactData.address_link">
               <img :src="require('@/assets/images/contact/icon_map.png')" class="icon" />
 
-              <span>一键导航</span>
-            </span>
+              <span style="color: #fff;">一键导航</span>
+            </a>
             <span class="action-button secondary">
               <img :src="require('@/assets/images/contact/icon_advisory.png')" class="icon" />
 
@@ -147,11 +152,13 @@
               <div class="title">联系方式</div>
               <div class="subtitle">
                 <InlineSvg :src="require('@/assets/images/contact/phone_circle.svg')" class="icon" />
-                <span class="text"><span>周经理</span><span>  156 6900 6932</span></span>
+                <!-- <span class="text"><span>周经理</span><span>  156 6900 6932</span></span> -->
+                <span class="text"><span>{{concatUser.name}}</span><span>{{concatUser.phone}}</span></span>
               </div>
               <div class="subtitle">
                 <InlineSvg :src="require('@/assets/images/contact/email_circle.svg')" class="icon" />
-                <span class="text">info@company.com</span>
+                <!-- <span class="text">info@company.com</span> -->
+                <span class="text">{{concatUser.email}}</span>
               </div>
             </div>
           </div>
@@ -160,7 +167,8 @@
               <div class="wrapper">
               <InlineSvg :src="require('@/assets/images/combined_shape.svg')" class="back-icon" />
               <div class="contact-item col-md-6 col-xs-6"><InlineSvg :src="require('@/assets/images/contact/icon_wechat.svg')" class="icon" /></div>
-              <div class="contact-item col-md-6 col-xs-6"><img src="@/assets/images/contact/qrcode.png" alt="" class="img"></div>
+              <!-- <div class="contact-item col-md-6 col-xs-6"><img src="@/assets/images/contact/qrcode.png" alt="" class="img"></div> -->
+              <div class="contact-item col-md-6 col-xs-6"><img :src="qrcodeImage" alt="" class="img"></div>
               </div>
             </div>
           </div>
@@ -170,18 +178,21 @@
             <div class="title">联系方式</div>
             <div class="subtitle">
               <InlineSvg :src="require('@/assets/images/contact/phone_circle.svg')" class="icon" />
-              <span class="text"><span>周经理</span><span>  156 6900 6932</span></span>
+              <!-- <span class="text"><span>周经理</span><span>  156 6900 6932</span></span> -->
+              <span class="text"><span>{{concatUser.name}}</span><span>{{concatUser.phone}}</span></span>
             </div>
             <div class="subtitle">
               <InlineSvg :src="require('@/assets/images/contact/email_circle.svg')" class="icon" />
-              <span class="text">info@company.com</span>
+              <!-- <span class="text">info@company.com</span> -->
+              <span class="text">{{concatUser.email}}</span>
             </div>
           </div>
           <div class="contact-wrapper row">
             <div class="wrapper">
             <InlineSvg :src="require('@/assets/images/combined_shape.svg')" class="back-icon" />
             <div class="contact-item"><InlineSvg :src="require('@/assets/images/contact/icon_wechat.svg')" class="icon" /></div>
-            <div class="contact-item"><img src="@/assets/images/contact/qrcode.png" alt="" class="img"></div>
+            <!-- <div class="contact-item"><img src="@/assets/images/contact/qrcode.png" alt="" class="img"></div> -->
+            <div class="contact-item"><img :src="qrcodeImage" alt="" class="img"></div>
             </div>
           </div>
         </div>
@@ -193,22 +204,41 @@
 
 <script>
 import InlineSvg from 'vue-inline-svg';
-
+import _get from 'lodash/get'
 export default {
   components: {
     InlineSvg
   },
-  asyncData (context) {
-    // called every time before loading the component
-    return { name: 'World' }
+  data() {
+    return {
+      qrcodeImage: '',
+      concatUser: {}
+    }
   },
-  fetch () {
-    // The fetch method is used to fill the store before rendering the page
+  computed: {
+    moduleConfig() {
+      return this.$store.getters['getModuleConfig']
+    },
+    contactData() {
+      return _get(this.moduleConfig,'contactData',{})
+    },
   },
-  head () {
-    // Set Meta Tags for this Page
+  mounted() {
+    this.fetchModuleConfig()
+    this.fetchGlobalSetting()
   },
-  // and more functionality to discover
+  methods: {
+    async fetchModuleConfig() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      await this.$store.dispatch('fetchModuleConfig',{id: menuMap[this.$nuxt.$route.path]})
+    },
+    async fetchGlobalSetting() {
+      const res1 = await this.$store.dispatch('fetchGlobalSetting',{name: 'contact_user_qrcode'})
+      const res2 = await this.$store.dispatch('fetchGlobalSetting',{name: 'concat_user'})
+      this.qrcodeImage = res1.data[0].value
+      this.concatUser = JSON.parse(res2.data[0].value)
+    }
+  },
 }
 </script>
 

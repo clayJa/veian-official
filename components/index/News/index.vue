@@ -8,12 +8,12 @@
       </div>
       <div class="list-wrapper">
         <div class="list clearfix">
-          <div class="item" v-for="item in list" :key="item.name">
-            <div class="image-wrapper"><img :src="item.image" alt=""></div>
+          <div class="item" v-for="item in list" :key="item.title">
+            <div class="image-wrapper" v-if="item.cover_picture"><img :src="`/imageHost/${item.cover_picture}`" alt=""></div>
             <div class="info">
-              <div class="name">{{ item.name }}</div>
-              <div class="content">{{ item.content }}</div>
-              <div class="date">{{ item.date }}</div>
+              <div class="name">{{ item.title }}</div>
+              <div class="content">{{ item.description }}</div>
+              <div class="date">{{ item.updated_at }}</div>
             </div>
           </div>
         </div>
@@ -70,19 +70,20 @@
 import PillButton from '@/components/PillButton/index.vue'
 import InlineSvg from 'vue-inline-svg';
 import _get from 'lodash/get'
+import { newsSearch } from '@/service/news'
 export default {
   data() {
     return {
       list: [
-        { name: '浙江广播电台 FM 104.5…', content: '近日，我们鼎易科技的创始人刘总受邀参加了浙江广播电台',date: '2020.09.17',
-          image: require('@/assets/images/index/news_image_1.png'),
-        },
-        { name: '微信小程序如何实现知识…', content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展…',date: '2021.04.14',
-          image: require('@/assets/images/index/news_image_2.png'),
-        },
-        { name: '大数据环境下，网站建设…', content: '在创新时代，网站建设的到底有什么实际的意义呢？',date: '2021.03.25',
-          image: require('@/assets/images/index/news_image_3.png'),
-        },
+        // { name: '浙江广播电台 FM 104.5…', content: '近日，我们鼎易科技的创始人刘总受邀参加了浙江广播电台',date: '2020.09.17',
+        //   image: require('@/assets/images/index/news_image_1.png'),
+        // },
+        // { name: '微信小程序如何实现知识…', content: '在目前经济受创的市场大环境下可以说各大行业市场都处于发展…',date: '2021.04.14',
+        //   image: require('@/assets/images/index/news_image_2.png'),
+        // },
+        // { name: '大数据环境下，网站建设…', content: '在创新时代，网站建设的到底有什么实际的意义呢？',date: '2021.03.25',
+        //   image: require('@/assets/images/index/news_image_3.png'),
+        // },
       ]
     }
   },
@@ -97,10 +98,20 @@ export default {
       return _get(this.moduleConfig,'newsContent',{})
     },
   },
+  mounted() {
+    this.requestData()
+  },
   methods: {
     toPath() {
       console.log(1111)
-    }
+    },
+    async requestData() {
+      const res = await newsSearch({
+        limit: 3,
+        page: 1,
+      })
+      this.list = res.data
+    },
   },
   components: {
     PillButton,
@@ -185,6 +196,7 @@ export default {
           color: #A6AAB1;
           line-height: 32px;
           max-height: 64px;
+          min-height: 64px;
           overflow: hidden;
           margin-top: 16px;
           display: -webkit-box;
@@ -312,6 +324,7 @@ export default {
         font-size: 18px;
         line-height: 32px;
         max-height: 64px;
+        min-height: 64px;
         overflow: hidden;
         margin-top: 16px;
       }

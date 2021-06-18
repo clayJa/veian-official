@@ -1,9 +1,9 @@
-import { getMenu, getHook } from '@/service/public'
+import { getMenu, getHook, getSetting } from '@/service/public'
 export const state = () => ({
   globalModalVisible: false,
   menus: [],
   currentPageId: null,
-  moduleConfig: {}
+  moduleConfig: {},
 });
 
 export const mutations = {
@@ -32,6 +32,10 @@ export const actions = {
   async fetchModuleConfig(vuexContext, payload) {
     const res = await getHook(payload)
     vuexContext.commit('setModuleConfig', res.data || {});
+  },
+  async fetchGlobalSetting(vuexContext, payload) {
+    const res = await getSetting(payload)
+    return res
   }
 };
 

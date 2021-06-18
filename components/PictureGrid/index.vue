@@ -116,6 +116,7 @@ export default {
       line-height: 70px;
       border-radius: 35px;
       border: 1px solid rgba(255, 255, 255, 0.5);
+      margin-top: 48px;
     }
     @media only screen and (max-width: 760px) {
       padding: 48px 0;
@@ -125,6 +126,7 @@ export default {
         border-radius: 35px;
         line-height: 70px;
         font-size: 20px;
+        margin-top: 0;
       }
     }
   }
