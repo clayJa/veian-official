@@ -30,7 +30,6 @@ export default {
       const res2 = await this.$store.dispatch('fetchGlobalSetting',{name: 'concatInfo'})
       this.concatInfoImage = res1.data[0].value
       this.concatInfo = JSON.parse(res2.data[0].value)
-      console.log(this.concatInfoImage,this.concatInfo)
     }
   }
 }

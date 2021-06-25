@@ -12,7 +12,7 @@
             </div>
             <div class="data-intro row row-no-gutters clearfix">
               <div class="data-item">
-                <div class="number-wrapper"><RollNum :number="26.4"/> <span class="unit">%</span></div>
+                <div class="number-wrapper"><RollNum :number="+aboutIntroduce.number_increse || 0"/> <span class="unit">%</span></div>
                 <div class="desc">
                   <span>
                     <img class="icon" src="@/assets/images/about/refresh-ccw.png" alt="">
@@ -22,7 +22,7 @@
 
               </div>
               <div class="data-item">
-                <div class="number-wrapper"><RollNum :number="59.1"/><span class="unit">%</span></div>
+                <div class="number-wrapper"><RollNum :number="+aboutIntroduce.hudong_increase || 0"/><span class="unit">%</span></div>
                 <div class="desc">
                   <span>
                     <img class="icon" src="@/assets/images/about/trending-up.png" alt="">
@@ -31,7 +31,7 @@
 
               </div>
               <div class="data-item">
-                <div class="number-wrapper"><RollNum :number="31.9"/><span class="unit">%</span></div>
+                <div class="number-wrapper"><RollNum :number="+aboutIntroduce.precipitation_data || 0"/><span class="unit">%</span></div>
                 <div class="desc">
                   <span>
                     <img class="icon" src="@/assets/images/about/bar-chart.png" alt="">
@@ -43,7 +43,7 @@
           </div>
           <div class="clients-serve">
             <div class="title">服务客户</div>
-            <div class="number"><RollNum :number="5000"/>+</div>
+            <div class="number"><RollNum :number="+aboutIntroduce.customer_number || 0"/>+</div>
             <div class="unit">client</div>
 
           </div>
@@ -58,12 +58,12 @@
             </div>
             <div class="clients-serve">
               <div class="title">服务客户</div>
-              <div class="number"><RollNum :number="5000"/>+</div>
+              <div class="number"><RollNum :number="+aboutIntroduce.customer_number || 0"/>+</div>
               <div class="unit">client</div>
             </div>
             <div class="data-intro clearfix">
               <div class="data-item">
-                <div class="number-wrapper"><RollNum :number="26.4"/> <span class="unit">%</span></div>
+                <div class="number-wrapper"><RollNum :number="+aboutIntroduce.number_increse || 0"/> <span class="unit">%</span></div>
                 <div class="desc">
                   <span>
                     <img class="icon" src="@/assets/images/about/refresh-ccw.png" alt="">
@@ -73,7 +73,7 @@
 
               </div>
               <div class="data-item">
-                <div class="number-wrapper"><RollNum :number="59.1"/><span class="unit">%</span></div>
+                <div class="number-wrapper"><RollNum :number="+aboutIntroduce.hudong_increase || 0"/><span class="unit">%</span></div>
                 <div class="desc">
                   <span>
                     <img class="icon" src="@/assets/images/about/trending-up.png" alt="">
@@ -82,7 +82,7 @@
 
               </div>
               <div class="data-item">
-                <div class="number-wrapper"><RollNum :number="31.9"/><span class="unit">%</span></div>
+                <div class="number-wrapper"><RollNum :number="+aboutIntroduce.precipitation_data || 0"/><span class="unit">%</span></div>
                 <div class="desc">
                   <span>
                     <img class="icon" src="@/assets/images/about/bar-chart.png" alt="">
@@ -102,11 +102,11 @@
           <div class="media-wrapper col-md-6 col-xs-12 " >
 
             <img class="img-back" src="@/assets/images/about/dots_group.png" alt="">
-            <div class="media-back" :style="{background: `url('${videoCover}')  no-repeat center center`}"  />
+            <div class="media-back" :style="{background: `url('${aboutIntroduce.video_image}')  no-repeat center center`}"  />
             <img class="play-btn" @click="playVideo()" src="@/assets/images/about/play.png" alt="">
             <template v-if="isPlay">
               <video class="video" controls width="100%" height="100%" autoplay>
-                <source src="/media/cc0-videos/flower.mp4" type="video/mp4">
+                <source :src="aboutIntroduce.video_url" type="video/mp4">
 
                 Sorry, your browser doesn't support embedded videos.
               </video>
@@ -117,8 +117,10 @@
             <div class="text-wrapper">
               <div class="title-desc">About us</div>
               <div class="title">关于 未苒科技</div>
-              <p class="content">未苒网络科技(杭州)有限公司，位于杭州，秉承实现企业经营同行者的理念，以数据为核心，整合营销、内容、创意、技术、研发等多维度，多年的行业深耕经验，未苒网络致力于为客户提供综合经营数字化创新服务，连结企业商业与互联网前沿，帮助传统企业经营实现数字化转型升级。</p>
-              <p class="content">瞬息万变的全球化十代，以互联网范概念为载体，深入到客户日常经营及运维的方方面面，协助其构建经营运作体系，有效对接BAT，形成企业、用户、平台的无缝对接，成为其高效互通的经营枢纽，并利用DT数据，制定精准经营策略，互联未来——致力于成为企业数字化商业前进同行者角色。</p>
+              <p class="content">{{aboutIntroduce.about_content1}}</p>
+              <p class="content">{{aboutIntroduce.about_content2}}</p>
+              <!-- <p class="content">未苒网络科技(杭州)有限公司，位于杭州，秉承实现企业经营同行者的理念，以数据为核心，整合营销、内容、创意、技术、研发等多维度，多年的行业深耕经验，未苒网络致力于为客户提供综合经营数字化创新服务，连结企业商业与互联网前沿，帮助传统企业经营实现数字化转型升级。</p>
+              <p class="content">瞬息万变的全球化十代，以互联网范概念为载体，深入到客户日常经营及运维的方方面面，协助其构建经营运作体系，有效对接BAT，形成企业、用户、平台的无缝对接，成为其高效互通的经营枢纽，并利用DT数据，制定精准经营策略，互联未来——致力于成为企业数字化商业前进同行者角色。</p> -->
             </div>
           </div>
         </div>
@@ -129,18 +131,20 @@
             <div class="text-wrapper">
               <div class="title-desc">client</div>
               <div class="title">关于 未苒科技</div>
-              <div class="subtitle">服务的是你，也是我自己</div>
+              <!-- <div class="subtitle">服务的是你，也是我自己</div> -->
+              <div class="subtitle">{{aboutIntroduce.about_second && aboutIntroduce.about_second.description}}</div>
             </div>
             <div class="data-intro row row-no-gutters">
               <div class="data-item col-md-4 col-xs-6">
-                <div class="number-wrapper"><RollNum :number="80"/><span class="unit">%</span></div>
+                <!-- <div class="number-wrapper"><RollNum :number="80"/><span class="unit">%</span></div> -->
+                <div class="number-wrapper"><RollNum :number="aboutIntroduce.about_second ? +aboutIntroduce.about_second.rate : 0"/><span class="unit">%</span></div>
                 <div class="desc">
                   <span>执行团队比例</span>
                 </div>
 
               </div>
               <div class="data-item col-md-4 col-xs-6">
-                <div class="number-wrapper"><RollNum :number="1000"/>+</div>
+                <div class="number-wrapper"><RollNum :number="aboutIntroduce.about_second ? +aboutIntroduce.about_second.case : 0"/>+</div>
                 <div class="desc">
                   <span>经典客户案例</span>
                 </div>
@@ -148,8 +152,10 @@
             </div>
           </div>
           <div class="logo-wrapper col-md-6 col-xs-12">
-            <img class="logo-item" src="@/assets/images/about/logo_types.png" alt="">
-            <img class="logo-item" src="@/assets/images/about/logo_types.png" alt="">
+            <!-- <img class="logo-item" src="@/assets/images/about/logo_types.png" alt="">
+            <img class="logo-item" src="@/assets/images/about/logo_types.png" alt=""> -->
+            <img class="logo-item" v-for="(item,index) in getObject(aboutIntroduce,'about_second.logos',[])"
+              :src="item" :key="index" alt="">
 
           </div>
 
@@ -158,10 +164,13 @@
       <div class="four-block" :style="{background: `url('${sceneryImg1}')  no-repeat center center`}">
         <div class="wrapper">
           <div class="text-wrapper">
-            <div class="title-desc">vision</div>
+            <div class="title-desc">{{getObject(aboutIntroduce,'vision.title_en','')}}</div>
+            <div class="title">{{getObject(aboutIntroduce,'vision.title','')}}</div>
+            <div class="content">{{getObject(aboutIntroduce,'vision.description','')}}</div>
+            <!-- <div class="title-desc">vision</div>
             <div class="title">愿景</div>
             <div class="content">致力于互联网前沿，通过互携、探讨，打造企业营销应用市场综合体
-              为与企业互联网市场的需求而不断努力。</div>
+              为与企业互联网市场的需求而不断努力。</div> -->
               <div class="action">
                 <Button class="primary">加入我们</Button>
               </div>
@@ -172,11 +181,15 @@
       <div class="five-block" :style="{background: `url('${sceneryImg2}')  no-repeat center center`}">
         <div class="wrapper">
           <div class="text-wrapper">
-            <div class="title-desc">purpose</div>
+            <div class="title-desc">{{getObject(aboutIntroduce,'purpose.title_en','')}}</div>
+            <div class="title">{{getObject(aboutIntroduce,'purpose.title','')}}</div>
+            <div class="content">{{getObject(aboutIntroduce,'purpose.description1','')}}</div>
+            <div class="content">{{getObject(aboutIntroduce,'purpose.description2','')}}</div>
+            <!-- <div class="title-desc">purpose</div>
             <div class="title">简单、信任、快乐</div>
             <div class="content">因为信任，所以简单快乐！</div>
 
-            <div class="content">开放协作的年代，相互间的纽带与羁绊，我们相信的未来因为信任所以舞台永远比想象的要辽阔。因为信任无间，所以凡事简单，并且快乐其中。苒苒生长。</div>
+            <div class="content">开放协作的年代，相互间的纽带与羁绊，我们相信的未来因为信任所以舞台永远比想象的要辽阔。因为信任无间，所以凡事简单，并且快乐其中。苒苒生长。</div> -->
           </div>
 
         </div>
@@ -192,7 +205,7 @@ import TabBar from '@/components/about/TabBar'
 import Button from '@/components/Button'
 import RollNum from '@/components/RollNum'
 import Join from '@/components/Join'
-
+import _get from 'lodash/get'
 
 const bannerImg = require('@/assets/images/about/banner_back.jpg')
 import videoCover from '@/assets/images/about/advisor.png'
@@ -215,23 +228,30 @@ export default {
       isPlay: false,
     }
   },
+  computed: {
+    moduleConfig() {
+      return this.$store.getters['getModuleConfig']
+    },
+    aboutIntroduce() {
+      return _get(this.moduleConfig,'aboutIntroduce',{})
+    },
+  },
+  mounted() {
+    this.fetchModuleConfig()
+  },
   methods: {
     playVideo() {
       console.log('play')
       this.isPlay = true
     },
+    getObject(obj,key,defaultValue) {
+      return _get(obj,key,defaultValue)
+    },
+    async fetchModuleConfig() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      await this.$store.dispatch('fetchModuleConfig',{id: menuMap[this.$nuxt.$route.path]})
+    },
   },
-  asyncData (context) {
-    // called every time before loading the component
-    return { name: 'World' }
-  },
-  fetch () {
-    // The fetch method is used to fill the store before rendering the page
-  },
-  head () {
-    // Set Meta Tags for this Page
-  },
-  // and more functionality to discover
 }
 </script>
 

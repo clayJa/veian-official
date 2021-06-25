@@ -4,7 +4,8 @@
       <div class="container header-wrapper">
         <div class="logo" @click="$router.push('/')"></div>
         <div class="nav-wrapper ml-auto">
-          <div :class="['nav-item', {active: $nuxt.$route.path === item.sub_path || ($nuxt.$route.path.includes(item.sub_path) && item.sub_path !== '/')}]" v-for="item in menus" :key="item.id">
+          <div :class="['nav-item', {active: $nuxt.$route.path === item.sub_path || ($nuxt.$route.path.includes(item.sub_path) && item.sub_path !== '/')}]"
+            v-for="item in menus.filter(it => it.is_hidden !== 1)" :key="item.id">
             <a @click.stop="toPath(item)">
               {{ item.title }}
               <i class="iconfont nav-icon" v-if="getChilds(item).length > 0" >&#xe629;</i>

@@ -2,12 +2,15 @@
   <div>
     <Header />
     <div>
-      <div class="banner" :style="{background: `url('${bannerImg}')  no-repeat center center`}">
+      <div class="banner" :style="{background: `url('/imageHost/${pageData.cover_picture ? pageData.cover_picture[0] : ''}')  no-repeat center center`}">
         <div class="wrapper">
           <div class="text-wrapper">
-            <div class="title-desc">Welcome to weiran technology</div>
+            <!-- <div class="title-desc">Welcome to weiran technology</div>
             <div class="title">加入未苒</div>
-            <div class="subtitle">我们的声音，务实求新</div>
+            <div class="subtitle">我们的声音，务实求新</div> -->
+            <div class="title-desc">{{ pageData.title_en}}</div>
+            <div class="title">{{ pageData.title}}</div>
+            <div class="subtitle">{{ pageData.description}}</div>
           </div>
 
         </div>
@@ -48,9 +51,9 @@
               :key="item.title">
               <div class="item-title clearfix">
                 <div class="title-text">{{item.title}}</div>
-                <div class="extra">{{item.updateAt}}</div>
+                <div class="extra">{{item.updated_at}}</div>
               </div>
-              <div class="item-content">{{item.content}}</div>
+              <div class="item-content">{{item.description}}</div>
             </div>
           </div>
         </div>
@@ -65,6 +68,7 @@
 <script>
 import TabBar from '@/components/about/TabBar'
 import Join from '@/components/Join'
+import _get from 'lodash/get'
 const bannerImg = require('@/assets/images/about/join/banner_back.jpg')
 
 const img = require('@/assets/images/about/join/photo.jpg')
@@ -117,34 +121,57 @@ export default {
 
         },
       ],
-      jobDescriptionList: [
-        {
-          title: 'UI/UX 设计',
-          updateAt: '2021.03.25',
-          content: '负责web端和移动端页面UIUX（交互）设计关注全球设计行业动态与发展方向，准确把握web端和移动端的设计风格和质量配合前端软件工程师完成人机交互界面设计工作要求：本科及以上学历（不限于艺术类科班出身），平面功底深厚熟练使用Sketch、PS、AI等设计软件能对立思考和完成产品的设计积极理解产品的需求，同时快速的生成新的设计方案注重细节',
+      // jobDescriptionList: [
+      //   {
+      //     title: 'UI/UX 设计',
+      //     updateAt: '2021.03.25',
+      //     content: '负责web端和移动端页面UIUX（交互）设计关注全球设计行业动态与发展方向，准确把握web端和移动端的设计风格和质量配合前端软件工程师完成人机交互界面设计工作要求：本科及以上学历（不限于艺术类科班出身），平面功底深厚熟练使用Sketch、PS、AI等设计软件能对立思考和完成产品的设计积极理解产品的需求，同时快速的生成新的设计方案注重细节',
 
-        },
-        {
-          title: 'WEB前端开发',
-          updateAt: '2021.03.25',
-          content: '负责移动端、PC端项目界面的构建和各类前端交互实现； 2. 做为项目核心成员负责指导前端人员，前端架构和难点攻克。 3. 与后端工程师协作，高效完成数据交互、动态展现； 岗位要求： 1. 计算机或相关专业专科以上，4年前端开发经验，具有互联网应用或者企业管理平台开发经验。 2. 精通各种 Web 前端技术，对符合 Web 标准的网站重构有丰富经验，精通H5编写。 3. 掌握 JS 语言核心技术，对 JS 框架（jQueryZeptoVueReact等）有实际使用经验。',
-        },
-        {
-          title: 'IOS开发',
-          updateAt: '2021.03.25',
-          content: '熟练掌握iOS平台上的应用开发技术，有独立的App开发能力；3. 熟练掌握C、objective-c语言，Xcode开发环境，及CocoaTouch各种相关开发框架技术；4. 能提供DEMO或AppStore上架产品、具有C/C 或Android开发经验或参加过一个完整的商业级手机应用开发项目者优先；5. 有良好的编程风格和面向对象经验，具备必要的网络、服务器端开发知识。',
-        },
-        {
-          title: 'ANDROID开发',
-          updateAt: '2021.03.25',
-          content: '1年以上Android平台开发经验，熟悉Android开发平台及框架原理，具有一定的Android手机适配经验者优先；2.熟练掌握Android界面布局及绘制、数据存储、网络通信机制等，对Socket和HTTP访问有实际开发经验;2.具有2个以上安卓APP客户端产品经验',
-        },
-      ],
+      //   },
+      //   {
+      //     title: 'WEB前端开发',
+      //     updateAt: '2021.03.25',
+      //     content: '负责移动端、PC端项目界面的构建和各类前端交互实现； 2. 做为项目核心成员负责指导前端人员，前端架构和难点攻克。 3. 与后端工程师协作，高效完成数据交互、动态展现； 岗位要求： 1. 计算机或相关专业专科以上，4年前端开发经验，具有互联网应用或者企业管理平台开发经验。 2. 精通各种 Web 前端技术，对符合 Web 标准的网站重构有丰富经验，精通H5编写。 3. 掌握 JS 语言核心技术，对 JS 框架（jQueryZeptoVueReact等）有实际使用经验。',
+      //   },
+      //   {
+      //     title: 'IOS开发',
+      //     updateAt: '2021.03.25',
+      //     content: '熟练掌握iOS平台上的应用开发技术，有独立的App开发能力；3. 熟练掌握C、objective-c语言，Xcode开发环境，及CocoaTouch各种相关开发框架技术；4. 能提供DEMO或AppStore上架产品、具有C/C 或Android开发经验或参加过一个完整的商业级手机应用开发项目者优先；5. 有良好的编程风格和面向对象经验，具备必要的网络、服务器端开发知识。',
+      //   },
+      //   {
+      //     title: 'ANDROID开发',
+      //     updateAt: '2021.03.25',
+      //     content: '1年以上Android平台开发经验，熟悉Android开发平台及框架原理，具有一定的Android手机适配经验者优先；2.熟练掌握Android界面布局及绘制、数据存储、网络通信机制等，对Socket和HTTP访问有实际开发经验;2.具有2个以上安卓APP客户端产品经验',
+      //   },
+      // ],
+      pageData: {}
     }
+  },
+  computed: {
+    moduleConfig() {
+      return this.$store.getters['getModuleConfig']
+    },
+    jobDescriptionList() {
+      console.log(this.moduleConfig,'this.moduleConfig')
+      return _get(this.moduleConfig,'jobList',[])
+    }
+  },
+  mounted() {
+    this.getPageData()
+    this.fetchModuleConfig()
   },
   methods: {
     handleJobClick(index) {
       this.active = index
+    },
+    async fetchModuleConfig() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      await this.$store.dispatch('fetchModuleConfig',{id: menuMap[this.$nuxt.$route.path]})
+    },
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      this.pageData = res.data[0]
     }
   },
 

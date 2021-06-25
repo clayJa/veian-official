@@ -1,9 +1,9 @@
 <template>
   <div class="picture-grid clearfix">
     <div class="picture-item" v-for="item in list" :key="item.name">
-      <img :src="item.img" alt="">
-      <div class="mask" @click="toPath(item.url)">
-        {{ item.name }}
+      <img :src="getObject(item,'content_body.bannerImage')" alt="">
+      <div class="mask" @click="toPath(`/uncomplicated/example${item.case_study_id}?id=${item.id}`)">
+        {{ item.title }}
       </div>
     </div>
     <div class="more-wrapper" v-if="hasMore">
@@ -15,29 +15,30 @@
 </template>
 
 <script lang="ts">
-// import { PropOptions } from 'vue';
-type DataProps = {
-}
+import { caseList } from '@/service/news'
+import _get from 'lodash/get'
+// type DataProps = {
+// }
 export default {
   props: {
-    list: {
-      default() {
-        return [
-          { name: '白塔岭画室官网', url: '', img: require('@/static/image-test/白塔岭画室官网.png')},
-          { name: '南孚电池官网', url: '/uncomplicated/example1', img: require('@/static/image-test/南孚电池官网.png')},
-          { name: '奇瑞控股官网', url: '', img: require('@/static/image-test/奇瑞控股官网.png')},
-          { name: '新日电动车官网', url: '', img: require('@/static/image-test/新日电动车官网.png')},
-          { name: '徐工集团官网', url: '', img: require('@/static/image-test/徐工集团官网.png')},
-          { name: '张裕集团官网', url: '', img: require('@/static/image-test/张裕集团官网.png')},
-          { name: '中联重科官网', url: '', img: require('@/static/image-test/中联重科官网.png')},
-          { name: 'G42', url: '', img: require('@/static/image-test/G42.png')},
-          { name: '瑰珀翠官网', url: '/uncomplicated/example3', img: require('@/static/image-test/瑰珀翠官网.png')},
-          { name: '喜临门官网', url: '/uncomplicated/example2', img: require('@/static/image-test/喜临门官网.png')},
-          { name: 'CCTV', url: '', img: require('@/static/image-test/CCTV.png')},
-          { name: '李宁官网', url: '', img: require('@/static/image-test/李宁官网.png')},
-        ]
-      }
-    },
+    // list: {
+    //   default() {
+    //     return [
+    //       { name: '白塔岭画室官网', url: '', img: require('@/static/image-test/白塔岭画室官网.png')},
+    //       { name: '南孚电池官网', url: '/uncomplicated/example1', img: require('@/static/image-test/南孚电池官网.png')},
+    //       { name: '奇瑞控股官网', url: '', img: require('@/static/image-test/奇瑞控股官网.png')},
+    //       { name: '新日电动车官网', url: '', img: require('@/static/image-test/新日电动车官网.png')},
+    //       { name: '徐工集团官网', url: '', img: require('@/static/image-test/徐工集团官网.png')},
+    //       { name: '张裕集团官网', url: '', img: require('@/static/image-test/张裕集团官网.png')},
+    //       { name: '中联重科官网', url: '', img: require('@/static/image-test/中联重科官网.png')},
+    //       { name: 'G42', url: '', img: require('@/static/image-test/G42.png')},
+    //       { name: '瑰珀翠官网', url: '/uncomplicated/example3', img: require('@/static/image-test/瑰珀翠官网.png')},
+    //       { name: '喜临门官网', url: '/uncomplicated/example2', img: require('@/static/image-test/喜临门官网.png')},
+    //       { name: 'CCTV', url: '', img: require('@/static/image-test/CCTV.png')},
+    //       { name: '李宁官网', url: '', img: require('@/static/image-test/李宁官网.png')},
+    //     ]
+    //   }
+    // },
     hasMore: {
       type: Boolean,
       default: false,
@@ -45,14 +46,34 @@ export default {
   },
   data() {
     return {
-    } as DataProps
+      list: [],
+      nextPage: 1,
+    }
+  },
+  mounted() {
+    this.requestData()
   },
   methods: {
     toPath(path: string) {
       if(path) {
         this.$router.push(path)
       }
-    }
+    },
+    getObject(obj,key,defaultValue) {
+      return _get(obj,key,defaultValue)
+    },
+    async requestData() {
+      const res: any = await caseList({
+        limit: 1,
+        page: this.nextPage,
+      })
+      // Math.ceil(2/16)
+      console.log(res,'2324343')
+      this.list = res.data
+      this.pageSize = res.per_page
+      this.currentPage = res.current_page
+      this.total = res.total
+    },
   },
   components: {
   }

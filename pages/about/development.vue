@@ -2,12 +2,15 @@
   <div>
     <Header />
     <div>
-      <div class="banner" :style="{background: `url('${bannerImg}')  no-repeat center center`}">
+      <div class="banner" :style="{background: `url('/imageHost/${pageData.cover_picture ? pageData.cover_picture[0] : ''}')  no-repeat center center`}">
         <div class="wrapper">
           <div class="text-wrapper">
-            <div class="title-desc">Welcome to weiran technology</div>
+            <!-- <div class="title-desc">Welcome to weiran technology</div>
             <div class="title">发展历程</div>
-            <div class="subtitle">2004年创立以来，致力提供数字化综合服务</div>
+            <div class="subtitle">2004年创立以来，致力提供数字化综合服务</div> -->
+            <div class="title-desc">{{ pageData.title_en}}</div>
+            <div class="title">{{ pageData.title}}</div>
+            <div class="subtitle">{{ pageData.description}}</div>
           </div>
 
         </div>
@@ -21,7 +24,7 @@
         <div class="wrapper row row-no-gutters">
           <div class="page-title-nav">
             <div class="title">Development path</div>
-            <div class="subtitle">2004年成立至今</div>
+            <div class="subtitle">{{developList[0] ? developList[0].time : ''}}年成立至今</div>
           </div>
           <ul class="timeline-nav">
 <!--            <img class="img-back" src="@/assets/images/about/dots_group.png" alt="">-->
@@ -103,7 +106,7 @@
 import TabBar from '@/components/about/TabBar'
 import Join from '@/components/Join'
 const bannerImg = require('@/assets/images/about/development/banner_back.jpg')
-
+import _get from 'lodash/get'
 export default {
   components: {
     TabBar,
@@ -114,45 +117,77 @@ export default {
       curPath: '/about/development',
       bannerImg: bannerImg,
       activeIndex: -1,
-      developList: [
-        {
-          img: require('@/assets/images/about/development/photo1.jpg'),
-          time: '2004',
-          content: '2004年，中国互联网公司开启第二轮境外上市热潮，盛大网络、腾讯公司、空中网等网络公司纷纷在海外上市，在互联网之都杭州，未苒网络科技应声创立。',
-        },
-        {
-          img: require('@/assets/images/about/development/photo2.jpg'),
-          time: '2008',
-          content: '进入2008年，房地产政策方向由“控”到“放”，未苒网络科技快速响应市场政策的变化决定进行房地产行业深挖，创新业务格局。',
-        },
-        {
-          img: require('@/assets/images/about/development/photo3.jpg'),
-          time: '2010',
-          content: '推动消费增长的医疗、教育、媒体等行业持续创新，中小企业增长动力强劲，经济出现新的增长点未苒网络科技再次进行市场扩张，服务客户中上市企业及五百强企业占有率超30%。',
-        },
-        {
-          img: require('@/assets/images/about/development/photo4.jpg'),
-          time: '2015',
-          content: '2015年，“互联网+”大潮袭来\n未苒网络科技顺应时代潮流完成股改更改为股份有限公司。',
-        },
-        {
-          img: require('@/assets/images/about/development/photo5.jpg'),
-          time: '2018',
-          content: '2018年，未苒网络科技以杭州为总部、长三角为核心区，分别在北京、南京、成都、青岛成立分公司，正式布局全国市场',
-        },
+      // developList: [
+      //   {
+      //     img: require('@/assets/images/about/development/photo1.jpg'),
+      //     time: '2004',
+      //     content: '2004年，中国互联网公司开启第二轮境外上市热潮，盛大网络、腾讯公司、空中网等网络公司纷纷在海外上市，在互联网之都杭州，未苒网络科技应声创立。',
+      //   },
+      //   {
+      //     img: require('@/assets/images/about/development/photo2.jpg'),
+      //     time: '2008',
+      //     content: '进入2008年，房地产政策方向由“控”到“放”，未苒网络科技快速响应市场政策的变化决定进行房地产行业深挖，创新业务格局。',
+      //   },
+      //   {
+      //     img: require('@/assets/images/about/development/photo3.jpg'),
+      //     time: '2010',
+      //     content: '推动消费增长的医疗、教育、媒体等行业持续创新，中小企业增长动力强劲，经济出现新的增长点未苒网络科技再次进行市场扩张，服务客户中上市企业及五百强企业占有率超30%。',
+      //   },
+      //   {
+      //     img: require('@/assets/images/about/development/photo4.jpg'),
+      //     time: '2015',
+      //     content: '2015年，“互联网+”大潮袭来\n未苒网络科技顺应时代潮流完成股改更改为股份有限公司。',
+      //   },
+      //   {
+      //     img: require('@/assets/images/about/development/photo5.jpg'),
+      //     time: '2018',
+      //     content: '2018年，未苒网络科技以杭州为总部、长三角为核心区，分别在北京、南京、成都、青岛成立分公司，正式布局全国市场',
+      //   },
 
-      ]
+      // ],
+      pageData: {}
 
     }
   },
+  mounted() {
+    this.getPageData()
+    this.fetchModuleConfig()
+    // console.log(this.moduleConfig,'moduleConfig')
+  },
+  computed: {
+    moduleConfig() {
+      return this.$store.getters['getModuleConfig']
+    },
+    developList() {
+      const developList =  _get(this.moduleConfig,'developmentList',[])
+      const result = developList.map(it => {
+        return {
+          img: `/imageHost/${it.cover_picture}`,
+          time: it.title,
+          content: it.description,
+        }
+      })
+      return result;
+    },
+  },
+
   methods: {
     playVideo() {
       console.log('play')
       this.isPlay = true
     },
     handleAnimationEnd(index) {
-      console.log(index)
+      // console.log(index)
       this.activeIndex = index === this.developList.length - 1 ? -1 : index + 1
+    },
+    async fetchModuleConfig() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      await this.$store.dispatch('fetchModuleConfig',{id: menuMap[this.$nuxt.$route.path]})
+    },
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      this.pageData = res.data[0]
     }
   },
 

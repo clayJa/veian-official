@@ -2,12 +2,15 @@
   <div>
     <Header />
     <div>
-      <div class="banner" :style="{background: `url('${bannerImg}')  no-repeat center center`}">
+      <div class="banner" :style="{background: `url('/imageHost/${pageData.cover_picture ? pageData.cover_picture[0] : ''}')  no-repeat center center`}">
         <div class="wrapper">
           <div class="text-wrapper">
-            <div class="title-desc">Welcome to weiran technology</div>
+            <!-- <div class="title-desc">Welcome to weiran technology</div>
             <div class="title">未苒模样</div>
-            <div class="subtitle">我们的声音，务实求新</div>
+            <div class="subtitle">我们的声音，务实求新</div> -->
+            <div class="title-desc">{{ pageData.title_en}}</div>
+            <div class="title">{{ pageData.title}}</div>
+            <div class="subtitle">{{ pageData.description}}</div>
           </div>
 
         </div>
@@ -25,11 +28,11 @@
             <div class="show-box" v-for="(item,i) in dataArray" :key="i">
               <div class="box-item">
                 <div class="img-wrapper">
-                  <img class="img" :src="item.img" alt="">
+                  <img class="img" :src="`/imageHost/${item.cover_picture}`" alt="">
                 </div>
                 <div class="text-wrapper">
                   <div class="title">{{item.title}}</div>
-                  <div class="subtitle">{{item.desc}}</div>
+                  <div class="subtitle">{{item.updated_at}}</div>
                 </div>
 
               </div>
@@ -60,7 +63,7 @@
 import TabBar from '@/components/about/TabBar'
 import Join from '@/components/Join'
 import Pagination from '@/components/Pagination'
-
+import {newsSearch} from '@/service/news'
 const bannerImg = require('@/assets/images/about/show/banner_back.jpg')
 
 export default {
@@ -78,37 +81,38 @@ export default {
 
       pageSize: 9,
       currentPage: 1,
-      total: 50,
+      total: 0,
+      pageData: {}
     }
   },
-  created() {
-    this.requestData({limit: this.pageSize, page: 1})
+  mounted() {
+    this.getPageData()
   },
   methods: {
-    requestData(params) {
-      const {limit = 15, page = 1} = params
-      const arr = []
-      for (let i = 0; i < limit; i++) {
-        arr.push({
-          title: '年中总结' + (i + 1 + ((page - 1) * limit)),
-          desc: '2008-3-23',
-          img: require('@/assets/images/about/show/photo.jpg'),
-        })
-      }
-
-      this.dataArray = arr
+    async requestData(params) {
+      const res = await newsSearch({
+        limit: this.pageSize,
+        page: this.currentPage,
+        category: [this.pageData.category[0].id],
+        ...params
+      })
+      this.dataArray = res.data
+      this.pageSize = res.per_page
+      this.currentPage = res.current_page
+      this.total = res.total
     },
     changePage(page, pageSize) {
-      console.log('page, pageSize', page, pageSize)
       this.requestData({
         limit: pageSize,
         page: page,
       })
+    },
+    async getPageData() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      const res = await this.$store.dispatch('getPageData',{id: menuMap[this.$nuxt.$route.path]})
+      this.pageData = res.data[0]
+      this.requestData({limit: this.pageSize, page: 1})
     }
-  },
-  fetch () {
-    // The fetch method is used to fill the store before rendering the page
-    console.log('fetch')
   },
 
 
