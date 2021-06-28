@@ -3,12 +3,13 @@
     <Header></Header>
     <div class="banner">
       <div class="content">
-        <img src="@/static/simple/example2_banner.jpg" alt="">
+        <!-- <img src="@/static/simple/example2_banner.jpg" alt=""> -->
+        <img :src="`/imageHost/${pageData.bannerImage}`" alt="">
         <div class="text">
           <div class="container">
-            <div class="info1">Project Introduction</div>
-            <div class="info2">喜临门</div>
-            <div class="info3">用户体验 / 交互设计</div>
+            <div class="info1">{{pageData.bannerTitleEn}}</div>
+            <div class="info2">{{pageData.bannerTitle1}}</div>
+            <div class="info3">{{pageData.bannerTitle2}}</div>
           </div>
         </div>
       </div>
@@ -18,36 +19,43 @@
         <div class="description clearfix">
           <div class="project-info">
             <div class="title">项目简介</div>
-            <div class="project">喜临门</div>
-            <div class="detail">喜临门诞生于1984年，三十余载奋斗精进，始终以“致力于人类的健康睡眠”为使命，专注于设计、研发、生产以床垫为核心的高品质家具，产品体系覆盖软床、床垫、沙发和全屋定制。</div>
+            <div class="project">{{pageData.brandTitle}}</div>
+            <div class="detail">{{pageData.brandInfo}}</div>
           </div>
           <div class="logo">
-            <img src="@/static/simple/example2_logo.png" alt="">
+            <img :src="`/imageHost/${pageData.brandLogo}`" alt="">
           </div>
         </div>
         <div class="image-list">
-          <div class="image-wrapper">
-            <img src="@/static/simple/example2_image01.png" alt="">
+          <div :class="['image-wrapper',{'fixed-image': item.hasEffects === 1}]"
+            v-for="(item,index) in list" :key="index"
+            :style="{backgroundImage: item.hasEffects === 1 ? `url(${item.img})` : 'none'}"
+            :ref="`list_${index}`"
+          >
+            <img :src="item.img" alt="" v-if="item.hasEffects !== 1">
+            <template v-else>
+              <div class="before"></div>
+              <div class="after"></div>
+            </template>
           </div>
-          <div class="image-wrapper">
+          <!-- <div class="image-wrapper">
             <img src="@/static/simple/example2_image02.png" alt="">
           </div>
           <div class="image-wrapper">
             <img src="@/static/simple/example2_image03.png" alt="">
           </div>
-          <div class="image-wrapper fixed-image"
+          <div class="image-wrapper "
             :style="{backgroundImage: `url(${require('@/static/simple/example2_image05.png')})`}"
             ref="list_3"
           >
-            <div class="before"></div>
-            <div class="after"></div>
+
           </div>
           <div class="image-wrapper">
             <img src="@/static/simple/example2_image04.png" alt="">
           </div>
           <div class="image-wrapper">
             <img src="@/static/simple/example2_image06.png" alt="">
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -60,21 +68,39 @@
 import Header from '@/components/Header/index.vue'
 import Footer from '@/components/Footer/index.vue'
 import Join from '@/components/Join/index.vue'
+import { caseDetail } from '@/service/news'
 export default {
   //  name: 'simple-example2',
   data() {
     return {
       scroll: false,
-      list: [0,0,0,1,0,0]
+      list: [],
+      pageData: {}
     }
   },
   methods: {
     toPath() {
     },
+    async requestData() {
+      const query = this.$route.query
+      const res: any = await caseDetail({case_id: query.id})
+      this.pageData = res.content_body
+      const effects = (res.content_body.effects || '').split(',').map(Number)
+      const list = (res.content_body.images || [] ).map((it,index)=> {
+        return {
+          img: `/imageHost/${it}`,
+          hasEffects: effects.includes(index + 1) ? 1 : 0
+        }
+      })
+      this.list = list
+      this.$nextTick(() => {
+        window.addEventListener('scroll', this.getElement)
+      })
+    },
     getElement() {
       this.list.forEach((item,index) => {
-        if(item === 1) {
-          const el = this.$refs[`list_${index}`]
+        if(item.hasEffects === 1) {
+          const el = this.$refs[`list_${index}`][0]
           const { height, top } = el.getBoundingClientRect()
           if(top <= 100 + height && top >= 100) {
             el.querySelector('.before').style.width =  (top - 100) / (100 + height) * 20 + '%';
@@ -88,7 +114,7 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('scroll', this.getElement)
+    this.requestData()
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.getElement)

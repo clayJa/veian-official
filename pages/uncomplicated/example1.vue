@@ -3,38 +3,44 @@
     <Header></Header>
     <div class="banner">
       <div class="content">
-        <img src="@/static/simple/example1_bannner.jpg" alt="">
+        <!-- <img src="@/static/simple/example1_bannner.jpg" alt=""> -->
+        <img :src="`/imageHost/${pageData.bannerImage}`" alt="">
       </div>
     </div>
     <div class="introduction">
-      <div class="title">南孚电池</div>
+      <div class="title">{{pageData.brandTitle}}</div>
       <div class="content-wrapper">
         <div class="container">
           <div class="info-wrapper">
-            <div class="info">南孚电池品牌官网，以产品为导向，进一步锁定年轻群体，将南孚的产品形象和企业形象年轻化、国际化</div>
+            <div class="info">{{pageData.brandInfo}}</div>
             <div class="logo">
-                <img src="@/static/simple/example1_logo.png" alt="">
+                <img :src="`/imageHost/${pageData.brandLogo}`" alt="">
               </div>
           </div>
-          <div class="image1">
+          <div class="image" v-for="(item,index) in pageData.images || []" :key="index">
+            <div class="image-wrapper">
+              <img :src="`/imageHost/${item}`" alt="">
+            </div>
+          </div>
+          <!-- <div class="image1">
             <div class="image-wrapper">
               <img src="@/static/simple/example1_image1.jpg" alt="">
             </div>
             <div class="sharp"></div>
-          </div>
-          <div class="title-wrapper">
+          </div> -->
+          <!-- <div class="title-wrapper">
             <h2>科技创新，闪耀国际舞台</h2>
             <p>专注于小电池领域，坚持以科技为先导、以产品为重心、以客户为中心。</p>
-          </div>
-          <div class="image2">
+          </div> -->
+          <!-- <div class="image2">
             <div class="image-wrapper">
               <img src="@/static/simple/example1_image2.jpg" alt="">
             </div>
             <div class="sharp"></div>
-          </div>
-          <div class="image-wrapper image3">
+          </div> -->
+          <!-- <div class="image-wrapper image3">
             <img src="@/static/simple/example1_image3.jpg" alt="">
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -47,18 +53,27 @@
 import Header from '@/components/Header/index.vue'
 import Footer from '@/components/Footer/index.vue'
 import Join from '@/components/Join/index.vue'
+import { caseDetail } from '@/service/news'
 export default {
   //  name: 'simple-example1',
   data() {
     return {
-      scroll: false
+      scroll: false,
+      pageData: {}
     }
   },
   methods: {
+    async requestData() {
+      const query = this.$route.query
+      const res: any = await caseDetail({case_id: query.id})
+      console.log(res,'requestData')
+      this.pageData = res.content_body
+    },
     toPath() {
     },
   },
   mounted() {
+    this.requestData()
   },
   components: {
     Header,
@@ -213,6 +228,12 @@ export default {
         transform: translate(25%, -52%);
       }
     }
+    .image {
+      margin-bottom: 96px;
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
   }
   @media only screen and (max-width: 760px) {
     .title {
@@ -290,6 +311,12 @@ export default {
         margin-bottom: 96px;
         .sharp {
           transform: translate(25%, -20%);
+        }
+      }
+      .image {
+        margin-bottom: 96px;
+        &:last-child {
+          margin-bottom: 0px;
         }
       }
     }

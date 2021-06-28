@@ -12,3 +12,6 @@ export const newsTagsList = async (params) => {
 export const caseList = async (params) => {
   return await request.post('/backApi/api/news/case/list', params)
 }
+export const caseDetail = async (params) => {
+  return await request.post('/backApi/api/news/case/one', params)
+}

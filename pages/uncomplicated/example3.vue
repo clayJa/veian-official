@@ -3,12 +3,12 @@
     <Header></Header>
     <div class="banner">
       <div class="content">
-        <img src="@/static/simple/example3_banner.jpg" alt="">
+        <img :src="`/imageHost/${pageData.bannerImage}`" alt="">
         <div class="text">
           <div class="container">
-            <div class="info1">Project Introduction</div>
-            <div class="info2">瑰珀翠</div>
-            <div class="info3">用户体验 / 交互设计</div>
+            <div class="info1">{{pageData.bannerTitleEn}}</div>
+            <div class="info2">{{pageData.bannerTitle1}}</div>
+            <div class="info3">{{pageData.bannerTitle2}}</div>
           </div>
         </div>
       </div>
@@ -16,18 +16,26 @@
     <div class="introduction">
       <div class="description container clearfix">
         <div class="project-info">
-          <div class="project">瑰珀翠</div>
-          <div class="detail">瑰珀翠（英文名字Crabtree & Evelyn），灵感来自十七世纪极负盛名的作家与园艺学家“John Evelyn”（约翰•爱芙蓉）。由制造香皂的家庭企业起家，至今已有30年的历史。作为象征英国优雅贵族气息的品牌，许多好莱坞影片里都可以看见Crabtree & Evelyn的影子。</div>
+          <div class="project">{{pageData.brandTitle}}</div>
+          <div class="detail">{{pageData.brandInfo}}</div>
         </div>
         <div class="logo">
-          <img src="@/static/simple/example3_logo.png" alt="">
+          <img :src="`/imageHost/${pageData.brandLogo}`" alt="">
         </div>
       </div>
       <div class="image-list">
-        <div class="image-wrapper container">
-          <img src="@/static/simple/example3_image1.jpg" alt="">
+        <div :class="['image-wrapper',item.hasEffects === 1 ? 'fixed-image' : 'container']"
+          v-for="(item,index) in list" :key="index"
+          :style="{backgroundImage: item.hasEffects === 1 ? `url(${item.img})` : 'none'}"
+          :ref="`list_${index}`"
+        >
+          <img :src="item.img" alt="" v-if="item.hasEffects !== 1">
+          <template v-else>
+            <div class="before"></div>
+            <div class="after"></div>
+          </template>
         </div>
-        <div class="image-wrapper container">
+        <!-- <div class="image-wrapper container">
           <img src="@/static/simple/example3_image2.jpg" alt="">
         </div>
         <div class="image-wrapper fixed-image"
@@ -36,12 +44,12 @@
         >
           <div class="before"></div>
           <div class="after"></div>
-        </div>
-        <div class="info container">
+        </div> -->
+        <!-- <div class="info container">
           <div class="info-title">微交互设计，卡片式布局结合</div>
           <div class="info-detail">运用微交互设计理念搭建Shop、Inspire、Discover、Connect等多个服务平台，结合卡片式布局提升网站美观性、实用性，搭配精美图片合理布局，有效吸引消费者注意力，全方位满足用户浏览体验。</div>
-        </div>
-        <div class="image-wrapper container">
+        </div> -->
+        <!-- <div class="image-wrapper container">
           <img src="@/static/simple/example3_image4.jpg" alt="">
         </div>
         <div class="image-wrapper container">
@@ -59,7 +67,7 @@
         >
           <div class="before"></div>
           <div class="after"></div>
-        </div>
+        </div> -->
       </div>
     </div>
     <Join />
@@ -71,21 +79,39 @@
 import Header from '@/components/Header/index.vue'
 import Footer from '@/components/Footer/index.vue'
 import Join from '@/components/Join/index.vue'
+import { caseDetail } from '@/service/news'
 export default {
   //  name: 'simple-example3',
   data() {
     return {
       scroll: false,
-      list: [0,0,1,0,0,0,0,1]
+      list: [],
+      pageData: {}
     }
   },
   methods: {
     toPath() {
     },
+    async requestData() {
+      const query = this.$route.query
+      const res: any = await caseDetail({case_id: query.id})
+      this.pageData = res.content_body
+      const effects = (res.content_body.effects || '').split(',').map(Number)
+      const list = (res.content_body.images || [] ).map((it,index)=> {
+        return {
+          img: `/imageHost/${it}`,
+          hasEffects: effects.includes(index + 1) ? 1 : 0
+        }
+      })
+      this.list = list
+      this.$nextTick(() => {
+        window.addEventListener('scroll', this.getElement)
+      })
+    },
     getElement() {
       this.list.forEach((item,index) => {
-        if(item === 1) {
-          const el = this.$refs[`list_${index}`]
+        if(item.hasEffects === 1) {
+          const el = this.$refs[`list_${index}`][0]
           const { height, top } = el.getBoundingClientRect()
           if(top <= 100 + height && top >= 100) {
             el.querySelector('.before').style.width =  (top - 100) / (100 + height) * 20 + '%';
@@ -99,7 +125,7 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('scroll', this.getElement)
+    this.requestData()
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.getElement)

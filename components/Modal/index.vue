@@ -64,6 +64,12 @@ export default {
     changeVisible() {
       this.show = false
       this.$emit('visibleChange', false)
+    },
+    async fetchGlobalSetting() {
+      const res1 = await this.$store.dispatch('fetchGlobalSetting',{name: 'contact_user_qrcode'})
+      const res2 = await this.$store.dispatch('fetchGlobalSetting',{name: 'concat_user'})
+      this.qrcodeImage = res1.data[0].value
+      this.concatUser = JSON.parse(res2.data[0].value)
     }
   }
 }

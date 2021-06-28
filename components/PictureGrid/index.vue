@@ -1,15 +1,15 @@
 <template>
-  <div class="picture-grid clearfix">
-    <div class="picture-item" v-for="item in list" :key="item.name">
-      <img :src="getObject(item,'content_body.bannerImage')" alt="">
-      <div class="mask" @click="toPath(`/uncomplicated/example${item.case_study_id}?id=${item.id}`)">
-        {{ item.title }}
+  <div class="picture-grid">
+    <div class="clearfix">
+      <div class="picture-item" v-for="item in list" :key="item.name">
+        <img :src="`/imageHost/${getObject(item,'content_body.first_image')}`" alt="">
+        <div class="mask" @click="toPath(`/uncomplicated/example${item.case_study_id}?id=${item.id}`)">
+          {{ item.title }}
+        </div>
       </div>
     </div>
-    <div class="more-wrapper" v-if="hasMore">
-      <a href="/uncomplicated">
-        <div class="more-buttom">查看更多案例 <i class="iconfont">&#xe61e;</i></div>
-      </a>
+    <div class="more-wrapper" v-if="hasMore && (lastPage === null || currentPage < lastPage) ">
+      <div class="more-buttom" @click="nextPage">查看更多案例 <i class="iconfont">&#xe61e;</i></div>
     </div>
   </div>
 </template>
@@ -47,11 +47,12 @@ export default {
   data() {
     return {
       list: [],
-      nextPage: 1,
+      currentPage: 1,
+      lastPage: null,
     }
   },
   mounted() {
-    this.requestData()
+    this.requestData(this.currentPage)
   },
   methods: {
     toPath(path: string) {
@@ -62,17 +63,19 @@ export default {
     getObject(obj,key,defaultValue) {
       return _get(obj,key,defaultValue)
     },
-    async requestData() {
+    nextPage() {
+      this.requestData(this.currentPage + 1)
+    },
+    async requestData(page) {
       const res: any = await caseList({
-        limit: 1,
-        page: this.nextPage,
+        limit: 16,
+        page: page,
       })
       // Math.ceil(2/16)
       console.log(res,'2324343')
-      this.list = res.data
-      this.pageSize = res.per_page
+      this.list = page === this.currentPage ? res.data : [...this.list,...res.data]
       this.currentPage = res.current_page
-      this.total = res.total
+      this.lastPage = res.last_page
     },
   },
   components: {
@@ -82,6 +85,7 @@ export default {
 
 <style lang="less" >
 .picture-grid {
+  background: #1A82FF;
   .picture-item {
     float: left;
     position: relative;
@@ -125,6 +129,7 @@ export default {
     width: 100%;
     text-align: center;
     padding: 48px 0;
+    padding-top: 0;
     cursor: pointer;
     .more-buttom {
       display: inline-block;
