@@ -70,6 +70,7 @@ typings/
 
 # Nuxt generate
 dist
+*.tar
 
 # vuepress build output
 .vuepress/dist

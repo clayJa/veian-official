@@ -1,75 +1,48 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        veian-offical
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div>
+    <Header></Header>
+    <Banner />
+    <PictureGrid />
+    <ServiceContent />
+    <About />
+    <News />
+    <Footer />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({})
+import Header from '@/components/Header/index.vue'
+import Footer from '@/components/Footer/index.vue'
+import PictureGrid from '@/components/PictureGrid/index.vue'
+import Banner from '@/components/index/Banner/index.vue'
+import ServiceContent from '@/components/index/ServiceContent/index.vue'
+import About from '@/components/index/About/index.vue'
+import News from '@/components/index/News/index.vue'
+export default {
+  data() {
+    return {
+    }
+  },
+  mounted() {
+    this.fetchModuleConfig()
+  },
+  methods: {
+    async fetchModuleConfig() {
+      const menuMap = localStorage.getItem('menuMap') ? JSON.parse(localStorage.getItem('menuMap')) : {}
+      await this.$store.dispatch('fetchModuleConfig',{id: menuMap[this.$nuxt.$route.path]})
+    }
+  },
+  components: {
+    Header,
+    Footer,
+    Banner,
+    PictureGrid,
+    ServiceContent,
+    About,
+    News,
+  }
+}
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
+<style lang="less" >
 </style>

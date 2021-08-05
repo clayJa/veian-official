@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1526px" height="693px" viewBox="0 0 1526 693" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Image_Portfolio</title>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#CCDDF8" offset="0%"></stop>
+            <stop stop-color="#F3F7FA" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="linearGradient-2">
+            <stop stop-color="#CCDDF8" offset="0%"></stop>
+            <stop stop-color="#F3F7FA" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#F4FAFE" offset="0%"></stop>
+            <stop stop-color="#D0E0F8" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="43.9932687%" y1="100%" x2="25.4658077%" y2="5.6337007%" id="linearGradient-4">
+            <stop stop-color="#EBF2FD" stop-opacity="0.5" offset="0%"></stop>
+            <stop stop-color="#D2E2F9" stop-opacity="0.5" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="20.859375%" y1="6.41335227%" x2="50%" y2="100%" id="linearGradient-5">
+            <stop stop-color="#EBF2FD" stop-opacity="0.7" offset="0%"></stop>
+            <stop stop-color="#D2E2F9" stop-opacity="0.7" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Web-English-home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="未苒网络科技-首页" transform="translate(0.000000, -2740.000000)">
+            <g id="Image_Portfolio" transform="translate(0.000000, 2740.000000)">
+                <path d="M40.8476475,154.352702 C99.0256684,173.54052 90.9301534,197.19878 131.367175,197.19878 C171.804196,197.19878 187.924565,166.025226 240.588706,177.082278 C293.252847,188.139331 323.349441,274.522553 277.400442,317.36863 C231.451444,360.214708 264.941675,392.003734 282.684577,424.483825 C300.427479,456.963917 259.94962,530.447244 190.274552,492.899337 C143.824507,467.867399 107.389147,478.310171 80.9684729,524.227652 C54.8949425,548.941746 27.9056769,553.539784 0,538.021765 L0,149.674447 C12.5714358,147.958129 26.1873183,149.517547 40.8476475,154.352702 Z M1439.99843,9.09494702e-13 L1439.99649,211 C1423.16023,200.476844 1420.54811,191.142418 1398.61559,191.142418 C1368.73323,191.142418 1356.82051,213.974404 1317.90249,205.87605 C1278.98447,197.777697 1256.74354,134.509309 1290.69917,103.128189 C1324.6548,71.7470693 1299.90601,48.4643029 1286.79427,24.6753893 C1283.11287,17.996153 1282.82318,8.94947183 1285.45047,9.09494702e-13 L1439.99843,9.09494702e-13 Z" id="形状" fill="#F8FAFF"></path>
+                <g id="Bg-Shape" transform="translate(0.000000, 144.000000)">
+                    <rect id="Rectangle-6-Copy-2" stroke="url(#linearGradient-1)" x="0.5" y="63.5" width="199" height="1"></rect>
+                    <rect id="Rectangle-6-Copy-3" stroke="url(#linearGradient-2)" x="0.5" y="255.5" width="399" height="1"></rect>
+                    <rect id="Rectangle-11" fill="url(#linearGradient-3)" x="174" y="0" width="1" height="531"></rect>
+                    <circle id="Oval-5-Copy-3" stroke-opacity="0.4" stroke="#D2E2F9" fill="#F5FBFF" cx="176" cy="255" r="30"></circle>
+                    <circle id="Oval-5-Copy-2" stroke-opacity="0.75" stroke="#D2E2F9" fill="#F5FBFE" cx="176.5" cy="255.5" r="17.5"></circle>
+                    <circle id="Oval-5-Copy" stroke="#D0E5FF" stroke-width="4" fill="#F3F7FA" cx="176.5" cy="255.5" r="6.5"></circle>
+                    <ellipse id="Oval-5-Copy-9" stroke="url(#linearGradient-4)" cx="1310" cy="332.5" rx="215" ry="215.5"></ellipse>
+                    <circle id="Oval-5-Copy-8" stroke="url(#linearGradient-5)" cx="1310" cy="333" r="110"></circle>
+                    <circle id="Oval-5-Copy-7" stroke="#D0E5FF" stroke-width="10" fill="#FFFFFF" cx="1310.5" cy="332.5" r="25.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
